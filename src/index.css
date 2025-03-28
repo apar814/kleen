@@ -84,11 +84,11 @@
   }
 
   .kleen-score-ring {
-    @apply fill-none stroke-2 transition-all duration-1000 ease-in-out transform origin-center rotate-90;
+    @apply fill-none transition-all duration-1000 ease-in-out transform origin-center rotate-90;
   }
 
   .kleen-card {
-    @apply rounded-lg shadow-kleen-card bg-kleen-white p-4;
+    @apply rounded-lg shadow-kleen-card bg-kleen-white p-4 hover:shadow-kleen-hover transition-all duration-300;
   }
 
   .kleen-btn-primary {
@@ -122,6 +122,27 @@
   .kleen-label {
     @apply text-label font-inter text-kleen-gray;
   }
+  
+  /* New animation classes */
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-glow:hover {
+    @apply shadow-[0_0_15px_rgba(122,229,130,0.5)];
+  }
+  
+  .pulse-mint {
+    animation: pulse-mint 2s infinite;
+  }
+  
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
 }
 
 @layer base {
@@ -141,6 +162,64 @@
   h3 {
     @apply font-satoshi font-bold text-h3;
   }
+}
+
+/* Enhanced animations */
+@keyframes pulse-mint {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(122, 229, 130, 0.7);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(122, 229, 130, 0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shine {
+  from {
+    background-position: -200% center;
+  }
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes scan-pulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1); 
+    box-shadow: 0 0 0 0 rgba(122, 229, 130, 0.7);
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: scale(1.05); 
+    box-shadow: 0 0 0 10px rgba(122, 229, 130, 0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes gradient-text {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Google Fonts Import */
