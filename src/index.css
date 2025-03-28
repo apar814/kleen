@@ -6,63 +6,63 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 29%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 29%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 172 66% 50%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 172 66% 50%;
-    --radius: 0.5rem;
+    --popover-foreground: 0 0% 29%;
+    --primary: 123 68% 68%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 120 28% 86%;
+    --secondary-foreground: 0 0% 29%;
+    --muted: 120 28% 86%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 12 80% 94%;
+    --accent-foreground: 0 0% 29%;
+    --destructive: 2 59% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 123 68% 68%;
+    --radius: 16px;
     
     /* Sidebar */
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222.2 84% 4.9%;
-    --sidebar-border: 214.3 31.8% 91.4%;
-    --sidebar-accent: 210 40% 96.1%;
-    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
-    --sidebar-ring: 221.2 83.2% 53.3%;
+    --sidebar-foreground: 0 0% 29%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-accent: 120 28% 86%;
+    --sidebar-accent-foreground: 0 0% 29%;
+    --sidebar-ring: 123 68% 68%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 172 66% 50%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 172 66% 50%;
+    --background: 0 0% 29%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 29%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 29%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 123 68% 68%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 120 10% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 120 10% 40%;
+    --muted-foreground: 0 0% 80%;
+    --accent: 12 40% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 2 40% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 120 10% 40%;
+    --input: 120 10% 40%;
+    --ring: 123 68% 68%;
     
     /* Sidebar */
-    --sidebar-background: 222.2 84% 4.9%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-accent: 217.2 32.6% 17.5%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-ring: 224.3 76.3% 48%;
+    --sidebar-background: 0 0% 29%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-border: 120 10% 40%;
+    --sidebar-accent: 120 10% 40%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-ring: 123 68% 68%;
   }
 }
 
@@ -72,19 +72,55 @@
   }
 
   .toxicity-pill-high {
-    @apply bg-kleen-danger/10 text-kleen-danger;
+    @apply bg-kleen-red/10 text-kleen-red;
   }
 
   .toxicity-pill-medium {
-    @apply bg-kleen-warning/10 text-kleen-warning;
+    @apply bg-yellow-500/10 text-yellow-500;
   }
 
   .toxicity-pill-low {
-    @apply bg-kleen-safe/10 text-kleen-safe;
+    @apply bg-kleen-mint/10 text-kleen-mint;
   }
 
   .kleen-score-ring {
     @apply fill-none stroke-2 transition-all duration-1000 ease-in-out transform origin-center rotate-90;
+  }
+
+  .kleen-card {
+    @apply rounded-lg shadow-kleen-card bg-kleen-white p-4;
+  }
+
+  .kleen-btn-primary {
+    @apply bg-kleen-mint text-white py-3 px-5 rounded-lg shadow-sm hover:shadow-kleen-hover hover:-translate-y-0.5 transition-all duration-200;
+  }
+
+  .kleen-btn-secondary {
+    @apply border border-kleen-gray text-kleen-gray py-3 px-5 rounded-lg shadow-sm hover:shadow-kleen-hover hover:-translate-y-0.5 transition-all duration-200;
+  }
+
+  .kleen-btn-danger {
+    @apply bg-kleen-red text-white py-3 px-5 rounded-lg shadow-sm hover:shadow-kleen-hover hover:-translate-y-0.5 transition-all duration-200;
+  }
+
+  .kleen-heading-h1 {
+    @apply text-h1 font-satoshi font-bold text-kleen-gray;
+  }
+
+  .kleen-heading-h2 {
+    @apply text-h2 font-satoshi font-bold text-kleen-gray;
+  }
+
+  .kleen-heading-h3 {
+    @apply text-h3 font-satoshi font-bold text-kleen-gray;
+  }
+
+  .kleen-body {
+    @apply text-body font-inter text-kleen-gray;
+  }
+
+  .kleen-label {
+    @apply text-label font-inter text-kleen-gray;
   }
 }
 
@@ -93,7 +129,20 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter text-body;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  h1 {
+    @apply font-satoshi font-bold text-h1;
+  }
+  h2 {
+    @apply font-satoshi font-bold text-h2;
+  }
+  h3 {
+    @apply font-satoshi font-bold text-h3;
+  }
 }
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+/* Note: Satoshi is a commercial font, using Inter as fallback for now */

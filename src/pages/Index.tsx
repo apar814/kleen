@@ -3,43 +3,99 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Shield, Heart, Star } from 'lucide-react';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="px-6 py-4 border-b">
+    <div className="min-h-screen flex flex-col bg-kleen-white">
+      <header className="px-8 py-6 border-b border-kleen-sage">
         <div className="container mx-auto flex justify-between items-center">
           <KleenLogo size="md" />
           <Link to="/dashboard">
-            <Button variant="outline">Dashboard</Button>
+            <Button variant="outline" className="font-inter">Dashboard</Button>
           </Link>
         </div>
       </header>
       
-      <main className="flex-1 flex flex-col items-center justify-center p-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Shop <span className="text-kleen-teal">cleaner</span>, live better
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Kleen analyzes your shopping cart for toxic ingredients and suggests healthier alternatives.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/dashboard">
-              <Button size="lg" className="bg-kleen-teal hover:bg-kleen-teal-dark">
-                <ShoppingCart className="mr-2 h-5 w-5" />
-                Try Cart Analysis
-              </Button>
-            </Link>
+      <main className="flex-1 flex flex-col">
+        {/* Hero Section */}
+        <div className="py-16 md:py-24 px-8 bg-gradient-to-br from-kleen-white to-kleen-sage/20">
+          <div className="container mx-auto max-w-3xl text-center">
+            <h1 className="kleen-heading-h1 mb-6">
+              Shop <span className="text-kleen-mint">cleaner</span>, live better
+            </h1>
+            <p className="kleen-body text-kleen-gray mb-10 max-w-xl mx-auto">
+              Kleen analyzes your shopping cart for toxic ingredients and suggests healthier alternatives that align with your values.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link to="/dashboard">
+                <button className="kleen-btn-primary">
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Try Cart Analysis
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+        
+        {/* Features Section */}
+        <div className="py-16 px-8 bg-kleen-white">
+          <div className="container mx-auto">
+            <h2 className="kleen-heading-h2 text-center mb-12">Why Choose Kleen?</h2>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="kleen-card p-6 hover:shadow-kleen-hover transition-shadow">
+                <div className="bg-kleen-mint/10 p-3 rounded-full w-fit mb-4">
+                  <Shield className="h-6 w-6 text-kleen-mint" />
+                </div>
+                <h3 className="kleen-heading-h3 mb-2">Ingredient Analysis</h3>
+                <p className="kleen-body text-kleen-gray/80">
+                  We scan every product for potentially harmful ingredients and explain them in plain language.
+                </p>
+              </div>
+              
+              <div className="kleen-card p-6 hover:shadow-kleen-hover transition-shadow">
+                <div className="bg-kleen-mint/10 p-3 rounded-full w-fit mb-4">
+                  <Star className="h-6 w-6 text-kleen-mint" />
+                </div>
+                <h3 className="kleen-heading-h3 mb-2">Cleaner Alternatives</h3>
+                <p className="kleen-body text-kleen-gray/80">
+                  Discover healthier product options that align with your values, all without leaving your cart.
+                </p>
+              </div>
+              
+              <div className="kleen-card p-6 hover:shadow-kleen-hover transition-shadow">
+                <div className="bg-kleen-mint/10 p-3 rounded-full w-fit mb-4">
+                  <Heart className="h-6 w-6 text-kleen-mint" />
+                </div>
+                <h3 className="kleen-heading-h3 mb-2">Personal Health Stack</h3>
+                <p className="kleen-body text-kleen-gray/80">
+                  Build your personalized collection of clean products that work for your body and lifestyle.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </main>
       
-      <footer className="border-t py-6">
-        <div className="container mx-auto text-center text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} Kleen. All rights reserved.</p>
+      <footer className="border-t border-kleen-sage py-8 px-8">
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <KleenLogo size="sm" />
+              <p className="mt-2 text-label text-kleen-gray">
+                © {new Date().getFullYear()} Kleen. All rights reserved.
+              </p>
+            </div>
+            
+            <div className="flex gap-6">
+              <a href="#" className="text-label text-kleen-gray hover:text-kleen-mint transition-colors">Privacy</a>
+              <a href="#" className="text-label text-kleen-gray hover:text-kleen-mint transition-colors">Terms</a>
+              <a href="#" className="text-label text-kleen-gray hover:text-kleen-mint transition-colors">About</a>
+              <a href="#" className="text-label text-kleen-gray hover:text-kleen-mint transition-colors">Contact</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

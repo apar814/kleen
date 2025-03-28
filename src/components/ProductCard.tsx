@@ -41,9 +41,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onViewAlternative
 }) => {
   const toxicityIcons = {
-    high: <X className="w-4 h-4 text-kleen-danger" />,
-    medium: <AlertTriangle className="w-4 h-4 text-kleen-warning" />,
-    low: <Check className="w-4 h-4 text-kleen-safe" />
+    high: <X className="w-4 h-4 text-kleen-red" />,
+    medium: <AlertTriangle className="w-4 h-4 text-yellow-500" />,
+    low: <Check className="w-4 h-4 text-kleen-mint" />
   };
 
   const toxicityLabels = {
@@ -65,7 +65,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div className={cn("product-card", className)}>
+    <div className={cn("kleen-card overflow-hidden", className)}>
       <div className="flex p-4">
         <div className="w-24 h-24 bg-gray-100 rounded-md overflow-hidden flex-shrink-0">
           <img 
@@ -75,18 +75,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
           />
         </div>
         <div className="ml-4 flex-grow">
-          <div className="text-sm text-kleen-gray">{product.brand}</div>
-          <h3 className="font-medium text-gray-900">{product.name}</h3>
-          <div className="mt-1 text-kleen-teal-dark font-semibold">{product.price}</div>
+          <div className="text-label text-kleen-gray">{product.brand}</div>
+          <h3 className="font-satoshi font-bold text-kleen-gray">{product.name}</h3>
+          <div className="mt-1 text-kleen-mint font-semibold">{product.price}</div>
           
           <div className="mt-2 flex items-center">
-            <div className="text-sm font-medium">Kleen Score:</div>
+            <div className="text-label font-medium">Kleen Score:</div>
             <div 
               className={cn(
-                "ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium",
-                product.kleenScore >= 70 ? "bg-kleen-safe/10 text-kleen-safe" :
-                product.kleenScore >= 40 ? "bg-kleen-warning/10 text-kleen-warning" :
-                "bg-kleen-danger/10 text-kleen-danger"
+                "ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium",
+                product.kleenScore >= 70 ? "bg-kleen-mint/10 text-kleen-mint" :
+                product.kleenScore >= 40 ? "bg-yellow-500/10 text-yellow-500" :
+                "bg-kleen-red/10 text-kleen-red"
               )}
             >
               {product.kleenScore}/100
@@ -95,15 +95,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
       
-      <Accordion type="single" collapsible className="border-t">
-        <AccordionItem value="ingredients">
-          <AccordionTrigger className="px-4 py-2 text-sm font-medium">
+      <Accordion type="single" collapsible className="border-t border-kleen-sage">
+        <AccordionItem value="ingredients" className="border-b-0">
+          <AccordionTrigger className="px-4 py-2 text-label font-medium">
             Ingredient Analysis
           </AccordionTrigger>
           <AccordionContent className="px-4 pb-4">
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {product.ingredients.map((ingredient) => (
-                <li key={ingredient.name} className="text-sm">
+                <li key={ingredient.name} className="kleen-body">
                   <div className="flex items-center justify-between">
                     <div className="font-medium">{ingredient.name}</div>
                     <div className={toxicityClasses[ingredient.toxicityLevel]}>
@@ -113,19 +113,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
                       </div>
                     </div>
                   </div>
-                  <p className="mt-1 text-kleen-gray">{ingredient.description}</p>
+                  <p className="mt-1 text-kleen-gray text-label">{ingredient.description}</p>
                 </li>
               ))}
             </ul>
             
             {showAlternative && product.alternativeProductId && (
-              <Button 
-                variant="outline" 
-                className="mt-4 w-full bg-kleen-teal/10 border-kleen-teal/20 text-kleen-teal-dark hover:bg-kleen-teal/20"
+              <button 
+                className="kleen-btn-primary mt-6 w-full text-center"
                 onClick={handleViewAlternative}
               >
                 View Cleaner Alternative
-              </Button>
+              </button>
             )}
           </AccordionContent>
         </AccordionItem>

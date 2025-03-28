@@ -19,18 +19,18 @@ const KleenScore: React.FC<KleenScoreProps> = ({
   const normalizedScore = Math.max(0, Math.min(100, score));
   
   // Calculate colors based on score
-  let color = 'text-kleen-danger';
-  let ringColor = '#EF4444';
-  let bgColor = 'bg-kleen-danger/10';
+  let color = 'text-kleen-red';
+  let ringColor = '#D9534F';
+  let bgColor = 'bg-kleen-red/10';
   
   if (normalizedScore >= 70) {
-    color = 'text-kleen-safe';
-    ringColor = '#22C55E';
-    bgColor = 'bg-kleen-safe/10';
+    color = 'text-kleen-mint';
+    ringColor = '#7AE582';
+    bgColor = 'bg-kleen-mint/10';
   } else if (normalizedScore >= 40) {
-    color = 'text-kleen-warning';
+    color = 'text-yellow-500';
     ringColor = '#F59E0B';
-    bgColor = 'bg-kleen-warning/10';
+    bgColor = 'bg-yellow-500/10';
   }
   
   // Size configurations
@@ -59,7 +59,7 @@ const KleenScore: React.FC<KleenScoreProps> = ({
             stroke={ringColor} 
           />
           <circle 
-            className="kleen-score-ring" 
+            className="kleen-score-ring animate-[scan-pulse_4s_ease-in-out_infinite]" 
             cx="60" 
             cy="60" 
             r={radius} 
@@ -68,10 +68,10 @@ const KleenScore: React.FC<KleenScoreProps> = ({
             strokeDashoffset={dashOffset}
           />
         </svg>
-        <span className={cn("font-bold", color)}>{normalizedScore}</span>
+        <span className={cn("font-satoshi font-bold", color)}>{normalizedScore}</span>
       </div>
       {showLabel && (
-        <span className="mt-2 text-sm font-medium text-kleen-gray">Kleen Score</span>
+        <span className="mt-2 text-label font-inter font-medium text-kleen-gray">Kleen Score</span>
       )}
     </div>
   );
