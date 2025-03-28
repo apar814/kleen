@@ -7,6 +7,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import ScanHistory from "./pages/ScanHistory";
+import CleanStack from "./pages/CleanStack";
+import ExploreProducts from "./pages/ExploreProducts";
+import Profile from "./pages/Profile";
+import ReferralPage from "./pages/ReferralPage";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +24,11 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/scan-history" element={<ScanHistory />} />
+          <Route path="/clean-stack" element={<CleanStack />} />
+          <Route path="/explore" element={<ExploreProducts />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/referral" element={<ReferralPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

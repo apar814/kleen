@@ -2,226 +2,110 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+ 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 29%;
+    --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 29%;
+    --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 29%;
-    --primary: 123 68% 68%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 120 28% 86%;
-    --secondary-foreground: 0 0% 29%;
-    --muted: 120 28% 86%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 12 80% 94%;
-    --accent-foreground: 0 0% 29%;
-    --destructive: 2 59% 58%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 123 68% 68%;
-    --radius: 16px;
-    
-    /* Sidebar */
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 29%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-accent: 120 28% 86%;
-    --sidebar-accent-foreground: 0 0% 29%;
-    --sidebar-ring: 123 68% 68%;
+    --sidebar-foreground: 240 10% 3.9%;
+    --sidebar-border: 240 5.9% 90%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-ring: 240 5.9% 10%;
   }
 
   .dark {
-    --background: 0 0% 29%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 29%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 29%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 123 68% 68%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 120 10% 40%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 120 10% 40%;
-    --muted-foreground: 0 0% 80%;
-    --accent: 12 40% 60%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 2 40% 40%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 120 10% 40%;
-    --input: 120 10% 40%;
-    --ring: 123 68% 68%;
-    
-    /* Sidebar */
-    --sidebar-background: 0 0% 29%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-border: 120 10% 40%;
-    --sidebar-accent: 120 10% 40%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-ring: 123 68% 68%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 10% 3.9%;
+    --sidebar-border: 240 5.9% 90%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-ring: 240 5.9% 10%;
   }
 }
-
-@layer components {
-  .toxicity-pill {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-  }
-
-  .toxicity-pill-high {
-    @apply bg-kleen-red/10 text-kleen-red;
-  }
-
-  .toxicity-pill-medium {
-    @apply bg-yellow-500/10 text-yellow-500;
-  }
-
-  .toxicity-pill-low {
-    @apply bg-kleen-mint/10 text-kleen-mint;
-  }
-
-  .kleen-score-ring {
-    @apply fill-none transition-all duration-1000 ease-in-out transform origin-center rotate-90;
-  }
-
-  .kleen-card {
-    @apply rounded-lg shadow-kleen-card bg-kleen-white p-4 hover:shadow-kleen-hover transition-all duration-300;
-  }
-
-  .kleen-btn-primary {
-    @apply bg-kleen-mint text-white py-3 px-5 rounded-lg shadow-sm hover:shadow-kleen-hover hover:-translate-y-0.5 transition-all duration-200;
-  }
-
-  .kleen-btn-secondary {
-    @apply border border-kleen-gray text-kleen-gray py-3 px-5 rounded-lg shadow-sm hover:shadow-kleen-hover hover:-translate-y-0.5 transition-all duration-200;
-  }
-
-  .kleen-btn-danger {
-    @apply bg-kleen-red text-white py-3 px-5 rounded-lg shadow-sm hover:shadow-kleen-hover hover:-translate-y-0.5 transition-all duration-200;
-  }
-
-  .kleen-heading-h1 {
-    @apply text-h1 font-satoshi font-bold text-kleen-gray;
-  }
-
-  .kleen-heading-h2 {
-    @apply text-h2 font-satoshi font-bold text-kleen-gray;
-  }
-
-  .kleen-heading-h3 {
-    @apply text-h3 font-satoshi font-bold text-kleen-gray;
-  }
-
-  .kleen-body {
-    @apply text-body font-inter text-kleen-gray;
-  }
-
-  .kleen-label {
-    @apply text-label font-inter text-kleen-gray;
-  }
-  
-  /* New animation classes */
-  .hover-scale {
-    @apply transition-transform duration-200 hover:scale-105;
-  }
-  
-  .hover-glow {
-    @apply transition-all duration-300;
-  }
-  
-  .hover-glow:hover {
-    @apply shadow-[0_0_15px_rgba(122,229,130,0.5)];
-  }
-  
-  .pulse-mint {
-    animation: pulse-mint 2s infinite;
-  }
-  
-  .float-animation {
-    animation: float 3s ease-in-out infinite;
-  }
-}
-
+ 
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-inter text-body;
+    @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  h1 {
-    @apply font-satoshi font-bold text-h1;
-  }
-  h2 {
-    @apply font-satoshi font-bold text-h2;
-  }
-  h3 {
-    @apply font-satoshi font-bold text-h3;
-  }
 }
 
-/* Enhanced animations */
-@keyframes pulse-mint {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(122, 229, 130, 0.7);
+@layer components {
+  .kleen-heading-h1 {
+    @apply text-h1 font-satoshi font-bold text-kleen-gray;
   }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.05);
-    box-shadow: 0 0 0 10px rgba(122, 229, 130, 0);
+  .kleen-heading-h2 {
+    @apply text-h2 font-satoshi font-bold text-kleen-gray;
   }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes shine {
-  from {
-    background-position: -200% center;
+  .kleen-heading-h3 {
+    @apply text-h3 font-satoshi font-semibold text-kleen-gray;
   }
-  to {
-    background-position: 200% center;
+  .kleen-body {
+    @apply text-body font-inter text-kleen-gray;
   }
-}
-
-@keyframes scan-pulse {
-  0%, 100% { 
-    opacity: 1; 
-    transform: scale(1); 
-    box-shadow: 0 0 0 0 rgba(122, 229, 130, 0.7);
+  .kleen-card {
+    @apply bg-white rounded-lg shadow-kleen-card border border-gray-100;
   }
-  50% { 
-    opacity: 0.8; 
-    transform: scale(1.05); 
-    box-shadow: 0 0 0 10px rgba(122, 229, 130, 0);
+  .kleen-btn-primary {
+    @apply bg-kleen-mint text-white rounded-lg py-2 px-4 flex items-center justify-center font-medium hover:bg-kleen-mint/90 transition-colors;
+  }
+  .kleen-btn-secondary {
+    @apply bg-white text-kleen-gray rounded-lg py-2 px-4 flex items-center justify-center font-medium border border-gray-200 hover:bg-gray-50 transition-colors;
+  }
+  .toxicity-pill {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+  .toxicity-pill-high {
+    @apply bg-kleen-red/10 text-kleen-red;
+  }
+  .toxicity-pill-medium {
+    @apply bg-yellow-500/10 text-yellow-500;
+  }
+  .toxicity-pill-low {
+    @apply bg-kleen-mint/10 text-kleen-mint;
   }
 }
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
-  20%, 40%, 60%, 80% { transform: translateX(4px); }
-}
-
-@keyframes slide-in-right {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-
-@keyframes gradient-text {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-/* Note: Satoshi is a commercial font, using Inter as fallback for now */

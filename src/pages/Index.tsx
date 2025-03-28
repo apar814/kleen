@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, Shield, Heart, Star } from 'lucide-react';
+import { ShoppingCart, Shield, Heart, Star, BarChart2 } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -11,9 +11,17 @@ const Index = () => {
       <header className="px-8 py-6 border-b border-kleen-sage">
         <div className="container mx-auto flex justify-between items-center">
           <KleenLogo size="md" />
-          <Link to="/dashboard">
-            <Button variant="outline" className="font-inter">Dashboard</Button>
-          </Link>
+          <div className="flex gap-4">
+            <Link to="/dashboard">
+              <Button variant="outline" className="font-inter">Dashboard</Button>
+            </Link>
+            <Link to="/dashboard?tab=cart">
+              <Button variant="default" className="font-inter bg-kleen-mint hover:bg-kleen-mint/90">
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Analyze Cart
+              </Button>
+            </Link>
+          </div>
         </div>
       </header>
       
@@ -29,10 +37,16 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/dashboard">
+              <Link to="/dashboard?tab=cart">
                 <button className="kleen-btn-primary">
                   <ShoppingCart className="mr-2 h-5 w-5" />
                   Try Cart Analysis
+                </button>
+              </Link>
+              <Link to="/dashboard">
+                <button className="kleen-btn-secondary">
+                  <BarChart2 className="mr-2 h-5 w-5" />
+                  View Dashboard
                 </button>
               </Link>
             </div>
@@ -75,6 +89,14 @@ const Index = () => {
                 </p>
               </div>
             </div>
+            
+            <div className="mt-12 text-center">
+              <Link to="/explore">
+                <Button variant="outline" size="lg" className="font-inter">
+                  Explore Clean Products
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </main>
@@ -92,8 +114,8 @@ const Index = () => {
             <div className="flex gap-6">
               <a href="#" className="text-label text-kleen-gray hover:text-kleen-mint transition-colors">Privacy</a>
               <a href="#" className="text-label text-kleen-gray hover:text-kleen-mint transition-colors">Terms</a>
-              <a href="#" className="text-label text-kleen-gray hover:text-kleen-mint transition-colors">About</a>
-              <a href="#" className="text-label text-kleen-gray hover:text-kleen-mint transition-colors">Contact</a>
+              <Link to="/referral" className="text-label text-kleen-gray hover:text-kleen-mint transition-colors">Referral</Link>
+              <Link to="/profile" className="text-label text-kleen-gray hover:text-kleen-mint transition-colors">Profile</Link>
             </div>
           </div>
         </div>
