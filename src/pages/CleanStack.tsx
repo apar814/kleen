@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Heart, Plus, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -7,10 +6,10 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import PageHeader from '@/components/PageHeader';
-import ProductCard from '@/components/ProductCard';
+import ProductCard, { Product } from '@/components/ProductCard';
 
 // Mock data for saved products
-const savedProducts = [
+const savedProducts: Product[] = [
   {
     id: '1',
     name: 'Natural Moisturizing Cream',

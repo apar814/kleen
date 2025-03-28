@@ -1,14 +1,15 @@
+
 import React, { useState } from 'react';
 import { FilterIcon, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/DashboardLayout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import ProductCard from '@/components/ProductCard';
+import ProductCard, { Product, Ingredient } from '@/components/ProductCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Mock data for products
-const mockProducts = [
+const mockProducts: Product[] = [
   {
     id: '1',
     name: 'Natural Moisturizing Cream',
