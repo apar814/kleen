@@ -1,9 +1,12 @@
 
 import React from 'react';
 import { SidebarProvider, Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
-import { ShoppingCart, Heart, Info, Settings, BarChart2 } from "lucide-react";
+import { ShoppingCart, Heart, Info, Settings, BarChart2, Plus, Activity, Home } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import CartAnalysis from '@/components/CartAnalysis';
+import AnalyticsDashboard from '@/components/AnalyticsDashboard';
+import { motion } from 'framer-motion';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Dashboard = () => {
   return (
@@ -17,13 +20,13 @@ const Dashboard = () => {
             <p className="px-4 mb-4 text-label text-kleen-gray font-medium">MAIN MENU</p>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Dashboard" isActive={false}>
+                <SidebarMenuButton tooltip="Dashboard" isActive={true}>
                   <BarChart2 />
                   <span>Dashboard</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Cart Analysis" isActive={true}>
+                <SidebarMenuButton tooltip="Cart Analysis" isActive={false}>
                   <ShoppingCart />
                   <span>Cart Analysis</span>
                 </SidebarMenuButton>
@@ -53,12 +56,35 @@ const Dashboard = () => {
             <div className="mt-1">Making shopping cleaner, one cart at a time.</div>
           </SidebarFooter>
         </Sidebar>
-        <div className="flex-1 p-8 bg-gray-50">
-          <header className="mb-8">
-            <h1 className="kleen-heading-h1 mb-2">Cart Analysis</h1>
-            <p className="kleen-body text-kleen-gray/80">Analyze your shopping cart for healthier alternatives</p>
-          </header>
-          <CartAnalysis />
+        <div className="flex-1 p-8 bg-gray-50 overflow-auto">
+          <motion.header 
+            className="mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="kleen-heading-h1 mb-2">Dashboard</h1>
+            <p className="kleen-body text-kleen-gray/80">Analyze your shopping data for healthier alternatives</p>
+          </motion.header>
+          
+          <Tabs defaultValue="analytics">
+            <TabsList className="mb-6">
+              <TabsTrigger value="analytics" className="text-base">
+                <Activity className="w-4 h-4 mr-2" />
+                Analytics
+              </TabsTrigger>
+              <TabsTrigger value="cart" className="text-base">
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Cart Analysis
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="analytics">
+              <AnalyticsDashboard />
+            </TabsContent>
+            <TabsContent value="cart">
+              <CartAnalysis />
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </SidebarProvider>
