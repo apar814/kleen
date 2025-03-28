@@ -2,10 +2,14 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { Search, BookOpen } from "lucide-react";
 import ProductSwap from '@/components/ProductSwap';
 import KleenScore from '@/components/KleenScore';
 import { Product } from '@/components/ProductCard';
+import HealthScoreOverview from '@/components/HealthScoreOverview';
+import ToxinEducation from '@/components/ToxinEducation';
+import { motion } from 'framer-motion';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Mock data for demonstration
 const mockOriginalProduct: Product = {
@@ -120,21 +124,53 @@ const CartAnalysis: React.FC = () => {
             <KleenScore score={65} size="md" />
           </div>
           
-          <div className="grid grid-cols-1 gap-6">
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg">Personal Care Products</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ProductSwap 
-                  originalProduct={mockOriginalProduct}
-                  alternativeProduct={mockAlternativeProduct}
-                />
-              </CardContent>
-            </Card>
-            
-            {/* Additional product categories would go here */}
-          </div>
+          <Tabs defaultValue="products" className="w-full">
+            <TabsList className="mb-6">
+              <TabsTrigger value="products" className="text-base">
+                <Search className="w-4 h-4 mr-2" />
+                Product Analysis
+              </TabsTrigger>
+              <TabsTrigger value="health" className="text-base">
+                <BookOpen className="w-4 h-4 mr-2" />
+                Health Impact
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="products">
+              <motion.div 
+                className="grid grid-cols-1 gap-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-lg">Personal Care Products</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ProductSwap 
+                      originalProduct={mockOriginalProduct}
+                      alternativeProduct={mockAlternativeProduct}
+                    />
+                  </CardContent>
+                </Card>
+                
+                {/* Additional product categories would go here */}
+              </motion.div>
+            </TabsContent>
+
+            <TabsContent value="health">
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <HealthScoreOverview />
+                <ToxinEducation />
+              </motion.div>
+            </TabsContent>
+          </Tabs>
         </div>
       )}
     </div>

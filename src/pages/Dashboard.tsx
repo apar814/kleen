@@ -53,7 +53,7 @@ const Dashboard = () => {
           </SidebarContent>
           <SidebarFooter className="p-4 text-label text-kleen-gray">
             <div>Kleen v0.1.0 (MVP)</div>
-            <div className="mt-1">Making shopping cleaner, one cart at a time.</div>
+            <div className="mt-1">Your AI-powered health czar for toxin-free living.</div>
           </SidebarFooter>
         </Sidebar>
         <div className="flex-1 p-8 bg-gray-50 overflow-auto">
@@ -64,7 +64,7 @@ const Dashboard = () => {
             transition={{ duration: 0.5 }}
           >
             <h1 className="kleen-heading-h1 mb-2">Dashboard</h1>
-            <p className="kleen-body text-kleen-gray/80">Analyze your shopping data for healthier alternatives</p>
+            <p className="kleen-body text-kleen-gray/80">Empowering you to live toxin-free through smarter shopping</p>
           </motion.header>
           
           <Tabs defaultValue="analytics">
