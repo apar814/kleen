@@ -23,6 +23,7 @@ export interface Product {
   imageUrl: string;
   price: string;
   kleenScore: number;
+  category?: string;
   ingredients: Ingredient[];
   alternativeProductId?: string;
 }
