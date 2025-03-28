@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { FilterIcon, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -64,7 +63,7 @@ const mockProducts = [
       {
         name: 'Pea Protein Isolate',
         toxicityLevel: 'low',
-        description: 'Plant-based protein source that's easily digestible.'
+        description: "Plant-based protein source that's easily digestible."
       },
       {
         name: 'Organic Rice Protein',
