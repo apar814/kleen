@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Activity, Brain, Heart, Lungs, Shield } from "lucide-react";
+import { Activity, Brain, Heart, Shield } from "lucide-react";
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -32,7 +31,7 @@ const healthCategories: HealthCategory[] = [
   {
     name: "Respiratory System",
     score: 75,
-    icon: <Lungs className="h-5 w-5" />,
+    icon: <Activity className="h-5 w-5" />,
     impact: "VOCs and fragrances may irritate airways and reduce air quality."
   },
   {
