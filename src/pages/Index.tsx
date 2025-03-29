@@ -1,9 +1,10 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, Shield, Heart, ArrowRight, Search, Star } from 'lucide-react';
+import MainNavigation from '@/components/MainNavigation';
+import MobileNavigation from '@/components/MobileNavigation';
 
 const Index = () => {
   return (
@@ -23,33 +24,38 @@ const Index = () => {
       </div>
       
       {/* Main Navigation */}
-      <header className="bg-white py-4 shadow-sm">
-        <div className="kleen-container flex justify-between items-center">
-          <KleenLogo size="md" />
-          <div className="flex gap-4 items-center">
-            <nav className="hidden md:flex space-x-8">
-              <Link to="/how-it-works" className="text-kleen-gray hover:text-kleen-mint transition-colors">
-                How it works
-              </Link>
-              <Link to="/about" className="text-kleen-gray hover:text-kleen-mint transition-colors">
-                About
-              </Link>
-              <Link to="/database" className="text-kleen-gray hover:text-kleen-mint transition-colors">
-                Ingredient Database
-              </Link>
-            </nav>
-            <Link to="/dashboard">
-              <Button variant="outline" className="font-inter border-kleen-mint text-kleen-mint hover:bg-kleen-mint hover:text-white">Sign in</Button>
-            </Link>
-            <Link to="/dashboard?tab=cart">
-              <Button variant="default" className="font-inter bg-kleen-mint hover:bg-kleen-mint/90">
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                Analyze Cart
-              </Button>
-            </Link>
-          </div>
+      <div className="flex items-center justify-between py-4 px-6 md:px-8 lg:px-12 bg-white shadow-sm">
+        <div className="flex items-center">
+          <MobileNavigation />
+          <Link to="/">
+            <KleenLogo size="md" />
+          </Link>
         </div>
-      </header>
+        
+        <MainNavigation className="hidden md:flex absolute left-1/2 -translate-x-1/2" />
+        
+        <div className="flex items-center gap-2">
+          <Link to="/explore" className="hidden md:block">
+            <Button variant="ghost" size="icon">
+              <Search className="h-5 w-5" />
+            </Button>
+          </Link>
+          <Link to="/dashboard?tab=cart">
+            <Button variant="ghost" size="icon">
+              <ShoppingCart className="h-5 w-5" />
+            </Button>
+          </Link>
+          <Link to="/profile">
+            <Button variant="ghost" size="icon">
+              <img 
+                src="/lovable-uploads/e9521ca7-386f-47f6-a2ce-39e217c15814.png" 
+                alt="Profile" 
+                className="w-6 h-6 rounded-full"
+              />
+            </Button>
+          </Link>
+        </div>
+      </div>
       
       <main className="flex-1 flex flex-col">
         {/* Hero Section */}
@@ -80,8 +86,8 @@ const Index = () => {
               </div>
               <div className="flex-1 flex justify-center">
                 <img 
-                  src="/lovable-uploads/300dee6f-a160-4ec3-8c51-b905a24225e8.png" 
-                  alt="Clean product swaps" 
+                  src="/lovable-uploads/8e157329-3c4b-4d94-90d2-96c2d7ae4378.png" 
+                  alt="Clean product analysis" 
                   className="max-w-md w-full rounded-lg shadow-kleen-card"
                 />
               </div>

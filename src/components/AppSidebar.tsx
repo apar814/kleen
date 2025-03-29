@@ -12,9 +12,13 @@ import {
   Share2, 
   Info, 
   Settings, 
-  LogOut 
+  LogOut,
+  Home,
+  ChevronLeft,
+  Menu
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
+import { Button } from "./ui/button";
 
 interface AppSidebarProps {
   children: React.ReactNode;
@@ -22,23 +26,46 @@ interface AppSidebarProps {
 
 const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
   const location = useLocation();
+  const [collapsed, setCollapsed] = React.useState(false);
   
   const isActive = (path: string) => {
     return location.pathname === path;
   };
 
+  const isActiveWithQuery = (path: string, query: string) => {
+    return location.pathname === path && location.search.includes(query);
+  };
+
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={!collapsed}>
       <div className="flex min-h-screen w-full bg-kleen-light">
         <Sidebar className="border-r border-gray-100 bg-white">
-          <SidebarHeader className="flex items-center justify-center py-8">
-            <Link to="/">
+          <SidebarHeader className="flex items-center justify-between py-6 px-4">
+            <Link to="/" className={collapsed ? "hidden" : "block"}>
               <KleenLogo size="md" />
             </Link>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => setCollapsed(!collapsed)}
+              className="text-kleen-gray/70 hover:text-kleen-mint"
+            >
+              {collapsed ? <Menu size={20} /> : <ChevronLeft size={20} />}
+            </Button>
           </SidebarHeader>
           <SidebarContent>
-            <p className="px-4 mb-4 text-label text-kleen-gray/60 font-medium uppercase tracking-wider text-xs">MAIN MENU</p>
+            <p className={cn("px-4 mb-4 text-label text-kleen-gray/60 font-medium uppercase tracking-wider text-xs", collapsed && "hidden")}>
+              MAIN MENU
+            </p>
             <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Home" isActive={isActive('/')}>
+                  <Link to="/" className="flex items-center w-full">
+                    <Home className="mr-2" />
+                    <span>Home</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Dashboard" isActive={isActive('/dashboard')}>
                   <Link to="/dashboard" className="flex items-center w-full">
@@ -48,7 +75,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Cart Analysis" isActive={isActive('/dashboard?tab=cart')}>
+                <SidebarMenuButton tooltip="Cart Analysis" isActive={isActiveWithQuery('/dashboard', 'tab=cart')}>
                   <Link to="/dashboard?tab=cart" className="flex items-center w-full">
                     <ShoppingCart className="mr-2" />
                     <span>Cart Analysis</span>
@@ -89,7 +116,9 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
               </SidebarMenuItem>
             </SidebarMenu>
             
-            <p className="px-4 mb-4 mt-8 text-label text-kleen-gray/60 font-medium uppercase tracking-wider text-xs">YOUR ACCOUNT</p>
+            <p className={cn("px-4 mb-4 mt-8 text-label text-kleen-gray/60 font-medium uppercase tracking-wider text-xs", collapsed && "hidden")}>
+              YOUR ACCOUNT
+            </p>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Profile" isActive={isActive('/profile')}>
@@ -125,7 +154,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarContent>
-          <SidebarFooter className="p-4 text-label text-kleen-gray/60">
+          <SidebarFooter className={cn("p-4 text-label text-kleen-gray/60", collapsed && "hidden")}>
             <div>Kleen v1.0.0</div>
             <div className="mt-1">Your AI-powered health assistant for toxin-free living.</div>
           </SidebarFooter>
@@ -137,6 +166,11 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
       </div>
     </SidebarProvider>
   );
+};
+
+// This utility function handles conditional className merging
+const cn = (...classes: (string | boolean | undefined)[]): string => {
+  return classes.filter(Boolean).join(' ');
 };
 
 export default AppSidebar;
