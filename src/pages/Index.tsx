@@ -86,8 +86,8 @@ const Index = () => {
               </div>
               <div className="flex-1 flex justify-center">
                 <img 
-                  src="/lovable-uploads/8e157329-3c4b-4d94-90d2-96c2d7ae4378.png" 
-                  alt="Clean product analysis" 
+                  src="/lovable-uploads/e3cb7809-826b-40fc-8fc0-f972c8c0a469.png" 
+                  alt="Toxic ingredients detection" 
                   className="max-w-md w-full rounded-lg shadow-kleen-card"
                 />
               </div>
