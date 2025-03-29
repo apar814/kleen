@@ -1,0 +1,109 @@
+# Kleen: Masterplan.md
+
+## 🧠 App Overview
+Kleen is a Chrome browser extension that integrates with Amazon to analyze users' shopping carts for toxic, controversial, or unhealthy ingredients. It flags harmful ingredients, explains them in plain language using AI, and suggests cleaner alternatives that align with the user's health goals and values. All recommendations link to affiliate partners.
+
+## 🎯 Objectives
+- Empower users to make clean, healthy purchasing decisions without leaving Amazon.
+- Simplify the clean-living journey with AI-based analysis and curated product swaps.
+- Monetize through affiliate revenue and future premium plans.
+
+## 🧍 Target Audience
+- Health-conscious online shoppers
+- Parents, athletes, skincare users, supplement buyers
+- Gen Z and Millennials influenced by clean-living TikTok trends
+
+## 🧩 Core Features
+- Amazon cart detection and parsing
+- Ingredient analysis and toxicity flagging
+- AI-generated plain-language explanations
+- Clean swap suggestions based on user values (vegan, budget, etc.)
+- Shopping cart "Kleen Score"
+- Manual or AI-curated swap bundles
+
+## 💡 Tech Stack (High-Level)
+- **Frontend Extension**: Chrome Extension (JavaScript/React)
+- **Web Dashboard**: Built in Lovable (for managing product swaps, history, saved stacks)
+- **Backend**: API to handle barcode/ASIN input, ingredient lookups, and AI messaging
+- **AI Layer**: OpenAI for plain-language ingredient explanations and suggestion generation
+- **Database**: Product DB with curated swaps, ingredient risk levels, affiliate links
+
+## 🗂️ Conceptual Data Model
+- **Product**: { name, ASIN, ingredients[], category, brand, price, affiliateLink }
+- **Ingredient**: { name, toxicityScore, controversies[], plainLanguageSummary }
+- **UserProfile (Optional)**: { healthGoals[], values[], dietaryNeeds[] }
+- **Swap**: { originalProductID, cleanProductID, reasons[], rating }
+
+## 🖌️ UI Principles
+- Minimalist, clinical, trustworthy (like Levels or Headspace)
+- Calm color palette, clean typography
+- Subtle animations for trust and engagement
+- Clean Score UX shows cart-level health
+- Product cards must be swipeable and mobile-optimized for future expansion
+
+## 🔐 Security
+- No automatic cart scraping — 100% opt-in
+- Data never resold or tracked for ad targeting
+- Only publicly available product/ingredient info parsed
+
+## 🚀 Development Phases
+1. **MVP (Weeks 1–4)**
+   - Amazon-only cart detection
+   - AI-powered ingredient summaries
+   - Curated clean swaps (50–100 products)
+   - Affiliate tracking
+   - No login required
+
+2. **Post-MVP**
+   - Support for other retailers
+   - Embedded checkout partnerships
+   - User login, profile personalization
+   - Subscription features (alerts, stacks, coaching)
+
+3. **Phase 1 Authentication Setup**
+   - **Objective**: Introduce lightweight user authentication to enable future profile-based personalization and stack saving, without adding friction.
+
+   ### 🔐 Authentication Implementation Plan:
+   - **Step 1**: Email + Magic Link (passwordless login)
+     - User enters email
+     - Receives login link
+     - Token-based access stored in local storage
+   - **Step 2**: Anonymous Guest ID (fallback)
+     - Allow users to use Kleen without login
+     - Generate temporary UUID per browser session
+   - **Step 3**: User State Handling (Frontend)
+     - Toggle features based on login/guest
+     - Sync saved swaps only for logged-in users
+   - **Step 4**: Database Schema Addition
+     - Add `User` collection with fields: email, values[], healthGoals[], savedSwaps[], createdAt
+
+   ### 🧰 Auth Pages & Components:
+   - Login Modal (magic link input, confirmation)
+   - Email confirmation screen ("check your inbox")
+   - Authenticated navbar/profile dropdown (shows email, logout)
+   - Fallback guest banner (“Sign in to save your Clean Stack”)
+
+   ### 🔄 Authentication Flow:
+   1. User clicks “Sign In” in Kleen sidebar or Lovable dashboard
+   2. Email input modal opens → user submits email
+   3. Kleen sends email with login link (magic link)
+   4. User clicks link → backend verifies token → user session begins
+   5. Frontend updates state, shows personalized content
+
+   ### ⚠️ Error Handling & UX Improvements:
+   - Handle expired or invalid tokens (show retry + resend options)
+   - Show loading states during auth requests
+   - Success state with friendly copy ("You're in! Let's clean your cart")
+   - Graceful fallback for offline or failed requests
+   - Store guest session data and prompt to convert on sign-in
+
+## ⚠️ Key Challenges
+- Site structure volatility (Amazon cart DOM changes)
+- Incomplete ingredient data for some products
+- Ensuring UX is non-intrusive and builds trust
+
+## 🌱 Future Expansions
+- Mobile app for in-store scanning
+- Chrome extension for more sites (Thrive, iHerb, Target)
+- Personal health stack tracking + exposure history
+- Influencer/coach white-labeled versions
