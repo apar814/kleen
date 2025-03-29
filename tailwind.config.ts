@@ -52,9 +52,9 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Kleen Theme Colors - Updated based on design inspiration
+        // Kleen Theme Colors - Updated with darker green
         "kleen-white": "#FFFFFF",
-        "kleen-mint": "#5CB474", // Updated to a more muted green from image
+        "kleen-mint": "#3B8C56", // Darker green color
         "kleen-red": "#D9534F",
         "kleen-sage": "#E6EFE7", // Lighter sage background
         "kleen-gray": "#333333", // Darker text for better contrast
@@ -119,7 +119,8 @@ export default {
         'kleen-hover': '0 4px 16px rgba(0,0,0,0.06)',
       },
       fontFamily: {
-        'satoshi': ['Inter', 'sans-serif'], // Changed to Inter for a cleaner look
+        'montserrat': ['Montserrat', 'sans-serif'], // Added Montserrat
+        'satoshi': ['Inter', 'sans-serif'],
         'inter': ['Inter', 'sans-serif'],
       },
       fontSize: {

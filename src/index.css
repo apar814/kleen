@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -13,7 +13,7 @@
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 138 36% 56%; /* Kleen mint color */
+    --primary: 138 40% 46%; /* Darker Kleen mint color */
     --primary-foreground: 0 0% 100%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
@@ -25,10 +25,10 @@
     --destructive-foreground: 0 0% 98%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 138 36% 56%; /* Kleen mint color for focus rings */
+    --ring: 138 40% 46%; /* Darker Kleen mint color for focus rings */
     --radius: 0.5rem;
 
-    --sidebar-background: 120 33% 60%;
+    --sidebar-background: 120 33% 50%; /* Darker sidebar background */
     --sidebar-foreground: 0 0% 100%;
     --sidebar-border: 140 25% 92%;
     --sidebar-accent: 140 25% 92%;
@@ -78,13 +78,13 @@
 
 @layer components {
   .kleen-heading-h1 {
-    @apply text-h1 font-inter font-semibold text-kleen-gray leading-tight;
+    @apply text-h1 font-montserrat font-semibold text-kleen-gray leading-tight;
   }
   .kleen-heading-h2 {
-    @apply text-h2 font-inter font-semibold text-kleen-gray leading-tight;
+    @apply text-h2 font-montserrat font-semibold text-kleen-gray leading-tight;
   }
   .kleen-heading-h3 {
-    @apply text-h3 font-inter font-semibold text-kleen-gray leading-tight;
+    @apply text-h3 font-montserrat font-semibold text-kleen-gray leading-tight;
   }
   .kleen-body {
     @apply text-body font-inter text-kleen-gray;
