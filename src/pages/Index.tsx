@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import KleenLogo from '@/components/KleenLogo';
@@ -5,6 +6,13 @@ import { Button } from '@/components/ui/button';
 import { ShoppingCart, Shield, Heart, ArrowRight, Search, Star } from 'lucide-react';
 import MainNavigation from '@/components/MainNavigation';
 import MobileNavigation from '@/components/MobileNavigation';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Index = () => {
   return (
@@ -85,11 +93,34 @@ const Index = () => {
                 </div>
               </div>
               <div className="flex-1 flex justify-center">
-                <img 
-                  src="/lovable-uploads/e3cb7809-826b-40fc-8fc0-f972c8c0a469.png" 
-                  alt="Toxic ingredients detection" 
-                  className="max-w-md w-full rounded-lg shadow-kleen-card"
-                />
+                <Carousel className="w-full max-w-md">
+                  <CarouselContent>
+                    <CarouselItem>
+                      <div className="p-1 h-full">
+                        <div className="rounded-lg overflow-hidden shadow-kleen-card h-full">
+                          <img 
+                            src="/lovable-uploads/e3cb7809-826b-40fc-8fc0-f972c8c0a469.png" 
+                            alt="Toxic ingredients detection" 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    </CarouselItem>
+                    <CarouselItem>
+                      <div className="p-1 h-full">
+                        <div className="rounded-lg overflow-hidden shadow-kleen-card h-full">
+                          <img 
+                            src="/lovable-uploads/bf0df939-d9b2-4881-88cf-3fbf8ccd8c29.png" 
+                            alt="Kleen vs Toxic comparison" 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  </CarouselContent>
+                  <CarouselPrevious className="left-0" />
+                  <CarouselNext className="right-0" />
+                </Carousel>
               </div>
             </div>
           </div>
