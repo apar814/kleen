@@ -52,13 +52,15 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Kleen Theme Colors
+        // Kleen Theme Colors - Updated based on design inspiration
         "kleen-white": "#FFFFFF",
-        "kleen-mint": "#7AE582",
+        "kleen-mint": "#5CB474", // Updated to a more muted green from image
         "kleen-red": "#D9534F",
-        "kleen-sage": "#CFE7D0",
-        "kleen-gray": "#4A4A4A",
+        "kleen-sage": "#E6EFE7", // Lighter sage background
+        "kleen-gray": "#333333", // Darker text for better contrast
         "kleen-peach": "#FCE8E4",
+        "kleen-dark": "#222222", // New very dark color
+        "kleen-light": "#F9F9F9", // New very light background color
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -113,17 +115,17 @@ export default {
         '32': '32px',
       },
       boxShadow: {
-        'kleen-card': '0 4px 12px rgba(0,0,0,0.05)',
-        'kleen-hover': '0 4px 12px rgba(0,0,0,0.08)',
+        'kleen-card': '0 4px 12px rgba(0,0,0,0.03)',
+        'kleen-hover': '0 4px 16px rgba(0,0,0,0.06)',
       },
       fontFamily: {
-        'satoshi': ['Satoshi', 'sans-serif'],
+        'satoshi': ['Inter', 'sans-serif'], // Changed to Inter for a cleaner look
         'inter': ['Inter', 'sans-serif'],
       },
       fontSize: {
-        'h1': '32px',
-        'h2': '24px',
-        'h3': '20px',
+        'h1': '42px', // Larger heading
+        'h2': '32px', // Larger subheading
+        'h3': '24px', // Medium heading
         'body': '16px',
         'label': '14px',
       },

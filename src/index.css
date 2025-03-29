@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,27 +13,27 @@
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 138 36% 56%; /* Kleen mint color */
+    --primary-foreground: 0 0% 100%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
+    --accent: 140 25% 92%; /* Light sage accent */
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 138 36% 56%; /* Kleen mint color for focus rings */
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 240 10% 3.9%;
-    --sidebar-border: 240 5.9% 90%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-ring: 240 5.9% 10%;
+    --sidebar-background: 120 33% 60%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-border: 140 25% 92%;
+    --sidebar-accent: 140 25% 92%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-ring: 0 0% 100%;
   }
 
   .dark {
@@ -41,26 +43,26 @@
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary: 138 36% 56%;
+    --primary-foreground: 0 0% 0%;
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
+    --accent: 140 15% 30%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --ring: 138 36% 56%;
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 240 10% 3.9%;
-    --sidebar-border: 240 5.9% 90%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-ring: 240 5.9% 10%;
+    --sidebar-background: 120 33% 28%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-border: 120 25% 35%;
+    --sidebar-accent: 120 25% 35%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-ring: 0 0% 100%;
   }
 }
  
@@ -76,13 +78,13 @@
 
 @layer components {
   .kleen-heading-h1 {
-    @apply text-h1 font-satoshi font-bold text-kleen-gray;
+    @apply text-h1 font-inter font-semibold text-kleen-gray leading-tight;
   }
   .kleen-heading-h2 {
-    @apply text-h2 font-satoshi font-bold text-kleen-gray;
+    @apply text-h2 font-inter font-semibold text-kleen-gray leading-tight;
   }
   .kleen-heading-h3 {
-    @apply text-h3 font-satoshi font-semibold text-kleen-gray;
+    @apply text-h3 font-inter font-semibold text-kleen-gray leading-tight;
   }
   .kleen-body {
     @apply text-body font-inter text-kleen-gray;
@@ -91,10 +93,10 @@
     @apply bg-white rounded-lg shadow-kleen-card border border-gray-100;
   }
   .kleen-btn-primary {
-    @apply bg-kleen-mint text-white rounded-lg py-2 px-4 flex items-center justify-center font-medium hover:bg-kleen-mint/90 transition-colors;
+    @apply bg-kleen-mint text-white rounded-md py-3 px-6 flex items-center justify-center font-medium hover:bg-kleen-mint/90 transition-colors;
   }
   .kleen-btn-secondary {
-    @apply bg-white text-kleen-gray rounded-lg py-2 px-4 flex items-center justify-center font-medium border border-gray-200 hover:bg-gray-50 transition-colors;
+    @apply bg-white text-kleen-gray rounded-md py-3 px-6 flex items-center justify-center font-medium border border-gray-200 hover:bg-gray-50 transition-colors;
   }
   .toxicity-pill {
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
@@ -107,5 +109,26 @@
   }
   .toxicity-pill-low {
     @apply bg-kleen-mint/10 text-kleen-mint;
+  }
+  .kleen-navbar {
+    @apply fixed top-0 left-0 right-0 bg-white z-50 border-b border-gray-100;
+  }
+  .kleen-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .kleen-product-card {
+    @apply bg-white rounded-xl overflow-hidden shadow-kleen-card transition-shadow hover:shadow-kleen-hover;
+  }
+  .kleen-section {
+    @apply py-12 md:py-20;
+  }
+  .kleen-notification-badge {
+    @apply absolute -top-1 -right-1 bg-kleen-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center;
+  }
+  .kleen-feature-item {
+    @apply bg-white p-6 rounded-xl shadow-kleen-card border border-gray-100 hover:shadow-kleen-hover transition-shadow;
+  }
+  .kleen-announcement-bar {
+    @apply bg-kleen-mint py-3 px-4 text-white;
   }
 }

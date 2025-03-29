@@ -29,15 +29,15 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
 
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen w-full bg-kleen-white">
-        <Sidebar className="border-r border-kleen-sage">
+      <div className="flex min-h-screen w-full bg-kleen-light">
+        <Sidebar className="border-r border-gray-100 bg-white">
           <SidebarHeader className="flex items-center justify-center py-8">
             <Link to="/">
               <KleenLogo size="md" />
             </Link>
           </SidebarHeader>
           <SidebarContent>
-            <p className="px-4 mb-4 text-label text-kleen-gray font-medium">MAIN MENU</p>
+            <p className="px-4 mb-4 text-label text-kleen-gray/60 font-medium uppercase tracking-wider text-xs">MAIN MENU</p>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Dashboard" isActive={isActive('/dashboard')}>
@@ -79,9 +79,17 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Ingredient Database" isActive={isActive('/ingredient-database')}>
+                  <Link to="/ingredient-database" className="flex items-center w-full">
+                    <Info className="mr-2" />
+                    <span>Ingredient Database</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
             
-            <p className="px-4 mb-4 mt-8 text-label text-kleen-gray font-medium">YOUR ACCOUNT</p>
+            <p className="px-4 mb-4 mt-8 text-label text-kleen-gray/60 font-medium uppercase tracking-wider text-xs">YOUR ACCOUNT</p>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Profile" isActive={isActive('/profile')}>
@@ -100,14 +108,6 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip="About Kleen">
-                  <Link to="/" className="flex items-center w-full">
-                    <Info className="mr-2" />
-                    <span>About Kleen</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Settings">
                   <Link to="#" className="flex items-center w-full">
                     <Settings className="mr-2" />
@@ -115,11 +115,19 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Logout">
+                  <Link to="/" className="flex items-center w-full">
+                    <LogOut className="mr-2" />
+                    <span>Logout</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarContent>
-          <SidebarFooter className="p-4 text-label text-kleen-gray">
-            <div>Kleen v0.1.0 (MVP)</div>
-            <div className="mt-1">Your AI-powered health czar for toxin-free living.</div>
+          <SidebarFooter className="p-4 text-label text-kleen-gray/60">
+            <div>Kleen v1.0.0</div>
+            <div className="mt-1">Your AI-powered health assistant for toxin-free living.</div>
           </SidebarFooter>
         </Sidebar>
         

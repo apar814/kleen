@@ -19,12 +19,11 @@ const KleenLogo: React.FC<KleenLogoProps> = ({
     lg: 'text-4xl'
   };
   
-  const colorClass = variant === 'white' ? 'text-white' : 'text-kleen-teal-dark';
+  const colorClass = variant === 'white' ? 'text-white' : 'text-kleen-dark';
 
   return (
-    <div className={cn("font-bold flex items-center", sizeClasses[size], colorClass, className)}>
-      <span className="mr-1">K</span>
-      <span className="text-kleen-teal">leen</span>
+    <div className={cn("font-semibold flex items-center", sizeClasses[size], colorClass, className)}>
+      <span className="text-kleen-mint">kleen</span>
     </div>
   );
 };

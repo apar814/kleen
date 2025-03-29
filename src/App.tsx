@@ -12,6 +12,7 @@ import CleanStack from "./pages/CleanStack";
 import ExploreProducts from "./pages/ExploreProducts";
 import Profile from "./pages/Profile";
 import ReferralPage from "./pages/ReferralPage";
+import IngredientDatabase from "./pages/IngredientDatabase";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/explore" element={<ExploreProducts />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/referral" element={<ReferralPage />} />
+          <Route path="/ingredient-database" element={<IngredientDatabase />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

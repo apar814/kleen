@@ -18,7 +18,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 }) => {
   return (
     <AppSidebar>
-      <div className={`p-8 bg-gray-50 min-h-screen ${className}`}>
+      <div className={`p-8 bg-kleen-light min-h-screen ${className}`}>
         <motion.header 
           className="mb-8"
           initial={{ opacity: 0, y: -20 }}
@@ -27,7 +27,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         >
           <h1 className="kleen-heading-h1 mb-2">{title}</h1>
           {description && (
-            <p className="kleen-body text-kleen-gray/80">{description}</p>
+            <p className="kleen-body text-kleen-gray/70 max-w-2xl">{description}</p>
           )}
         </motion.header>
         
