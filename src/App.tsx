@@ -15,6 +15,7 @@ import ReferralPage from "./pages/ReferralPage";
 import IngredientDatabase from "./pages/IngredientDatabase";
 import HowItWorks from "./pages/HowItWorks";
 import AboutUs from "./pages/AboutUs";
+import ToxicIngredients from "./pages/ToxicIngredients";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/referral" element={<ReferralPage />} />
           <Route path="/ingredient-database" element={<IngredientDatabase />} />
+          <Route path="/toxic-ingredients" element={<ToxicIngredients />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about" element={<AboutUs />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

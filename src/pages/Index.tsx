@@ -96,7 +96,7 @@ const Index = () => {
                   <img 
                     src="/lovable-uploads/c3d984d3-25e7-4fe6-8d36-2a5fc3138cce.png" 
                     alt="Kleen vs Toxic comparison" 
-                    className="w-full h-full object-contain"
+                    className="w-full object-contain max-h-[400px]" 
                   />
                 </div>
               </div>
@@ -292,6 +292,7 @@ const Index = () => {
         </div>
       </main>
       
+      {/* Footer */}
       <footer className="bg-white py-12">
         <div className="kleen-container">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start">
