@@ -2,15 +2,17 @@
 import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Activity, ShoppingCart } from "lucide-react";
-import { motion } from 'framer-motion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CartAnalysis from '@/components/CartAnalysis';
 import AnalyticsDashboard from '@/components/AnalyticsDashboard';
 import DashboardLayout from '@/components/DashboardLayout';
+import { useAuth } from '@/contexts/AuthContext';
+import GuestBanner from '@/components/auth/GuestBanner';
 
 const Dashboard = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const tab = searchParams.get('tab') || 'analytics';
+  const { user } = useAuth();
   
   // Set the tab based on URL parameters
   useEffect(() => {
@@ -26,9 +28,11 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout 
-      title="Dashboard" 
+      title={`Welcome${user && !user.isGuest ? `, ${user.email?.split('@')[0]}` : ''}`} 
       description="Empowering you to live toxin-free through smarter shopping"
     >
+      <GuestBanner />
+      
       <Tabs value={tab} onValueChange={handleTabChange}>
         <TabsList className="mb-6">
           <TabsTrigger value="analytics" className="text-base">

@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, Shield, Heart, ArrowRight, Search, Star } from 'lucide-react';
-import MainNavigation from '@/components/MainNavigation';
 import MobileNavigation from '@/components/MobileNavigation';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import MainNavigationWithAuth from '@/components/MainNavigationWithAuth';
+import LoginModal from '@/components/auth/LoginModal';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Index = () => {
+  const { user } = useAuth();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  
   return (
     <div className="min-h-screen flex flex-col bg-kleen-light">
       {/* Announcement Bar (like the green bar in the reference) */}
@@ -39,29 +37,7 @@ const Index = () => {
           </Link>
         </div>
         
-        <MainNavigation className="hidden md:flex absolute left-1/2 -translate-x-1/2" />
-        
-        <div className="flex items-center gap-2">
-          <Link to="/explore" className="hidden md:block">
-            <Button variant="ghost" size="icon">
-              <Search className="h-5 w-5" />
-            </Button>
-          </Link>
-          <Link to="/dashboard?tab=cart">
-            <Button variant="ghost" size="icon">
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
-          </Link>
-          <Link to="/profile">
-            <Button variant="ghost" size="icon">
-              <img 
-                src="/lovable-uploads/e9521ca7-386f-47f6-a2ce-39e217c15814.png" 
-                alt="Profile" 
-                className="w-6 h-6 rounded-full"
-              />
-            </Button>
-          </Link>
-        </div>
+        <MainNavigationWithAuth className="hidden md:flex absolute left-1/2 -translate-x-1/2" />
       </div>
       
       <main className="flex-1 flex flex-col">
@@ -78,12 +54,22 @@ const Index = () => {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link to="/dashboard?tab=cart">
-                    <button className="kleen-btn-primary">
-                      Find my products
+                  {user ? (
+                    <Link to="/dashboard?tab=cart">
+                      <button className="kleen-btn-primary">
+                        Analyze my cart
+                        <ArrowRight className="ml-2 h-5 w-5" />
+                      </button>
+                    </Link>
+                  ) : (
+                    <button 
+                      className="kleen-btn-primary"
+                      onClick={() => setIsLoginModalOpen(true)}
+                    >
+                      Get started free
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </button>
-                  </Link>
+                  )}
                   <Link to="/how-it-works">
                     <button className="kleen-btn-secondary">
                       How it works
@@ -96,7 +82,8 @@ const Index = () => {
                   <img 
                     src="/lovable-uploads/c3d984d3-25e7-4fe6-8d36-2a5fc3138cce.png" 
                     alt="Kleen vs Toxic comparison" 
-                    className="w-full object-contain max-h-[400px]" 
+                    className="w-full object-contain" 
+                    style={{ maxHeight: "350px" }}
                   />
                 </div>
               </div>
@@ -364,6 +351,11 @@ const Index = () => {
           </div>
         </div>
       </footer>
+      
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)} 
+      />
     </div>
   );
 };
