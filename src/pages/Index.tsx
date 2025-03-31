@@ -84,6 +84,7 @@ const Index = () => {
                     src="/lovable-uploads/74814485-6265-4c5b-ad7e-bec5b3c62e2a.png" 
                     alt="Kleen vs Toxic product comparison" 
                     className="w-full object-contain" 
+                    style={{ maxHeight: "280px" }}
                   />
                 </div>
               </div>
