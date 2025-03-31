@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import KleenLogo from '@/components/KleenLogo';
@@ -78,12 +79,11 @@ const Index = () => {
                 </div>
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="rounded-lg overflow-hidden shadow-kleen-card max-w-md">
+                <div className="rounded-lg overflow-hidden shadow-kleen-card">
                   <img 
-                    src="/lovable-uploads/c3d984d3-25e7-4fe6-8d36-2a5fc3138cce.png" 
-                    alt="Kleen vs Toxic comparison" 
+                    src="/lovable-uploads/74814485-6265-4c5b-ad7e-bec5b3c62e2a.png" 
+                    alt="Kleen vs Toxic product comparison" 
                     className="w-full object-contain" 
-                    style={{ maxHeight: "350px" }}
                   />
                 </div>
               </div>
