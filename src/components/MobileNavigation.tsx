@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronRight, Search, ShoppingCart, User, Heart, Info, Home, DollarSign, FileText, Briefcase, HelpCircle, Mail } from 'lucide-react';
+import { Menu, X, ChevronRight, Search, ShoppingCart, User, Heart, Info, Home } from 'lucide-react';
 import KleenLogo from './KleenLogo';
 import { Separator } from './ui/separator';
 
@@ -32,16 +32,6 @@ const MobileNavigation: React.FC = () => {
               <span>Dashboard</span>
             </Link>
             
-            <Link to="/features" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
-              <FileText className="mr-3 h-5 w-5 text-kleen-mint" />
-              <span>Features</span>
-            </Link>
-            
-            <Link to="/pricing" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
-              <DollarSign className="mr-3 h-5 w-5 text-kleen-mint" />
-              <span>Pricing</span>
-            </Link>
-            
             <Link to="/explore" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
               <Search className="mr-3 h-5 w-5 text-kleen-mint" />
               <span>Explore Products</span>
@@ -64,40 +54,45 @@ const MobileNavigation: React.FC = () => {
             
             <Separator className="my-3" />
             
-            <div className="text-sm font-medium text-kleen-gray/70 px-3 py-2">Learn</div>
+            <div className="text-sm font-medium text-kleen-gray/70 px-3 py-2">Categories</div>
+            
+            <Link to="/categories/personal-care" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
+              <ChevronRight className="mr-3 h-4 w-4 text-kleen-gray/70" />
+              <span>Personal Care</span>
+            </Link>
+            
+            <Link to="/categories/household" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
+              <ChevronRight className="mr-3 h-4 w-4 text-kleen-gray/70" />
+              <span>Household</span>
+            </Link>
+            
+            <Link to="/categories/food" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
+              <ChevronRight className="mr-3 h-4 w-4 text-kleen-gray/70" />
+              <span>Food & Beverages</span>
+            </Link>
+            
+            <Link to="/categories/beauty" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
+              <ChevronRight className="mr-3 h-4 w-4 text-kleen-gray/70" />
+              <span>Beauty</span>
+            </Link>
+            
+            <Link to="/categories/baby" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
+              <ChevronRight className="mr-3 h-4 w-4 text-kleen-gray/70" />
+              <span>Baby Products</span>
+            </Link>
+            
+            <Separator className="my-3" />
+            
+            <div className="text-sm font-medium text-kleen-gray/70 px-3 py-2">About</div>
             
             <Link to="/how-it-works" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
               <ChevronRight className="mr-3 h-4 w-4 text-kleen-gray/70" />
               <span>How It Works</span>
             </Link>
             
-            <Link to="/faq" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
-              <HelpCircle className="mr-3 h-4 w-4 text-kleen-gray/70" />
-              <span>FAQ</span>
-            </Link>
-            
-            <Link to="/blog" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
-              <FileText className="mr-3 h-4 w-4 text-kleen-gray/70" />
-              <span>Blog</span>
-            </Link>
-            
-            <Separator className="my-3" />
-            
-            <div className="text-sm font-medium text-kleen-gray/70 px-3 py-2">Company</div>
-            
             <Link to="/about" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
               <ChevronRight className="mr-3 h-4 w-4 text-kleen-gray/70" />
               <span>About Us</span>
-            </Link>
-            
-            <Link to="/careers" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
-              <Briefcase className="mr-3 h-4 w-4 text-kleen-gray/70" />
-              <span>Careers</span>
-            </Link>
-            
-            <Link to="/contact" className="flex items-center p-3 rounded-md hover:bg-kleen-sage" onClick={() => setOpen(false)}>
-              <Mail className="mr-3 h-4 w-4 text-kleen-gray/70" />
-              <span>Contact</span>
             </Link>
           </div>
           

@@ -41,20 +41,20 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Product</NavigationMenuTrigger>
+                <NavigationMenuTrigger>Products</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <Link
                           className="flex h-full w-full select-none flex-col justify-end rounded-md bg-kleen-mint/10 p-6 no-underline outline-none focus:shadow-md"
-                          to="/features"
+                          to="/explore"
                         >
                           <div className="mb-2 mt-4 text-lg font-medium text-kleen-mint">
-                            Features
+                            Clean Product Database
                           </div>
                           <p className="text-sm leading-tight text-kleen-gray/70">
-                            Explore all the powerful features of Kleen and how they can help you shop cleaner
+                            Browse our database of clean products that are free from harmful ingredients
                           </p>
                         </Link>
                       </NavigationMenuLink>
@@ -83,12 +83,12 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
                     </li>
                     <li>
                       <Link
-                        to="/pricing"
+                        to="/categories/food"
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-kleen-sage focus:bg-kleen-sage"
                       >
-                        <div className="text-sm font-medium leading-none">Pricing</div>
+                        <div className="text-sm font-medium leading-none">Food & Beverages</div>
                         <p className="line-clamp-2 text-sm leading-snug text-kleen-gray/70">
-                          Simple, transparent pricing plans for all your needs
+                          Healthy food options free from harmful additives
                         </p>
                       </Link>
                     </li>
@@ -116,7 +116,7 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
                     </li>
                     <li>
                       <Link
-                        to="/toxic-ingredients"
+                        to="/education/toxic-ingredients"
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-kleen-mint/10 focus:bg-kleen-mint/10"
                       >
                         <div className="text-sm font-medium leading-none">Toxic Ingredients Guide</div>
@@ -127,12 +127,12 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
                     </li>
                     <li>
                       <Link
-                        to="/how-it-works"
+                        to="/education/clean-living"
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-kleen-mint/10 focus:bg-kleen-mint/10"
                       >
-                        <div className="text-sm font-medium leading-none">How It Works</div>
+                        <div className="text-sm font-medium leading-none">Clean Living Guide</div>
                         <p className="line-clamp-2 text-sm leading-snug text-kleen-gray/70">
-                          Discover how Kleen analyzes your cart and offers cleaner alternatives
+                          How to transition to a cleaner, healthier lifestyle
                         </p>
                       </Link>
                     </li>
@@ -151,60 +151,14 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link to="/pricing" className={navigationMenuTriggerStyle()}>
-                  Pricing
+                <Link to="/how-it-works" className={navigationMenuTriggerStyle()}>
+                  How It Works
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Company</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid md:grid-cols-2 gap-3 p-4 w-[400px]">
-                    <li>
-                      <Link
-                        to="/about"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-kleen-mint/10 focus:bg-kleen-mint/10"
-                      >
-                        <div className="text-sm font-medium leading-none">About Us</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-kleen-gray/70">
-                          Learn about our mission and the team behind Kleen
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/careers"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-kleen-mint/10 focus:bg-kleen-mint/10"
-                      >
-                        <div className="text-sm font-medium leading-none">Careers</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-kleen-gray/70">
-                          Join our mission to promote cleaner living
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/blog"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-kleen-mint/10 focus:bg-kleen-mint/10"
-                      >
-                        <div className="text-sm font-medium leading-none">Blog</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-kleen-gray/70">
-                          Articles and insights on clean living
-                        </p>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/contact"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-kleen-mint/10 focus:bg-kleen-mint/10"
-                      >
-                        <div className="text-sm font-medium leading-none">Contact</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-kleen-gray/70">
-                          Get in touch with the Kleen team
-                        </p>
-                      </Link>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
+                <Link to="/about" className={navigationMenuTriggerStyle()}>
+                  About Us
+                </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
