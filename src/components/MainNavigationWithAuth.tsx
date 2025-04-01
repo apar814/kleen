@@ -13,7 +13,9 @@ interface MainNavigationProps {
 const MainNavigationWithAuth: React.FC<MainNavigationProps> = ({ className }) => {
   const navItems = [
     { name: 'Dashboard', href: '/dashboard' },
+    { name: 'Features', href: '/features' },
     { name: 'Products', href: '/explore' },
+    { name: 'Pricing', href: '/pricing' },
     { name: 'How It Works', href: '/how-it-works' },
     { name: 'Ingredients', href: '/toxic-ingredients' },
     { name: 'About', href: '/about' },
