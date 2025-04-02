@@ -37,7 +37,17 @@ const Index = () => {
           </Link>
         </div>
         
-        <MainNavigationWithAuth className="hidden md:flex absolute left-1/2 -translate-x-1/2" />
+        <div className="hidden md:block w-full flex-1 mx-10">
+          <MainNavigationWithAuth className="transform-none mx-auto" />
+        </div>
+        
+        <div className="md:hidden">
+          <Link to="/dashboard?tab=cart">
+            <Button variant="ghost" size="icon" className="hover:bg-kleen-mint/10 transition-colors">
+              <ShoppingCart className="h-5 w-5" />
+            </Button>
+          </Link>
+        </div>
       </div>
       
       <main className="flex-1 flex flex-col">

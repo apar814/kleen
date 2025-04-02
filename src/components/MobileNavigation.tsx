@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -31,7 +32,7 @@ const MobileNavigation: React.FC = () => {
           <Menu className="h-5 w-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 max-w-[280px] bg-white/80 backdrop-blur-md">
+      <SheetContent side="left" className="p-0 max-w-[280px] bg-white/90 backdrop-blur-md">
         <div className="flex flex-col h-full">
           <div className="p-4 flex items-center justify-between">
             <KleenLogo size="sm" />
@@ -47,7 +48,7 @@ const MobileNavigation: React.FC = () => {
                 { href: '/explore', icon: <Search className="mr-3 h-5 w-5 text-kleen-mint" />, label: 'Explore Products' },
                 { href: '/dashboard?tab=cart', icon: <ShoppingCart className="mr-3 h-5 w-5 text-kleen-mint" />, label: 'Cart Analysis' },
                 { href: '/clean-stack', icon: <Heart className="mr-3 h-5 w-5 text-kleen-mint" />, label: 'Clean Stack' },
-                { href: '/ingredient-database', icon: <Info className="mr-3 h-5 w-5 text-kleen-mint" />, label: 'Ingredient Database' },
+                { href: '/toxic-ingredients', icon: <Info className="mr-3 h-5 w-5 text-kleen-mint" />, label: 'Ingredient Database' },
               ].map((item, index) => (
                 <motion.div
                   key={item.href}

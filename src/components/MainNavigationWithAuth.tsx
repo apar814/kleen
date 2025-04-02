@@ -26,15 +26,15 @@ const MainNavigationWithAuth: React.FC<MainNavigationProps> = ({ className }) =>
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className={cn('flex items-center space-x-4 bg-white/70 backdrop-blur-md py-3 px-6 rounded-full shadow-md w-full max-w-4xl mx-auto', className)}
+      className={cn('flex items-center justify-center bg-white/80 backdrop-blur-md py-3 px-8 rounded-full shadow-md w-full max-w-5xl mx-auto', className)}
     >
-      <div className="flex space-x-8">
+      <div className="flex space-x-10 items-center justify-center">
         {navItems.map((item) => (
           <Link
             key={item.name}
             to={item.href}
             className={cn(
-              "text-gray-700 hover:text-kleen-mint text-sm font-medium relative",
+              "text-gray-700 hover:text-kleen-mint text-sm font-medium relative whitespace-nowrap",
               location.pathname === item.href && "text-kleen-mint"
             )}
           >
