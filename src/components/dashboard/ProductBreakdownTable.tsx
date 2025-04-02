@@ -1,0 +1,87 @@
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Product } from '@/types/Product';
+
+interface ProductBreakdownTableProps {
+  cartItems: Product[];
+  cleanAlternatives: Product[];
+}
+
+const ProductBreakdownTable: React.FC<ProductBreakdownTableProps> = ({ cartItems, cleanAlternatives }) => {
+  return (
+    <motion.div
+      custom={5}
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: (i: number) => ({
+          opacity: 1,
+          y: 0,
+          transition: {
+            delay: i * 0.1,
+            duration: 0.5,
+            ease: "easeOut"
+          }
+        })
+      }}
+      initial="hidden"
+      animate="visible"
+    >
+      <Card className="border-kleen-sage/30">
+        <CardHeader>
+          <CardTitle>Product Breakdown</CardTitle>
+          <CardDescription>Detailed analysis of cart products and alternatives</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Product</TableHead>
+                <TableHead>Original Score</TableHead>
+                <TableHead>Alternative</TableHead>
+                <TableHead>Improved Score</TableHead>
+                <TableHead>Improvement</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {cartItems.map((item, index) => {
+                const alternative = cleanAlternatives[index];
+                const improvement = alternative.kleenScore - item.kleenScore;
+                
+                return (
+                  <TableRow key={item.id}>
+                    <TableCell className="font-medium">{item.name}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center">
+                        <div className={`w-10 h-3 rounded-full mr-2 ${
+                          item.kleenScore >= 70 ? 'bg-kleen-mint' :
+                          item.kleenScore >= 40 ? 'bg-yellow-500' : 'bg-kleen-red'
+                        }`} />
+                        {item.kleenScore}
+                      </div>
+                    </TableCell>
+                    <TableCell className="font-medium">{alternative.name}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center">
+                        <div className={`w-10 h-3 rounded-full mr-2 ${
+                          alternative.kleenScore >= 70 ? 'bg-kleen-mint' :
+                          alternative.kleenScore >= 40 ? 'bg-yellow-500' : 'bg-kleen-red'
+                        }`} />
+                        {alternative.kleenScore}
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-kleen-mint">+{improvement}</TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+};
+
+export default ProductBreakdownTable;
