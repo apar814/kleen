@@ -1,17 +1,21 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Search, BookOpen, FileUp } from "lucide-react";
 import ProductSwap from '@/components/ProductSwap';
 import KleenScore from '@/components/KleenScore';
-import { Product, Ingredient } from '@/types/Product';
+import { Product } from '@/types/Product';
 import HealthScoreOverview from '@/components/HealthScoreOverview';
 import ToxinEducation from '@/components/ToxinEducation';
 import { motion } from 'framer-motion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { handleAmazonCartImport } from '@/services/amazonCartService';
+import { handleInstacartCartImport } from '@/services/instacartCartService';
 import { useToast } from '@/components/ui/use-toast';
 import { Textarea } from '@/components/ui/textarea';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 
 // Mock data for demonstration
 const mockOriginalProduct: Product = {
@@ -71,12 +75,15 @@ const mockAlternativeProduct: Product = {
   ]
 };
 
+type CartSource = 'amazon' | 'instacart';
+
 const CartAnalysis: React.FC = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analyzed, setAnalyzed] = useState(false);
-  const [amazonCartJson, setAmazonCartJson] = useState('');
+  const [cartJson, setCartJson] = useState('');
+  const [cartSource, setCartSource] = useState<CartSource>('amazon');
   const [importModalOpen, setImportModalOpen] = useState(false);
-  const [amazonProducts, setAmazonProducts] = useState<Product[]>([]);
+  const [importedProducts, setImportedProducts] = useState<Product[]>([]);
   const { toast } = useToast();
   
   const handleAnalyzeClick = () => {
@@ -88,29 +95,27 @@ const CartAnalysis: React.FC = () => {
     }, 2000);
   };
 
-  const handleAmazonImport = async () => {
+  const handleCartImport = async () => {
     try {
-      // Parse the Amazon cart data
-      const products = await handleAmazonCartImport(amazonCartJson);
+      // Process the cart data based on the selected source
+      let products: Product[] = [];
+      
+      if (cartSource === 'amazon') {
+        products = await handleAmazonCartImport(cartJson);
+      } else if (cartSource === 'instacart') {
+        products = await handleInstacartCartImport(cartJson);
+      }
       
       if (products.length === 0) {
         toast({
           title: "Import Failed",
-          description: "Could not parse the Amazon cart data. Please check the format and try again.",
+          description: `Could not parse the ${cartSource === 'amazon' ? 'Amazon' : 'Instacart'} cart data. Please check the format and try again.`,
           variant: "destructive",
         });
         return;
       }
       
-      // Ensure products have required fields for display
-      const enhancedProducts = products.map(product => ({
-        ...product,
-        imageUrl: product.image || 'https://placehold.co/400x400?text=Product', // Ensure imageUrl exists
-        category: product.category || 'Unknown', // Ensure category exists
-        cleanScore: product.cleanScore || 0 // Ensure cleanScore exists
-      }));
-      
-      setAmazonProducts(enhancedProducts);
+      setImportedProducts(products);
       setImportModalOpen(false);
       
       // Analyze the imported products
@@ -121,14 +126,14 @@ const CartAnalysis: React.FC = () => {
         setAnalyzed(true);
         toast({
           title: "Cart Imported",
-          description: `Successfully imported ${products.length} products from Amazon.`,
+          description: `Successfully imported ${products.length} products from ${cartSource === 'amazon' ? 'Amazon' : 'Instacart'}.`,
         });
       }, 2000);
     } catch (error) {
-      console.error('Error importing Amazon cart:', error);
+      console.error(`Error importing ${cartSource} cart:`, error);
       toast({
         title: "Import Failed",
-        description: "An error occurred while importing the Amazon cart data.",
+        description: `An error occurred while importing the ${cartSource === 'amazon' ? 'Amazon' : 'Instacart'} cart data.`,
         variant: "destructive",
       });
     }
@@ -145,7 +150,7 @@ const CartAnalysis: React.FC = () => {
             className="flex items-center gap-2"
           >
             <FileUp className="w-4 h-4" />
-            Import Amazon Cart
+            Import Cart
           </Button>
           <Button 
             onClick={handleAnalyzeClick} 
@@ -161,23 +166,43 @@ const CartAnalysis: React.FC = () => {
       {importModalOpen && (
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>Import Amazon Cart Data</CardTitle>
+            <CardTitle>Import Cart Data</CardTitle>
           </CardHeader>
           <CardContent>
+            <div className="mb-6">
+              <RadioGroup 
+                value={cartSource} 
+                onValueChange={(value) => setCartSource(value as CartSource)}
+                className="flex gap-4"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="amazon" id="amazon" />
+                  <Label htmlFor="amazon">Amazon</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="instacart" id="instacart" />
+                  <Label htmlFor="instacart">Instacart</Label>
+                </div>
+              </RadioGroup>
+            </div>
+            
             <p className="text-sm text-gray-500 mb-4">
-              Paste your Amazon cart JSON data below. This data can be obtained from the Amazon cart page using our browser extension.
+              {cartSource === 'amazon' 
+                ? "Paste your Amazon cart JSON data below. This data can be obtained from the Amazon cart page using our browser extension."
+                : "Paste your Instacart cart JSON data below. This data can be obtained from the Instacart cart page using our browser extension."
+              }
             </p>
             <Textarea
-              placeholder="Paste Amazon cart JSON here..."
+              placeholder={`Paste ${cartSource === 'amazon' ? 'Amazon' : 'Instacart'} cart JSON here...`}
               className="min-h-[200px] mb-4"
-              value={amazonCartJson}
-              onChange={(e) => setAmazonCartJson(e.target.value)}
+              value={cartJson}
+              onChange={(e) => setCartJson(e.target.value)}
             />
             <div className="flex justify-end gap-2">
               <Button variant="outline" onClick={() => setImportModalOpen(false)}>
                 Cancel
               </Button>
-              <Button onClick={handleAmazonImport}>
+              <Button onClick={handleCartImport}>
                 Import Cart
               </Button>
             </div>
@@ -191,7 +216,7 @@ const CartAnalysis: React.FC = () => {
             <div className="text-gray-500 mb-4 text-center">
               <Search className="w-12 h-12 mx-auto mb-2 opacity-50" />
               <p className="text-lg">
-                {isAnalyzing ? "Analyzing your cart..." : "Click 'Analyze Cart' to check your Amazon cart for cleaner alternatives."}
+                {isAnalyzing ? "Analyzing your cart..." : "Click 'Analyze Cart' to check your cart for cleaner alternatives."}
               </p>
             </div>
             {!isAnalyzing && (

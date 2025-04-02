@@ -1,4 +1,28 @@
+export interface AmazonMarketBasketReport {
+  reportSpecification: ReportSpecification;
+  dataByAsin: DetailsByAsin[];
+}
 
+export interface ReportSpecification {
+  reportType: "GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT";
+  reportOptions: {
+    reportPeriod: "DAY" | "WEEK" | "MONTH" | "QUARTER";
+  };
+  dataStartTime: string;
+  dataEndTime: string;
+  marketplaceIds: string[];
+}
+
+export interface DetailsByAsin {
+  startDate: string;
+  endDate: string;
+  asin: string;
+  purchasedWithAsin: string;
+  purchasedWithRank: number;
+  combinationPct: number;
+}
+
+// Legacy cart data structure (keep for compatibility)
 export interface AmazonCartData {
   idempotentShoppingTripId: string;
   storeId: string;

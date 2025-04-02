@@ -1,8 +1,8 @@
-import React from 'react';
-import { Heart, Plus, Search } from 'lucide-react';
+
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import DashboardLayout from '@/components/DashboardLayout';
-import { Input } from '@/components/ui/input';
+import AppSidebar from '@/components/AppSidebar';
+import { Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import PageHeader from '@/components/PageHeader';
@@ -12,42 +12,46 @@ import { Product } from '@/types/Product';
 // Mock data for saved products
 const savedProducts: Product[] = [
   {
-    id: '1',
-    name: 'Natural Moisturizing Cream',
-    brand: 'Clean Beauty Co.',
-    imageUrl: 'https://placehold.co/200x200/png',
-    price: '$24.99',
+    id: "1",
+    name: "Natural Moisturizing Cream",
+    brand: "Clean Beauty Co.",
+    category: "Skincare",
+    imageUrl: "https://placehold.co/200x200?text=Natural+Cream",
+    price: "$24.99",
+    cleanScore: 92,
     kleenScore: 92,
     ingredients: [
       {
-        name: 'Aloe Vera',
-        toxicityLevel: 'low',
-        description: 'Soothing plant extract with hydrating properties.'
+        name: "Aloe Vera",
+        toxicityLevel: "low",
+        description: "Soothing plant extract with hydrating properties."
       },
       {
-        name: 'Shea Butter',
-        toxicityLevel: 'low',
-        description: 'Natural fat extracted from shea tree nuts, deeply moisturizing.'
+        name: "Shea Butter",
+        toxicityLevel: "low",
+        description: "Natural fat extracted from shea tree nuts, deeply moisturizing."
       }
     ]
   },
   {
-    id: '2',
-    name: 'Organic Vitamin C Serum',
-    brand: 'Pure Botanicals',
-    imageUrl: 'https://placehold.co/200x200/png',
-    price: '$32.50',
+    id: "2",
+    name: "Organic Vitamin C Serum",
+    brand: "Pure Botanicals",
+    category: "Skincare",
+    imageUrl: "https://placehold.co/200x200?text=Vitamin+C",
+    price: "$32.50",
+    cleanScore: 89,
     kleenScore: 89,
     ingredients: [
       {
-        name: 'Vitamin C (Ascorbic Acid)',
-        toxicityLevel: 'low',
-        description: 'Antioxidant that brightens skin and boosts collagen production.'
+        name: "Vitamin C (Ascorbic Acid)",
+        toxicityLevel: "low",
+        description: "Antioxidant that brightens skin and boosts collagen production."
       },
       {
-        name: 'Hyaluronic Acid',
-        toxicityLevel: 'low',
-        description: 'Natural substance that retains moisture in the skin.'
+        name: "Hyaluronic Acid",
+        toxicityLevel: "low",
+        description: "Natural substance that retains moisture in the skin."
       }
     ]
   }

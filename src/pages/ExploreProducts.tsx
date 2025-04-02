@@ -19,6 +19,7 @@ const mockProducts: Product[] = [
     price: '$24.99',
     kleenScore: 92,
     category: 'skincare',
+    cleanScore: 92,
     ingredients: [
       {
         name: 'Aloe Vera',
@@ -40,6 +41,7 @@ const mockProducts: Product[] = [
     price: '$32.50',
     kleenScore: 89,
     category: 'skincare',
+    cleanScore: 89,
     ingredients: [
       {
         name: 'Vitamin C (Ascorbic Acid)',
@@ -61,6 +63,7 @@ const mockProducts: Product[] = [
     price: '$39.99',
     kleenScore: 95,
     category: 'supplement',
+    cleanScore: 95,
     ingredients: [
       {
         name: 'Pea Protein Isolate',
@@ -82,6 +85,7 @@ const mockProducts: Product[] = [
     price: '$18.99',
     kleenScore: 88,
     category: 'haircare',
+    cleanScore: 88,
     ingredients: [
       {
         name: 'Aloe Vera Juice',
