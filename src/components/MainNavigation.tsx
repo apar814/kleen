@@ -28,8 +28,8 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
   
   return (
     <header className={cn(
-      "w-full py-4 border-b border-gray-100", 
-      variant === 'default' ? 'bg-white' : 'bg-transparent',
+      "w-full py-4 relative z-10", 
+      variant === 'default' ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent',
       className
     )}>
       <div className="kleen-container flex items-center justify-between">
@@ -116,7 +116,7 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
                     </li>
                     <li>
                       <Link
-                        to="/education/toxic-ingredients"
+                        to="/toxic-ingredients"
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-kleen-mint/10 focus:bg-kleen-mint/10"
                       >
                         <div className="text-sm font-medium leading-none">Toxic Ingredients Guide</div>

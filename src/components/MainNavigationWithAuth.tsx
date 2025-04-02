@@ -20,8 +20,8 @@ const MainNavigationWithAuth: React.FC<MainNavigationProps> = ({ className }) =>
   ];
 
   return (
-    <nav className={cn('flex items-center space-x-4', className)}>
-      <div className="flex space-x-4">
+    <nav className={cn('flex items-center space-x-4 bg-white/80 backdrop-blur-sm py-2 px-4 rounded-full shadow-sm', className)}>
+      <div className="flex space-x-6">
         {navItems.map((item) => (
           <Link
             key={item.name}
@@ -33,14 +33,14 @@ const MainNavigationWithAuth: React.FC<MainNavigationProps> = ({ className }) =>
         ))}
       </div>
       
-      <div className="flex items-center gap-2 ml-4">
+      <div className="flex items-center gap-3 ml-4">
         <Link to="/explore">
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" className="rounded-full">
             <Search className="h-5 w-5" />
           </Button>
         </Link>
         <Link to="/dashboard?tab=cart">
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" className="rounded-full">
             <ShoppingCart className="h-5 w-5" />
           </Button>
         </Link>
