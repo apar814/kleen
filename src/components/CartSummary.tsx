@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { ShoppingCart, ArrowUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import KleenScore from './KleenScore';
 import { Button } from '@/components/ui/button';
-import { Product } from './ProductCard';
+import { Product } from '@/types/Product';
 
 interface CartSummaryProps {
   products: Product[];
@@ -24,7 +23,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
     
   // Count high concern ingredients
   const highConcernCount = products.reduce((count, product) => {
-    return count + product.ingredients.filter(ing => ing.toxicityLevel === 'high').length;
+    return count + product.ingredients.filter((ing: any) => ing.toxicityLevel === 'high').length;
   }, 0);
   
   return (

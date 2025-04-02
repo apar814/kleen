@@ -5,7 +5,8 @@ import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/DashboardLayout';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import ProductCard, { Product, Ingredient } from '@/components/ProductCard';
+import ProductCard from '@/components/ProductCard';
+import { Product, Ingredient } from '@/types/Product';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Mock data for products

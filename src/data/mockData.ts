@@ -1,5 +1,4 @@
-
-import { Product } from '@/components/ProductCard';
+import { Product } from '@/types/Product';
 
 // Mock data for product catalog
 export const mockProducts: Product[] = [
