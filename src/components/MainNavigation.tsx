@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -14,6 +13,7 @@ import {
 import KleenLogo from './KleenLogo';
 import { Button } from './ui/button';
 import { Search, ShoppingCart, User, ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface MainNavigationProps {
   variant?: 'default' | 'transparent';
@@ -29,25 +29,35 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
   return (
     <header className={cn(
       "w-full py-4 relative z-10", 
-      variant === 'default' ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent',
+      variant === 'default' ? 'bg-white/60 backdrop-blur-md shadow-md' : 'bg-transparent',
       className
     )}>
-      <div className="kleen-container flex items-center justify-between">
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="kleen-container flex items-center justify-between"
+      >
         <div className="flex items-center">
-          <Link to="/" className="mr-10">
-            <KleenLogo size="md" />
-          </Link>
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <Link to="/" className="mr-10">
+              <KleenLogo size="md" />
+            </Link>
+          </motion.div>
           
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="hover:bg-kleen-mint/10 transition-colors">Products</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <Link
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-kleen-mint/10 p-6 no-underline outline-none focus:shadow-md"
+                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-kleen-mint/10 p-6 no-underline outline-none focus:shadow-md hover:bg-kleen-mint/20 transition-colors"
                           to="/explore"
                         >
                           <div className="mb-2 mt-4 text-lg font-medium text-kleen-mint">
@@ -96,13 +106,13 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Learn</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="hover:bg-kleen-mint/10 transition-colors">Learn</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px]">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <Link
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-kleen-sage p-6 no-underline outline-none focus:shadow-md"
+                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-kleen-sage p-6 no-underline outline-none focus:shadow-md hover:bg-kleen-sage/80 transition-colors"
                           to="/ingredient-database"
                         >
                           <div className="mb-2 mt-4 text-lg font-medium">
@@ -151,12 +161,20 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link to="/how-it-works" className={navigationMenuTriggerStyle()}>
+                <Link to="/how-it-works" className={cn(
+                  navigationMenuTriggerStyle(),
+                  "hover:bg-kleen-mint/10 transition-colors",
+                  location.pathname === '/how-it-works' && "bg-kleen-mint/10"
+                )}>
                   How It Works
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link to="/about" className={navigationMenuTriggerStyle()}>
+                <Link to="/about" className={cn(
+                  navigationMenuTriggerStyle(),
+                  "hover:bg-kleen-mint/10 transition-colors",
+                  location.pathname === '/about' && "bg-kleen-mint/10"
+                )}>
                   About Us
                 </Link>
               </NavigationMenuItem>
@@ -166,32 +184,42 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
         
         <div className="flex items-center gap-2">
           <Link to="/explore" className="hidden md:block">
-            <Button variant="ghost" size="icon">
-              <Search className="h-5 w-5" />
-            </Button>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <Button variant="ghost" size="icon" className="hover:bg-kleen-mint/10 transition-colors">
+                <Search className="h-5 w-5" />
+              </Button>
+            </motion.div>
           </Link>
           <Link to="/dashboard?tab=cart">
-            <Button variant="ghost" size="icon">
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <Button variant="ghost" size="icon" className="hover:bg-kleen-mint/10 transition-colors">
+                <ShoppingCart className="h-5 w-5" />
+              </Button>
+            </motion.div>
           </Link>
           <Link to="/dashboard">
-            <Button variant="outline" className="hidden md:flex">
-              Dashboard
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button variant="outline" className="hidden md:flex hover:border-kleen-mint hover:text-kleen-mint transition-colors">
+                Dashboard
+              </Button>
+            </motion.div>
           </Link>
           <Link to="/profile">
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <User className="h-5 w-5" />
-            </Button>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+              <Button variant="ghost" size="icon" className="md:hidden hover:bg-kleen-mint/10 transition-colors">
+                <User className="h-5 w-5" />
+              </Button>
+            </motion.div>
           </Link>
           <Link to="/dashboard?tab=cart">
-            <Button variant="default" className="bg-kleen-mint hover:bg-kleen-mint/90">
-              Analyze My Cart
-            </Button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button variant="default" className="bg-kleen-mint hover:bg-kleen-mint/90 transition-colors shadow-lg">
+                Analyze My Cart
+              </Button>
+            </motion.div>
           </Link>
         </div>
-      </div>
+      </motion.div>
     </header>
   );
 };
