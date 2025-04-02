@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import ProductCard, { Product } from './ProductCard';
+import ProductCard from './ProductCard';
 import KleenScore from './KleenScore';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Product } from '@/types/Product';
 
 interface ProductSwapProps {
   originalProduct: Product;
@@ -23,7 +23,8 @@ const ProductSwap: React.FC<ProductSwapProps> = ({
     setShowAlternative(!showAlternative);
   };
   
-  const scoreDifference = alternativeProduct.kleenScore - originalProduct.kleenScore;
+  const scoreDifference = (alternativeProduct.kleenScore ?? alternativeProduct.cleanScore) - 
+                         (originalProduct.kleenScore ?? originalProduct.cleanScore);
   
   return (
     <div className={cn("relative", className)}>

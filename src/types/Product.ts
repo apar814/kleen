@@ -39,3 +39,10 @@ export type CleanStack = {
   dateCreated: Date;
   dateModified: Date;
 };
+
+// Export the ingredient type to use across components
+export type Ingredient = {
+  name: string;
+  toxicityLevel: 'high' | 'medium' | 'low';
+  description: string;
+};

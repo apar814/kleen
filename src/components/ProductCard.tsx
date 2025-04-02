@@ -9,24 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-
-export interface Ingredient {
-  name: string;
-  toxicityLevel: 'high' | 'medium' | 'low';
-  description: string;
-}
-
-export interface Product {
-  id: string;
-  name: string;
-  brand: string;
-  imageUrl: string;
-  price: string;
-  kleenScore: number;
-  category?: string;
-  ingredients: Ingredient[];
-  alternativeProductId?: string;
-}
+import { Product, Ingredient } from '@/types/Product';
 
 interface ProductCardProps {
   product: Product;
@@ -70,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className="flex p-4">
         <div className="w-24 h-24 bg-gray-100 rounded-md overflow-hidden flex-shrink-0">
           <img 
-            src={product.imageUrl} 
+            src={product.imageUrl || product.image || 'placeholder.svg'} 
             alt={product.name} 
             className="w-full h-full object-contain"
           />
@@ -85,12 +68,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <div 
               className={cn(
                 "ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium",
-                product.kleenScore >= 70 ? "bg-kleen-mint/10 text-kleen-mint" :
-                product.kleenScore >= 40 ? "bg-yellow-500/10 text-yellow-500" :
+                (product.kleenScore || product.cleanScore) >= 70 ? "bg-kleen-mint/10 text-kleen-mint" :
+                (product.kleenScore || product.cleanScore) >= 40 ? "bg-yellow-500/10 text-yellow-500" :
                 "bg-kleen-red/10 text-kleen-red"
               )}
             >
-              {product.kleenScore}/100
+              {(product.kleenScore || product.cleanScore)}/100
             </div>
           </div>
         </div>
@@ -103,7 +86,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </AccordionTrigger>
           <AccordionContent className="px-4 pb-4">
             <ul className="space-y-4">
-              {product.ingredients.map((ingredient) => (
+              {Array.isArray(product.ingredients) && typeof product.ingredients[0] !== 'string' && 
+                product.ingredients.map((ingredient: any) => (
                 <li key={ingredient.name} className="kleen-body">
                   <div className="flex items-center justify-between">
                     <div className="font-medium">{ingredient.name}</div>

@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Search, BookOpen, FileUp } from "lucide-react";
 import ProductSwap from '@/components/ProductSwap';
 import KleenScore from '@/components/KleenScore';
-import { Product } from '@/types/Product';
+import { Product, Ingredient } from '@/types/Product';
 import HealthScoreOverview from '@/components/HealthScoreOverview';
 import ToxinEducation from '@/components/ToxinEducation';
 import { motion } from 'framer-motion';
@@ -19,8 +18,10 @@ const mockOriginalProduct: Product = {
   id: "1",
   name: "Generic Body Wash",
   brand: "Brand X",
+  category: "Personal Care",
   imageUrl: "https://placehold.co/400x400?text=Body+Wash",
   price: "$8.99",
+  cleanScore: 35,
   kleenScore: 35,
   ingredients: [
     {
@@ -46,8 +47,10 @@ const mockAlternativeProduct: Product = {
   id: "2",
   name: "Clean Body Wash",
   brand: "Pure Company",
+  category: "Personal Care",
   imageUrl: "https://placehold.co/400x400?text=Clean+Wash",
   price: "$10.99",
+  cleanScore: 85,
   kleenScore: 85,
   ingredients: [
     {
@@ -99,7 +102,15 @@ const CartAnalysis: React.FC = () => {
         return;
       }
       
-      setAmazonProducts(products);
+      // Ensure products have required fields for display
+      const enhancedProducts = products.map(product => ({
+        ...product,
+        imageUrl: product.image || 'https://placehold.co/400x400?text=Product', // Ensure imageUrl exists
+        category: product.category || 'Unknown', // Ensure category exists
+        cleanScore: product.cleanScore || 0 // Ensure cleanScore exists
+      }));
+      
+      setAmazonProducts(enhancedProducts);
       setImportModalOpen(false);
       
       // Analyze the imported products

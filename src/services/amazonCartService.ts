@@ -5,16 +5,17 @@ import { Product } from '@/types/Product';
 // Convert Amazon cart data to our app's Product format
 export const convertAmazonCartToProducts = (amazonCartData: AmazonCartData): Product[] => {
   return amazonCartData.lineItems.map((item: AmazonLineItem) => {
+    // Generate placeholder values as needed
     return {
       id: item.productId,
       name: `Product ${item.productId}`, // Default name until we get product details
       brand: 'Unknown', // Default brand until we get product details
       category: 'Unknown', // Default category until we get product details
       price: parseFloat(item.unitPrice.price.amount),
-      image: undefined,
+      image: `https://placehold.co/400x400?text=Product+${item.productId.substring(0, 5)}`,
       ingredients: [], // Will be populated later from additional API calls
       asin: item.productId, // Using productId as ASIN
-      cleanScore: 0, // Will be calculated later
+      cleanScore: 50, // Default score until calculated
       flaggedIngredients: [], // Will be populated later
     };
   });
