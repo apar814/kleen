@@ -1,93 +1,80 @@
-
 import { Product } from '@/types/Product';
 
-// Mock data for product catalog
-export const mockProducts: Product[] = [
+// Add any missing exports that might be used in AnalyticsDashboard.tsx
+export const cartItems: Product[] = [
   {
-    id: '1',
-    name: 'Natural Moisturizing Cream',
-    brand: 'Clean Beauty Co.',
-    imageUrl: 'https://placehold.co/200x200/png',
-    price: '$24.99',
-    kleenScore: 92,
-    category: 'skincare',
-    cleanScore: 92,
+    id: "1",
+    name: "Generic Body Wash",
+    brand: "Brand X",
+    category: "Personal Care",
+    imageUrl: "https://placehold.co/400x400?text=Body+Wash",
+    price: "$8.99",
+    cleanScore: 35,
+    kleenScore: 35,
     ingredients: [
       {
-        name: 'Aloe Vera',
-        toxicityLevel: 'low',
-        description: 'Soothing plant extract with hydrating properties.'
+        name: "Sodium Lauryl Sulfate",
+        toxicityLevel: "high",
+        description: "A strong surfactant that can irritate skin and strip natural oils."
       },
       {
-        name: 'Shea Butter',
-        toxicityLevel: 'low',
-        description: 'Natural fat extracted from shea tree nuts, deeply moisturizing.'
+        name: "Fragrance",
+        toxicityLevel: "medium",
+        description: "Can contain hundreds of undisclosed chemicals, some linked to allergies and hormone disruption."
       }
     ]
   },
   {
-    id: '2',
-    name: 'Organic Vitamin C Serum',
-    brand: 'Pure Botanicals',
-    imageUrl: 'https://placehold.co/200x200/png',
-    price: '$32.50',
-    kleenScore: 89,
-    category: 'skincare',
-    cleanScore: 89,
+    id: "2",
+    name: "Clean Body Wash",
+    brand: "Pure Company",
+    category: "Personal Care",
+    imageUrl: "https://placehold.co/400x400?text=Clean+Wash",
+    price: "$10.99",
+    cleanScore: 85,
+    kleenScore: 85,
     ingredients: [
       {
-        name: 'Vitamin C (Ascorbic Acid)',
-        toxicityLevel: 'low',
-        description: 'Antioxidant that brightens skin and boosts collagen production.'
-      },
+        name: "Sodium Coco Sulfate",
+        toxicityLevel: "low",
+        description: "A gentler coconut-derived cleanser that's less irritating than SLS."
+      }
+    ]
+  }
+];
+
+export const cleanAlternatives: Product[] = [
+  {
+    id: "3",
+    name: "Clean Body Wash",
+    brand: "Pure Company",
+    category: "Personal Care",
+    imageUrl: "https://placehold.co/400x400?text=Clean+Wash",
+    price: "$10.99",
+    cleanScore: 85,
+    kleenScore: 85,
+    ingredients: [
       {
-        name: 'Hyaluronic Acid',
-        toxicityLevel: 'low',
-        description: 'Natural substance that retains moisture in the skin.'
+        name: "Sodium Coco Sulfate",
+        toxicityLevel: "low",
+        description: "A gentler coconut-derived cleanser that's less irritating than SLS."
       }
     ]
   },
   {
-    id: '3',
-    name: 'Natural Plant Protein',
-    brand: 'Clean Fuel',
-    imageUrl: 'https://placehold.co/200x200/png',
-    price: '$39.99',
-    kleenScore: 95,
-    category: 'supplement',
-    cleanScore: 95,
+    id: "4",
+    name: "Natural Shampoo",
+    brand: "Green Living",
+    category: "Personal Care",
+    imageUrl: "https://placehold.co/400x400?text=Natural+Shampoo",
+    price: "$12.99",
+    cleanScore: 90,
+    kleenScore: 90,
     ingredients: [
       {
-        name: 'Pea Protein Isolate',
-        toxicityLevel: 'low',
-        description: "Plant-based protein source that's easily digestible."
-      },
-      {
-        name: 'Organic Rice Protein',
-        toxicityLevel: 'low',
-        description: 'Hypoallergenic protein derived from brown rice.'
-      }
-    ]
-  },
-  {
-    id: '4',
-    name: 'Organic Shampoo',
-    brand: 'Pure Essentials',
-    imageUrl: 'https://placehold.co/200x200/png',
-    price: '$18.99',
-    kleenScore: 88,
-    category: 'haircare',
-    cleanScore: 88,
-    ingredients: [
-      {
-        name: 'Aloe Vera Juice',
-        toxicityLevel: 'low',
-        description: 'Hydrating and soothing natural ingredient.'
-      },
-      {
-        name: 'Coconut-derived Surfactants',
-        toxicityLevel: 'low',
-        description: 'Gentle cleansers derived from coconut oil.'
+        name: "Aloe Vera Extract",
+        toxicityLevel: "low",
+        description: "Natural plant extract that soothes and moisturizes."
       }
     ]
   }
