@@ -3,12 +3,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Product } from '@/types/Product';
+import { calculateProductMetrics } from '@/utils/metricsUtils';
 
 interface CartAnalysisCardProps {
   cartItems: Product[];
 }
 
 const CartAnalysisCard: React.FC<CartAnalysisCardProps> = ({ cartItems }) => {
+  const { totalProducts, cautionProducts, highRiskProducts } = calculateProductMetrics(cartItems);
+
   return (
     <motion.div
       custom={2}
@@ -36,18 +39,18 @@ const CartAnalysisCard: React.FC<CartAnalysisCardProps> = ({ cartItems }) => {
           <div className="mt-2">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-3xl font-bold">{cartItems.length}</div>
+                <div className="text-3xl font-bold">{totalProducts}</div>
                 <div className="text-xs text-kleen-gray mt-1">Products</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-yellow-500">
-                  {cartItems.filter(p => p.kleenScore < 70 && p.kleenScore >= 40).length}
+                  {cautionProducts}
                 </div>
                 <div className="text-xs text-kleen-gray mt-1">Caution</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-kleen-red">
-                  {cartItems.filter(p => p.kleenScore < 40).length}
+                  {highRiskProducts}
                 </div>
                 <div className="text-xs text-kleen-gray mt-1">High Risk</div>
               </div>

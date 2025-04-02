@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Product } from '@/types/Product';
+import { getToxicityColor, getToxicityLevel } from '@/utils/metricsUtils';
 
 interface ProductBreakdownTableProps {
   cartItems: Product[];
@@ -48,31 +49,40 @@ const ProductBreakdownTable: React.FC<ProductBreakdownTableProps> = ({ cartItems
             <TableBody>
               {cartItems.map((item, index) => {
                 const alternative = cleanAlternatives[index];
-                const improvement = alternative.kleenScore - item.kleenScore;
+                const improvement = alternative ? alternative.kleenScore - item.kleenScore : 0;
+                const itemToxicityLevel = getToxicityLevel(item.kleenScore || 0);
+                const alternativeToxicityLevel = alternative ? 
+                  getToxicityLevel(alternative.kleenScore || 0) : 'low';
                 
                 return (
                   <TableRow key={item.id}>
                     <TableCell className="font-medium">{item.name}</TableCell>
                     <TableCell>
                       <div className="flex items-center">
-                        <div className={`w-10 h-3 rounded-full mr-2 ${
-                          item.kleenScore >= 70 ? 'bg-kleen-mint' :
-                          item.kleenScore >= 40 ? 'bg-yellow-500' : 'bg-kleen-red'
-                        }`} />
+                        <div 
+                          className={`w-10 h-3 rounded-full mr-2`} 
+                          style={{ backgroundColor: getToxicityColor(itemToxicityLevel) }} 
+                        />
                         {item.kleenScore}
                       </div>
                     </TableCell>
-                    <TableCell className="font-medium">{alternative.name}</TableCell>
-                    <TableCell>
-                      <div className="flex items-center">
-                        <div className={`w-10 h-3 rounded-full mr-2 ${
-                          alternative.kleenScore >= 70 ? 'bg-kleen-mint' :
-                          alternative.kleenScore >= 40 ? 'bg-yellow-500' : 'bg-kleen-red'
-                        }`} />
-                        {alternative.kleenScore}
-                      </div>
+                    <TableCell className="font-medium">
+                      {alternative ? alternative.name : 'No alternative'}
                     </TableCell>
-                    <TableCell className="text-kleen-mint">+{improvement}</TableCell>
+                    <TableCell>
+                      {alternative ? (
+                        <div className="flex items-center">
+                          <div 
+                            className={`w-10 h-3 rounded-full mr-2`} 
+                            style={{ backgroundColor: getToxicityColor(alternativeToxicityLevel) }}
+                          />
+                          {alternative.kleenScore}
+                        </div>
+                      ) : 'N/A'}
+                    </TableCell>
+                    <TableCell className={improvement > 0 ? "text-kleen-mint" : ""}>
+                      {improvement > 0 ? `+${improvement}` : improvement}
+                    </TableCell>
                   </TableRow>
                 );
               })}
