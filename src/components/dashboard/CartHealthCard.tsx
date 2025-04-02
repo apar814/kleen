@@ -4,13 +4,23 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import KleenScore from '@/components/KleenScore';
+import LoadingSkeleton from './LoadingSkeleton';
 
 interface CartHealthCardProps {
   avgCartScore: number;
   scoreImprovement: number;
+  isLoading?: boolean;
 }
 
-const CartHealthCard: React.FC<CartHealthCardProps> = ({ avgCartScore, scoreImprovement }) => {
+const CartHealthCard: React.FC<CartHealthCardProps> = ({ 
+  avgCartScore, 
+  scoreImprovement,
+  isLoading = false
+}) => {
+  if (isLoading) {
+    return <LoadingSkeleton type="card" />;
+  }
+
   return (
     <motion.div
       custom={0}

@@ -4,6 +4,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import LoadingSkeleton from './LoadingSkeleton';
 
 interface ScoreImprovementChartProps {
   data: {
@@ -12,9 +13,14 @@ interface ScoreImprovementChartProps {
     improved: number;
     improvement: number;
   }[];
+  isLoading?: boolean;
 }
 
-const ScoreImprovementChart: React.FC<ScoreImprovementChartProps> = ({ data }) => {
+const ScoreImprovementChart: React.FC<ScoreImprovementChartProps> = ({ data, isLoading = false }) => {
+  if (isLoading) {
+    return <LoadingSkeleton type="chart" />;
+  }
+
   return (
     <motion.div
       custom={3}

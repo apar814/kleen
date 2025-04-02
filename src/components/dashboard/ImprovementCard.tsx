@@ -4,13 +4,23 @@ import { motion } from 'framer-motion';
 import { TrendingUp } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import KleenScore from '@/components/KleenScore';
+import LoadingSkeleton from './LoadingSkeleton';
 
 interface ImprovementCardProps {
   avgAlternativeScore: number;
   percentImprovement: number;
+  isLoading?: boolean;
 }
 
-const ImprovementCard: React.FC<ImprovementCardProps> = ({ avgAlternativeScore, percentImprovement }) => {
+const ImprovementCard: React.FC<ImprovementCardProps> = ({ 
+  avgAlternativeScore,
+  percentImprovement,
+  isLoading = false
+}) => {
+  if (isLoading) {
+    return <LoadingSkeleton type="card" />;
+  }
+
   return (
     <motion.div
       custom={1}

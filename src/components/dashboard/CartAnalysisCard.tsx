@@ -4,12 +4,18 @@ import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Product } from '@/types/Product';
 import { calculateProductMetrics } from '@/utils/metricsUtils';
+import LoadingSkeleton from './LoadingSkeleton';
 
 interface CartAnalysisCardProps {
   cartItems: Product[];
+  isLoading?: boolean;
 }
 
-const CartAnalysisCard: React.FC<CartAnalysisCardProps> = ({ cartItems }) => {
+const CartAnalysisCard: React.FC<CartAnalysisCardProps> = ({ cartItems, isLoading = false }) => {
+  if (isLoading) {
+    return <LoadingSkeleton type="card" />;
+  }
+
   const { totalProducts, cautionProducts, highRiskProducts } = calculateProductMetrics(cartItems);
 
   return (

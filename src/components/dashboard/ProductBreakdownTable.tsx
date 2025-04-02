@@ -5,13 +5,23 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Product } from '@/types/Product';
 import { getToxicityColor, getToxicityLevel } from '@/utils/metricsUtils';
+import LoadingSkeleton from './LoadingSkeleton';
 
 interface ProductBreakdownTableProps {
   cartItems: Product[];
   cleanAlternatives: Product[];
+  isLoading?: boolean;
 }
 
-const ProductBreakdownTable: React.FC<ProductBreakdownTableProps> = ({ cartItems, cleanAlternatives }) => {
+const ProductBreakdownTable: React.FC<ProductBreakdownTableProps> = ({ 
+  cartItems, 
+  cleanAlternatives,
+  isLoading = false 
+}) => {
+  if (isLoading) {
+    return <LoadingSkeleton type="table" />;
+  }
+
   return (
     <motion.div
       custom={5}

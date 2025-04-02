@@ -4,6 +4,7 @@ import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from 'recharts';
 import { ChartTooltip } from '@/components/ui/chart';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import LoadingSkeleton from './LoadingSkeleton';
 
 interface ToxicityBreakdownChartProps {
   data: {
@@ -11,9 +12,14 @@ interface ToxicityBreakdownChartProps {
     value: number;
     color: string;
   }[];
+  isLoading?: boolean;
 }
 
-const ToxicityBreakdownChart: React.FC<ToxicityBreakdownChartProps> = ({ data }) => {
+const ToxicityBreakdownChart: React.FC<ToxicityBreakdownChartProps> = ({ data, isLoading = false }) => {
+  if (isLoading) {
+    return <LoadingSkeleton type="chart" />;
+  }
+
   return (
     <motion.div
       custom={4}
