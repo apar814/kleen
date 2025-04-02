@@ -4,16 +4,23 @@ export type Product = {
   name: string;
   brand: string;
   category: string;
-  price: number;
+  price: number | string;
   image?: string;
-  ingredients: string[];
+  imageUrl?: string;
+  ingredients: string[] | {
+    name: string;
+    toxicityLevel: 'high' | 'medium' | 'low';
+    description: string;
+  }[];
   asin?: string;
   cleanScore: number;
+  kleenScore?: number;
   flaggedIngredients?: {
     name: string;
     riskLevel: number;
   }[];
   affiliateLink?: string;
+  alternativeProductId?: string;
 };
 
 export type SavedSwap = {

@@ -2,14 +2,17 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Search, BookOpen } from "lucide-react";
+import { Search, BookOpen, FileUp } from "lucide-react";
 import ProductSwap from '@/components/ProductSwap';
 import KleenScore from '@/components/KleenScore';
-import { Product } from '@/components/ProductCard';
+import { Product } from '@/types/Product';
 import HealthScoreOverview from '@/components/HealthScoreOverview';
 import ToxinEducation from '@/components/ToxinEducation';
 import { motion } from 'framer-motion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { handleAmazonCartImport } from '@/services/amazonCartService';
+import { useToast } from '@/components/ui/use-toast';
+import { Textarea } from '@/components/ui/textarea';
 
 // Mock data for demonstration
 const mockOriginalProduct: Product = {
@@ -68,6 +71,10 @@ const mockAlternativeProduct: Product = {
 const CartAnalysis: React.FC = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analyzed, setAnalyzed] = useState(false);
+  const [amazonCartJson, setAmazonCartJson] = useState('');
+  const [importModalOpen, setImportModalOpen] = useState(false);
+  const [amazonProducts, setAmazonProducts] = useState<Product[]>([]);
+  const { toast } = useToast();
   
   const handleAnalyzeClick = () => {
     setIsAnalyzing(true);
@@ -77,20 +84,95 @@ const CartAnalysis: React.FC = () => {
       setAnalyzed(true);
     }, 2000);
   };
+
+  const handleAmazonImport = async () => {
+    try {
+      // Parse the Amazon cart data
+      const products = await handleAmazonCartImport(amazonCartJson);
+      
+      if (products.length === 0) {
+        toast({
+          title: "Import Failed",
+          description: "Could not parse the Amazon cart data. Please check the format and try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      setAmazonProducts(products);
+      setImportModalOpen(false);
+      
+      // Analyze the imported products
+      setIsAnalyzing(true);
+      // Simulate API call delay
+      setTimeout(() => {
+        setIsAnalyzing(false);
+        setAnalyzed(true);
+        toast({
+          title: "Cart Imported",
+          description: `Successfully imported ${products.length} products from Amazon.`,
+        });
+      }, 2000);
+    } catch (error) {
+      console.error('Error importing Amazon cart:', error);
+      toast({
+        title: "Import Failed",
+        description: "An error occurred while importing the Amazon cart data.",
+        variant: "destructive",
+      });
+    }
+  };
   
   return (
     <div className="max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Cart Analysis</h1>
-        <Button 
-          onClick={handleAnalyzeClick} 
-          disabled={isAnalyzing}
-          className="bg-kleen-teal hover:bg-kleen-teal-dark"
-        >
-          <Search className="w-4 h-4 mr-2" />
-          {isAnalyzing ? "Analyzing..." : "Analyze Cart"}
-        </Button>
+        <div className="flex gap-2">
+          <Button 
+            onClick={() => setImportModalOpen(true)} 
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <FileUp className="w-4 h-4" />
+            Import Amazon Cart
+          </Button>
+          <Button 
+            onClick={handleAnalyzeClick} 
+            disabled={isAnalyzing}
+            className="bg-kleen-teal hover:bg-kleen-teal-dark"
+          >
+            <Search className="w-4 h-4 mr-2" />
+            {isAnalyzing ? "Analyzing..." : "Analyze Cart"}
+          </Button>
+        </div>
       </div>
+      
+      {importModalOpen && (
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Import Amazon Cart Data</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-500 mb-4">
+              Paste your Amazon cart JSON data below. This data can be obtained from the Amazon cart page using our browser extension.
+            </p>
+            <Textarea
+              placeholder="Paste Amazon cart JSON here..."
+              className="min-h-[200px] mb-4"
+              value={amazonCartJson}
+              onChange={(e) => setAmazonCartJson(e.target.value)}
+            />
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={() => setImportModalOpen(false)}>
+                Cancel
+              </Button>
+              <Button onClick={handleAmazonImport}>
+                Import Cart
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
       
       {!analyzed ? (
         <Card className="border-dashed border-2 border-gray-300 bg-gray-50">
