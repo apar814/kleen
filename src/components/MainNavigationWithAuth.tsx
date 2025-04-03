@@ -26,7 +26,7 @@ const MainNavigationWithAuth: React.FC<MainNavigationProps> = ({ className }) =>
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className={cn('flex items-center justify-center bg-white/80 backdrop-blur-md py-3 px-8 rounded-full shadow-md w-full max-w-5xl mx-auto', className)}
+      className={cn('flex items-center justify-center bg-[#f2e8dc]/80 backdrop-blur-md py-3 px-8 rounded-full shadow-md w-full max-w-5xl mx-auto', className)}
     >
       <div className="flex space-x-10 items-center justify-center">
         {navItems.map((item) => (
@@ -51,12 +51,12 @@ const MainNavigationWithAuth: React.FC<MainNavigationProps> = ({ className }) =>
       </div>
       
       <div className="flex items-center gap-3 ml-auto">
-        <Link to="/explore">
+        <Link to="/explore" aria-label="Search">
           <Button variant="ghost" size="icon" className="rounded-full hover:bg-kleen-mint/10 transition-colors">
             <Search className="h-5 w-5" />
           </Button>
         </Link>
-        <Link to="/dashboard?tab=cart">
+        <Link to="/dashboard?tab=cart" aria-label="Cart">
           <Button variant="ghost" size="icon" className="rounded-full hover:bg-kleen-mint/10 transition-colors">
             <ShoppingCart className="h-5 w-5" />
           </Button>

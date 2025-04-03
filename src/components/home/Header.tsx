@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from '@/components/ui/button';
@@ -39,9 +39,10 @@ const Header: React.FC = () => {
         </div>
         
         <div className="md:hidden">
-          <Link to="/dashboard?tab=cart">
+          <Link to="/dashboard?tab=cart" aria-label="Cart">
             <Button variant="ghost" size="icon" className="hover:bg-kleen-mint/10 transition-colors">
               <ShoppingCart className="h-5 w-5" />
+              <span className="sr-only">Cart</span>
             </Button>
           </Link>
         </div>

@@ -30,7 +30,7 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
   return (
     <header className={cn(
       "w-full py-4 relative z-10", 
-      variant === 'default' ? 'bg-white/60 backdrop-blur-md shadow-md' : 'bg-transparent',
+      variant === 'default' ? 'bg-[#f2e8dc]/60 backdrop-blur-md shadow-md' : 'bg-transparent',
       className
     )}>
       <motion.div 
