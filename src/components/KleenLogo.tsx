@@ -17,7 +17,7 @@ const KleenLogo: React.FC<KleenLogoProps> = ({
   };
   const colorClass = variant === 'white' ? 'text-white' : 'text-kleen-dark';
   return <div className={cn("font-montserrat font-semibold flex items-center", sizeClasses[size], colorClass, className)}>
-      <span className="text-kleen-mint text-5xl">kleen</span>
+      <span className="text-kleen-mint text-5xl">kleen.ai</span>
     </div>;
 };
 export default KleenLogo;
