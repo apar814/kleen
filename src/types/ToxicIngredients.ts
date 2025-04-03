@@ -13,7 +13,7 @@ export type ToxicIngredient = {
   clean_alternatives?: string[];
   sources?: string[];
   created_by: string;
-  updated_at: Date;
+  updated_at: Date | string;
 };
 
 export type ToxicIngredientFilter = {
