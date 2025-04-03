@@ -5,7 +5,7 @@ export type ToxicIngredient = {
   aliases?: string[];
   category: string;
   risk_level: number;
-  health_risks?: string[];
+  health_risks: string[];
   banned_in?: string[];
   description: string;
   ai_summary: string;
@@ -13,5 +13,12 @@ export type ToxicIngredient = {
   clean_alternatives?: string[];
   sources?: string[];
   created_by: string;
-  updated_at: string;
+  updated_at: Date;
+};
+
+export type ToxicIngredientFilter = {
+  categories?: string[];
+  riskLevels?: number[];
+  searchQuery?: string;
+  banned?: boolean;
 };

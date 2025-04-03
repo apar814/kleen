@@ -15,10 +15,12 @@ import {
   LogOut,
   Home,
   ChevronLeft,
-  Menu
+  Menu,
+  Database
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
+import { useAuth } from '@/contexts/AuthContext';
 
 interface AppSidebarProps {
   children: React.ReactNode;
@@ -27,6 +29,7 @@ interface AppSidebarProps {
 const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
   const location = useLocation();
   const [collapsed, setCollapsed] = React.useState(false);
+  const { logout, user } = useAuth();
   
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -109,7 +112,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
               <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Ingredient Database" isActive={isActive('/ingredient-database')}>
                   <Link to="/ingredient-database" className="flex items-center w-full">
-                    <Info className="mr-2" />
+                    <Database className="mr-2" />
                     <span>Ingredient Database</span>
                   </Link>
                 </SidebarMenuButton>
@@ -137,8 +140,8 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Settings">
-                  <Link to="#" className="flex items-center w-full">
+                <SidebarMenuButton tooltip="Settings" isActive={isActive('/settings')}>
+                  <Link to="/settings" className="flex items-center w-full">
                     <Settings className="mr-2" />
                     <span>Settings</span>
                   </Link>
@@ -146,10 +149,10 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Logout">
-                  <Link to="/" className="flex items-center w-full">
+                  <button className="flex items-center w-full" onClick={logout}>
                     <LogOut className="mr-2" />
                     <span>Logout</span>
-                  </Link>
+                  </button>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>

@@ -12,6 +12,7 @@ import ProductsMenu from './navigation/ProductsMenu';
 import LearnMenu from './navigation/LearnMenu';
 import SimpleNavLinks from './navigation/SimpleNavLinks';
 import NavActions from './navigation/NavActions';
+import UserMenu from './auth/UserMenu';
 
 interface MainNavigationProps {
   variant?: 'default' | 'transparent';
@@ -24,7 +25,8 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
 }) => {
   const simpleLinks = [
     { href: '/how-it-works', label: 'How It Works' },
-    { href: '/about', label: 'About Us' }
+    { href: '/about', label: 'About Us' },
+    { href: '/ingredient-database', label: 'Ingredient Database' }
   ];
   
   return (
@@ -58,7 +60,10 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
           </NavigationMenu>
         </div>
         
-        <NavActions />
+        <div className="flex items-center gap-3">
+          <NavActions />
+          <UserMenu />
+        </div>
       </motion.div>
     </header>
   );
