@@ -1,5 +1,5 @@
 
-export type ToxicIngredient = {
+export interface ToxicIngredient {
   id: string;
   name: string;
   aliases?: string[];
@@ -13,12 +13,34 @@ export type ToxicIngredient = {
   clean_alternatives?: string[];
   sources?: string[];
   created_by: string;
-  updated_at: Date | string;
-};
+  updated_at: string;
+}
 
-export type ToxicIngredientFilter = {
-  categories?: string[];
-  riskLevels?: number[];
-  searchQuery?: string;
-  banned?: boolean;
-};
+export interface UserCart {
+  id: string;
+  userId: string;
+  title: string;
+  preferences: string[];
+  createdAt: Date;
+  products: {
+    id: string;
+    name: string;
+    quantity: number;
+  }[];
+}
+
+export interface UserProfile {
+  email: string;
+  healthGoals: string[];
+  values: string[];
+  dietaryNeeds: string[];
+  createdAt: Date;
+}
+
+export interface Swap {
+  id: string;
+  originalProductID: string;
+  cleanProductID: string;
+  reasons: string[];
+  rating: number;
+}
