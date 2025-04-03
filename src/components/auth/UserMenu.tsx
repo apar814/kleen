@@ -13,6 +13,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { User, LogOut, Settings, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LoginModal from './LoginModal';
+import { motion } from 'framer-motion';
 
 const UserMenu = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -21,14 +22,16 @@ const UserMenu = () => {
   if (!user) {
     return (
       <>
-        <Button 
-          variant="ghost" 
-          onClick={() => setIsLoginModalOpen(true)}
-          className="flex items-center gap-2"
-        >
-          <User className="h-5 w-5" />
-          <span className="hidden md:inline">Sign In</span>
-        </Button>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+          <Button 
+            variant="outline" 
+            onClick={() => setIsLoginModalOpen(true)}
+            className="flex items-center gap-1.5 border-gray-200 hover:border-kleen-mint hover:text-kleen-mint transition-colors"
+          >
+            <User className="h-4 w-4" />
+            <span className="hidden md:inline">Sign In</span>
+          </Button>
+        </motion.div>
         
         <LoginModal 
           isOpen={isLoginModalOpen} 
@@ -42,17 +45,19 @@ const UserMenu = () => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" className="relative">
-            {user.isGuest ? (
-              <User className="h-5 w-5" />
-            ) : (
-              <div className="w-6 h-6 rounded-full bg-kleen-mint text-white flex items-center justify-center text-xs font-medium">
-                {user.email ? user.email[0].toUpperCase() : 'U'}
-              </div>
-            )}
-          </Button>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+            <Button variant="ghost" size="icon" className="relative">
+              {user.isGuest ? (
+                <User className="h-5 w-5" />
+              ) : (
+                <div className="w-6 h-6 rounded-full bg-kleen-mint text-white flex items-center justify-center text-xs font-medium">
+                  {user.email ? user.email[0].toUpperCase() : 'U'}
+                </div>
+              )}
+            </Button>
+          </motion.div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuContent align="end" className="w-56 bg-white/95 backdrop-blur-sm border-gray-200">
           <DropdownMenuLabel>
             {isAuthenticated ? (
               <div className="flex flex-col">
@@ -101,8 +106,8 @@ const UserMenu = () => {
           
           <DropdownMenuSeparator />
           
-          <DropdownMenuItem onClick={logout} className="text-red-600 cursor-pointer">
-            <LogOut className="mr-2 h-4 w-4" />
+          <DropdownMenuItem onClick={logout} className="text-red-600 cursor-pointer group transition-colors">
+            <LogOut className="mr-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
             <span>{isAuthenticated ? 'Sign Out' : 'Clear Guest Session'}</span>
           </DropdownMenuItem>
         </DropdownMenuContent>

@@ -25,16 +25,16 @@ const MainNavigationWithAuth: React.FC<MainNavigationProps> = ({ className }) =>
     <motion.nav 
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className={cn('flex items-center justify-center bg-[#f2e8dc]/80 backdrop-blur-md py-3 px-8 rounded-full shadow-md w-full max-w-5xl mx-auto', className)}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className={cn('flex items-center justify-center bg-[#f2e8dc]/80 backdrop-blur-md py-2.5 px-6 rounded-lg shadow-md w-full max-w-5xl mx-auto', className)}
     >
-      <div className="flex space-x-10 items-center justify-center">
+      <div className="flex space-x-6 items-center justify-center">
         {navItems.map((item) => (
           <Link
             key={item.name}
             to={item.href}
             className={cn(
-              "text-gray-700 hover:text-kleen-mint text-sm font-medium relative whitespace-nowrap",
+              "text-gray-700 hover:text-kleen-mint text-sm font-medium relative whitespace-nowrap transition-colors duration-200",
               location.pathname === item.href && "text-kleen-mint"
             )}
           >
@@ -50,16 +50,20 @@ const MainNavigationWithAuth: React.FC<MainNavigationProps> = ({ className }) =>
         ))}
       </div>
       
-      <div className="flex items-center gap-3 ml-auto">
+      <div className="flex items-center gap-2 ml-auto">
         <Link to="/explore" aria-label="Search">
-          <Button variant="ghost" size="icon" className="rounded-full hover:bg-kleen-mint/10 transition-colors">
-            <Search className="h-5 w-5" />
-          </Button>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+            <Button variant="ghost" size="icon" className="rounded-full hover:bg-kleen-mint/10 transition-colors">
+              <Search className="h-5 w-5" />
+            </Button>
+          </motion.div>
         </Link>
         <Link to="/dashboard?tab=cart" aria-label="Cart">
-          <Button variant="ghost" size="icon" className="rounded-full hover:bg-kleen-mint/10 transition-colors">
-            <ShoppingCart className="h-5 w-5" />
-          </Button>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+            <Button variant="ghost" size="icon" className="rounded-full hover:bg-kleen-mint/10 transition-colors">
+              <ShoppingCart className="h-5 w-5" />
+            </Button>
+          </motion.div>
         </Link>
         <UserMenu />
       </div>

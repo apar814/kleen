@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 const NavActions = () => {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1.5">
       <Link to="/explore" className="hidden md:block">
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
           <Button variant="ghost" size="icon" className="hover:bg-kleen-mint/10 transition-colors">
@@ -40,7 +40,11 @@ const NavActions = () => {
         </motion.div>
       </Link>
       <Link to="/dashboard?tab=cart">
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <motion.div 
+          whileHover={{ scale: 1.05 }} 
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
           <Button variant="default" className="bg-kleen-mint hover:bg-kleen-mint/90 transition-colors shadow-lg">
             Analyze My Cart
           </Button>
