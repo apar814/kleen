@@ -27,7 +27,9 @@ import {
   Users,
   Bell,
   BarChart3,
-  MessageSquare
+  MessageSquare,
+  ListOrdered,
+  Shield
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
