@@ -1,146 +1,133 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { toast } from "@/components/ui/use-toast";
-
-type User = {
-  id: string;
-  email: string | null;
-  isGuest: boolean;
-  values?: string[];
-  healthGoals?: string[];
-  createdAt: Date;
-};
+import { supabase } from '@/integrations/supabase/client';
+import type { User, Session } from '@supabase/supabase-js';
 
 interface AuthContextType {
   user: User | null;
+  session: Session | null;
   isLoading: boolean;
   isAuthenticated: boolean;
+  signUp: (email: string, password: string, fullName?: string) => Promise<{ error: string | null }>;
+  signIn: (email: string, password: string) => Promise<{ error: string | null }>;
+  signOut: () => Promise<void>;
+  profile: ProfileData | null;
+  refreshProfile: () => Promise<void>;
+  // Legacy compat
   login: (email: string) => Promise<void>;
   logout: () => void;
   verifyMagicLink: (token: string) => Promise<boolean>;
   createGuestSession: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+interface ProfileData {
+  id: string;
+  user_id: string;
+  display_name: string | null;
+  avatar_url: string | null;
+  health_goals: string[] | null;
+  dietary_needs: string[] | null;
+  allergens: string[] | null;
+  values: string[] | null;
+}
 
-// Get localStorage user data or create guest user
-const getUserFromStorage = (): User | null => {
-  const userData = localStorage.getItem('kleen_user');
-  if (userData) {
-    const parsed = JSON.parse(userData);
-    return {
-      ...parsed,
-      createdAt: new Date(parsed.createdAt)
-    };
-  }
-  return null;
-};
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [profile, setProfile] = useState<ProfileData | null>(null);
 
-  // Initialize auth state on mount
+  const fetchProfile = async (userId: string) => {
+    const { data } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('user_id', userId)
+      .single();
+    if (data) setProfile(data as ProfileData);
+  };
+
+  const refreshProfile = async () => {
+    if (user) await fetchProfile(user.id);
+  };
+
   useEffect(() => {
-    const storedUser = getUserFromStorage();
-    if (storedUser) {
-      setUser(storedUser);
-    }
-    setIsLoading(false);
+    // Set up auth state listener FIRST
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        // Use setTimeout to avoid deadlock with Supabase auth
+        setTimeout(() => fetchProfile(session.user.id), 0);
+      } else {
+        setProfile(null);
+      }
+      setIsLoading(false);
+    });
+
+    // THEN check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        fetchProfile(session.user.id);
+      }
+      setIsLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const createGuestSession = () => {
-    const guestUser: User = {
-      id: uuidv4(),
-      email: null,
-      isGuest: true,
-      createdAt: new Date()
-    };
-    
-    setUser(guestUser);
-    localStorage.setItem('kleen_user', JSON.stringify(guestUser));
-  };
-
-  const login = async (email: string): Promise<void> => {
-    setIsLoading(true);
-    try {
-      // In a real implementation, this would call an API to send magic link
-      // For now, we'll simulate the process
-      toast({
-        title: "Magic link sent!",
-        description: `Check your inbox at ${email} for a login link.`,
-      });
-      // In a real implementation, we would not set the user here
-      // This is just for demonstration purposes
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error sending magic link:", error);
-      setIsLoading(false);
-      toast({
-        title: "Failed to send login link",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
-    }
-  };
-
-  const verifyMagicLink = async (token: string): Promise<boolean> => {
-    setIsLoading(true);
-    try {
-      // In a real implementation, this would verify the token with a backend
-      // For now, we'll simulate successful verification
-      // Extract email from token (in real implementation this would be done securely)
-      const email = atob(token).split(':')[0];
-      
-      const authenticatedUser: User = {
-        id: uuidv4(),
-        email,
-        isGuest: false,
-        createdAt: new Date()
-      };
-      
-      setUser(authenticatedUser);
-      localStorage.setItem('kleen_user', JSON.stringify(authenticatedUser));
-      setIsLoading(false);
-      
-      return true;
-    } catch (error) {
-      console.error("Error verifying token:", error);
-      setIsLoading(false);
-      return false;
-    }
-  };
-
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('kleen_user');
-    toast({
-      title: "Logged out successfully",
+  const signUp = async (email: string, password: string, fullName?: string) => {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: fullName } },
     });
+    return { error: error?.message ?? null };
   };
+
+  const signIn = async (email: string, password: string) => {
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    return { error: error?.message ?? null };
+  };
+
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+    setSession(null);
+    setProfile(null);
+  };
+
+  // Legacy compat stubs
+  const login = async () => {};
+  const logout = () => { signOut(); };
+  const verifyMagicLink = async () => false;
+  const createGuestSession = () => {};
 
   return (
-    <AuthContext.Provider 
-      value={{ 
-        user, 
-        isLoading, 
-        isAuthenticated: !!user && !user.isGuest,
-        login, 
-        logout, 
-        verifyMagicLink,
-        createGuestSession
-      }}
-    >
+    <AuthContext.Provider value={{
+      user,
+      session,
+      isLoading,
+      isAuthenticated: !!session,
+      signUp,
+      signIn,
+      signOut,
+      profile,
+      refreshProfile,
+      login,
+      logout,
+      verifyMagicLink,
+      createGuestSession,
+    }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = (): AuthContextType => {
+export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within AuthProvider');
   return context;
 };

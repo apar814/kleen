@@ -1,1 +1,4 @@
 project_id = "prsbujomimxaalugpolv"
+
+[functions.recipe-builder]
+verify_jwt = false

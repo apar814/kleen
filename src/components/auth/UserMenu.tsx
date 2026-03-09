@@ -1,123 +1,71 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuLabel, 
-  DropdownMenuSeparator, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem,
+  DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/contexts/AuthContext';
 import { User, LogOut, Settings, Heart } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import LoginModal from './LoginModal';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const UserMenu = () => {
-  const { user, isAuthenticated, logout } = useAuth();
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  
+  const { user, isAuthenticated, signOut } = useAuth();
+  const navigate = useNavigate();
+
   if (!user) {
     return (
-      <>
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-          <Button 
-            variant="outline" 
-            onClick={() => setIsLoginModalOpen(true)}
-            className="flex items-center gap-1.5 border-gray-200 hover:border-kleen-mint hover:text-kleen-mint transition-colors"
-          >
+      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+        <Link to="/auth">
+          <Button variant="outline" className="flex items-center gap-1.5 border-border hover:border-primary hover:text-primary transition-colors">
             <User className="h-4 w-4" />
             <span className="hidden md:inline">Sign In</span>
           </Button>
-        </motion.div>
-        
-        <LoginModal 
-          isOpen={isLoginModalOpen} 
-          onClose={() => setIsLoginModalOpen(false)} 
-        />
-      </>
+        </Link>
+      </motion.div>
     );
   }
 
   return (
-    <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-            <Button variant="ghost" size="icon" className="relative">
-              {user.isGuest ? (
-                <User className="h-5 w-5" />
-              ) : (
-                <div className="w-6 h-6 rounded-full bg-kleen-mint text-white flex items-center justify-center text-xs font-medium">
-                  {user.email ? user.email[0].toUpperCase() : 'U'}
-                </div>
-              )}
-            </Button>
-          </motion.div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56 bg-white/95 backdrop-blur-sm border-gray-200">
-          <DropdownMenuLabel>
-            {isAuthenticated ? (
-              <div className="flex flex-col">
-                <span>{user.email}</span>
-                <span className="text-xs text-kleen-gray/70">Signed In</span>
-              </div>
-            ) : (
-              <div className="flex flex-col">
-                <span>Guest User</span>
-                <span className="text-xs text-kleen-gray/70">
-                  <button 
-                    onClick={() => {
-                      setIsLoginModalOpen(true);
-                    }}
-                    className="text-kleen-mint hover:underline"
-                  >
-                    Sign in to save your data
-                  </button>
-                </span>
-              </div>
-            )}
-          </DropdownMenuLabel>
-          
-          <DropdownMenuSeparator />
-          
-          <DropdownMenuItem asChild>
-            <Link to="/profile" className="cursor-pointer flex items-center">
-              <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
-            </Link>
-          </DropdownMenuItem>
-          
-          <DropdownMenuItem asChild>
-            <Link to="/clean-stack" className="cursor-pointer flex items-center">
-              <Heart className="mr-2 h-4 w-4" />
-              <span>My Clean Stack</span>
-            </Link>
-          </DropdownMenuItem>
-          
-          <DropdownMenuItem asChild>
-            <Link to="/settings" className="cursor-pointer flex items-center">
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Settings</span>
-            </Link>
-          </DropdownMenuItem>
-          
-          <DropdownMenuSeparator />
-          
-          <DropdownMenuItem onClick={logout} className="text-red-600 cursor-pointer group transition-colors">
-            <LogOut className="mr-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-            <span>{isAuthenticated ? 'Sign Out' : 'Clear Guest Session'}</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      
-      <LoginModal 
-        isOpen={isLoginModalOpen} 
-        onClose={() => setIsLoginModalOpen(false)} 
-      />
-    </>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
+          <Button variant="ghost" size="icon" className="relative">
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-primary-glow text-primary-foreground flex items-center justify-center text-xs font-bold">
+              {user.email ? user.email[0].toUpperCase() : 'U'}
+            </div>
+          </Button>
+        </motion.div>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuLabel>
+          <div className="flex flex-col">
+            <span className="text-sm">{user.email}</span>
+            <span className="text-xs text-muted-foreground">Signed In</span>
+          </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link to="/profile" className="cursor-pointer flex items-center">
+            <User className="mr-2 h-4 w-4" /><span>Profile</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link to="/clean-stack" className="cursor-pointer flex items-center">
+            <Heart className="mr-2 h-4 w-4" /><span>My Clean Stack</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link to="/onboarding" className="cursor-pointer flex items-center">
+            <Settings className="mr-2 h-4 w-4" /><span>Edit Preferences</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => { signOut(); navigate('/'); }} className="text-destructive cursor-pointer">
+          <LogOut className="mr-2 h-4 w-4" /><span>Sign Out</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 
