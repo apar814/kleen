@@ -206,6 +206,30 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Restaurant Dining" isActive={isActive('/dine')}>
+                  <Link to="/dine" className="flex items-center w-full">
+                    <Utensils className="mr-2" />
+                    <span>Dining</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Water & Beverages" isActive={isActive('/water')}>
+                  <Link to="/water" className="flex items-center w-full">
+                    <Droplets className="mr-2" />
+                    <span>Water & Drinks</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Baby Safety" isActive={isActive('/baby')}>
+                  <Link to="/baby" className="flex items-center w-full">
+                    <Baby className="mr-2" />
+                    <span>Baby Safety</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Ingredient Database" isActive={isActive('/ingredients') || isActive('/toxic-ingredients')}>
                   <Link to="/ingredients" className="flex items-center w-full">
                     <Database className="mr-2" />
