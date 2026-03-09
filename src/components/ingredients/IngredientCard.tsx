@@ -1,9 +1,11 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Info } from 'lucide-react';
+import { Info, ExternalLink } from 'lucide-react';
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { ToxicIngredient } from '@/types/ToxicIngredients';
 
@@ -107,6 +109,14 @@ const IngredientCard: React.FC<IngredientCardProps> = ({ ingredient, getRiskLeve
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+            
+            {/* View Full Details Link */}
+            <Link to={`/ingredients/${ingredient.id}`}>
+              <Button variant="outline" className="w-full mt-4">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                View Full Ingredient Profile
+              </Button>
+            </Link>
           </div>
         </CardContent>
         
