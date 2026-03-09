@@ -7,10 +7,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import MenuScannerDialog, { type ScannedMenuItem } from '@/components/restaurant/MenuScannerDialog';
+import ScannedMenuResults from '@/components/restaurant/ScannedMenuResults';
 import { 
-  MapPin, Search, Utensils, Star, Camera, Navigation, 
-  Clock, TrendingUp, AlertTriangle, CheckCircle, Loader2
+  MapPin, Search, Utensils, Camera, Navigation, 
+  CheckCircle, AlertTriangle
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
