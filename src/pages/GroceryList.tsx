@@ -85,7 +85,7 @@ const GroceryList: React.FC = () => {
     const payload = {
       user_id: user.id,
       name: 'My Shopping List',
-      items: items as unknown as Record<string, unknown>[],
+      items: JSON.parse(JSON.stringify(items)),
       cart_score: cartScore,
       total_items: items.length,
       flagged_items: flaggedCount,

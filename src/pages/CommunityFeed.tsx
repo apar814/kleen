@@ -64,24 +64,28 @@ const CommunityFeed: React.FC = () => {
     const fetchPosts = async () => {
       setLoading(true);
       
-      let query = supabase
+      const { data, error } = await supabase
         .from('social_posts')
-        .select('*, profiles!social_posts_user_id_fkey(display_name, avatar_url)')
+        .select('*')
         .order('created_at', { ascending: false })
         .limit(50);
       
-      if (activeTab !== 'all' && activeTab !== 'trending') {
-        query = query.eq('community', activeTab);
-      }
-      
-      const { data, error } = await query;
-      
       if (data) {
+        let filteredData = activeTab !== 'all' && activeTab !== 'trending'
+          ? data.filter(p => p.community === activeTab)
+          : data;
+        
         // For trending, sort by engagement
         if (activeTab === 'trending') {
-          data.sort((a, b) => (b.likes_count + b.comments_count) - (a.likes_count + a.comments_count));
+          filteredData.sort((a, b) => (b.likes_count + b.comments_count) - (a.likes_count + a.comments_count));
         }
-        setPosts(data as SocialPost[]);
+        
+        // Map data to include profiles placeholder
+        setPosts(filteredData.map(p => ({
+          ...p,
+          content: p.content as SocialPost['content'],
+          profiles: undefined,
+        })) as SocialPost[]);
       }
       
       // Fetch user's likes
