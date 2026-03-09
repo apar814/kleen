@@ -7,10 +7,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import MenuScannerDialog, { type ScannedMenuItem } from '@/components/restaurant/MenuScannerDialog';
+import ScannedMenuResults from '@/components/restaurant/ScannedMenuResults';
 import { 
-  MapPin, Search, Utensils, Star, Camera, Navigation, 
-  Clock, TrendingUp, AlertTriangle, CheckCircle, Loader2
+  MapPin, Search, Utensils, Camera, Navigation, 
+  CheckCircle, AlertTriangle
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
@@ -76,6 +77,7 @@ const RestaurantDining: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [locationEnabled, setLocationEnabled] = useState(false);
+  const [scannedResult, setScannedResult] = useState<{ restaurant_name?: string; items: ScannedMenuItem[] } | null>(null);
 
   useEffect(() => {
     // Check if geolocation is available
@@ -90,15 +92,14 @@ const RestaurantDining: React.FC = () => {
     setMenuItems(mockMenuItems);
   };
 
-  const handleLogMeal = async (item: MenuItem) => {
+  const handleLogMeal = async (item: MenuItem | ScannedMenuItem) => {
     if (!user) {
       toast.error('Please sign in to log meals');
       return;
     }
 
-    // Log to dining_logs table
     const { error } = await supabase
-      .from('dining_logs' as any)
+      .from('dining_logs')
       .insert({
         user_id: user.id,
         item_name: item.item_name,
@@ -147,29 +148,24 @@ const RestaurantDining: React.FC = () => {
                 <Navigation className="h-4 w-4" />
                 Use My Location
               </Button>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline" className="gap-2">
-                    <Camera className="h-4 w-4" />
-                    Scan Menu
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Scan a Menu</DialogTitle>
-                  </DialogHeader>
-                  <div className="py-8 text-center">
-                    <Camera className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-muted-foreground">
-                      Take a photo of a restaurant menu to get instant scores for every item
-                    </p>
-                    <Button className="mt-4">Open Camera</Button>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              <MenuScannerDialog onScanComplete={(result) => {
+                setScannedResult(result);
+                setSelectedRestaurant(null);
+              }} />
             </div>
           </CardContent>
         </Card>
+
+        {/* AI Scanned Menu Results */}
+        {scannedResult && (
+          <div className="mb-6">
+            <ScannedMenuResults
+              restaurantName={scannedResult.restaurant_name}
+              items={scannedResult.items}
+              onLogMeal={handleLogMeal}
+            />
+          </div>
+        )}
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
