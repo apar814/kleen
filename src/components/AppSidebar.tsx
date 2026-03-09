@@ -183,6 +183,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                     <span>Weekly Report</span>
                   </Link>
                 </SidebarMenuButton>
+              </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Ingredient Database" isActive={isActive('/ingredients') || isActive('/toxic-ingredients')}>
                   <Link to="/ingredients" className="flex items-center w-full">
