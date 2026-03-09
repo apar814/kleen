@@ -31,6 +31,8 @@ import CommunityFeed from './pages/CommunityFeed';
 import Notifications from './pages/Notifications';
 import WeeklyReport from './pages/WeeklyReport';
 import AIChat from './pages/AIChat';
+import Admin from './pages/Admin';
+import ProductRequests from './pages/ProductRequests';
 
 function App() {
   return (
@@ -66,6 +68,8 @@ function App() {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/reports/weekly" element={<WeeklyReport />} />
           <Route path="/ask" element={<AIChat />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/product-requests" element={<ProductRequests />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

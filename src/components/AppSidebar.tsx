@@ -27,7 +27,9 @@ import {
   Users,
   Bell,
   BarChart3,
-  MessageSquare
+  MessageSquare,
+  ListOrdered,
+  Shield
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
@@ -181,6 +183,22 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                   <Link to="/reports/weekly" className="flex items-center w-full">
                     <BarChart3 className="mr-2" />
                     <span>Weekly Report</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Product Requests" isActive={isActive('/product-requests')}>
+                  <Link to="/product-requests" className="flex items-center w-full">
+                    <ListOrdered className="mr-2" />
+                    <span>Product Requests</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Admin" isActive={isActive('/admin')}>
+                  <Link to="/admin" className="flex items-center w-full">
+                    <Shield className="mr-2" />
+                    <span>Admin</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
