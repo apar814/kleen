@@ -77,7 +77,7 @@ const Admin: React.FC = () => {
     }
 
     const { data, error } = await supabase
-      .from('user_roles')
+      .from('user_roles' as any)
       .select('role')
       .eq('user_id', user.id)
       .eq('role', 'admin')
@@ -99,8 +99,8 @@ const Admin: React.FC = () => {
       // Fetch stats in parallel
       const [productsRes, requestsRes, scoresRes] = await Promise.all([
         supabase.from('products').select('id', { count: 'exact', head: true }),
-        supabase.from('product_requests').select('*').eq('status', 'pending').order('upvotes', { ascending: false }),
-        supabase.from('community_scores').select('*, products(name)').eq('status', 'pending').order('created_at', { ascending: false })
+        supabase.from('product_requests' as any).select('*').eq('status', 'pending').order('upvotes', { ascending: false }),
+        supabase.from('community_scores' as any).select('*, products(name)').eq('status', 'pending').order('created_at', { ascending: false })
       ]);
 
       setStats(prev => ({
@@ -122,7 +122,7 @@ const Admin: React.FC = () => {
 
   const handleRequestStatus = async (requestId: string, status: 'scored' | 'rejected') => {
     const { error } = await supabase
-      .from('product_requests')
+      .from('product_requests' as any)
       .update({ status, updated_at: new Date().toISOString() })
       .eq('id', requestId);
 
@@ -139,7 +139,7 @@ const Admin: React.FC = () => {
     if (!user) return;
 
     const { error: scoreError } = await supabase
-      .from('community_scores')
+      .from('community_scores' as any)
       .update({ 
         status, 
         reviewed_by: user.id,
