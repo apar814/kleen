@@ -92,15 +92,14 @@ const RestaurantDining: React.FC = () => {
     setMenuItems(mockMenuItems);
   };
 
-  const handleLogMeal = async (item: MenuItem) => {
+  const handleLogMeal = async (item: MenuItem | ScannedMenuItem) => {
     if (!user) {
       toast.error('Please sign in to log meals');
       return;
     }
 
-    // Log to dining_logs table
     const { error } = await supabase
-      .from('dining_logs' as any)
+      .from('dining_logs')
       .insert({
         user_id: user.id,
         item_name: item.item_name,
