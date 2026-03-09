@@ -57,7 +57,7 @@ const ProductRequests: React.FC = () => {
       .order('upvotes', { ascending: false });
 
     if (!error && data) {
-      setRequests(data);
+      setRequests(data as unknown as ProductRequest[]);
     }
     setLoading(false);
   };
@@ -70,7 +70,8 @@ const ProductRequests: React.FC = () => {
       .eq('user_id', user.id);
 
     if (data) {
-      setUserUpvotes(new Set(data.map(u => u.request_id)));
+      const upvoteRows = data as unknown as { request_id: string }[];
+      setUserUpvotes(new Set(upvoteRows.map((u) => u.request_id)));
     }
   };
 
