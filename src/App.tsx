@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Index from './pages/Index';
+import AuthPage from './pages/AuthPage';
+import Onboarding from './pages/Onboarding';
 import Dashboard from './pages/Dashboard';
 import ExploreProducts from './pages/ExploreProducts';
 import IngredientDatabase from './pages/IngredientDatabase';
@@ -18,6 +20,7 @@ import NotFound from './pages/NotFound';
 import ProductSearch from './pages/ProductSearch';
 import CompareProducts from './pages/CompareProducts';
 import GoalDiscovery from './pages/GoalDiscovery';
+import RecipeBuilder from './pages/RecipeBuilder';
 
 function App() {
   return (
@@ -25,6 +28,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/explore" element={<ExploreProducts />} />
           <Route path="/ingredients" element={<IngredientDatabase />} />
@@ -40,6 +45,7 @@ function App() {
           <Route path="/search" element={<ProductSearch />} />
           <Route path="/compare" element={<CompareProducts />} />
           <Route path="/goals" element={<GoalDiscovery />} />
+          <Route path="/recipes" element={<RecipeBuilder />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
