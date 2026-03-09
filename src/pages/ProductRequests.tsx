@@ -52,7 +52,7 @@ const ProductRequests: React.FC = () => {
   const fetchRequests = async () => {
     setLoading(true);
     const { data, error } = await supabase
-      .from('product_requests')
+      .from('product_requests' as any)
       .select('*')
       .order('upvotes', { ascending: false });
 
@@ -65,7 +65,7 @@ const ProductRequests: React.FC = () => {
   const fetchUserUpvotes = async () => {
     if (!user) return;
     const { data } = await supabase
-      .from('product_request_upvotes')
+      .from('product_request_upvotes' as any)
       .select('request_id')
       .eq('user_id', user.id);
 
@@ -88,7 +88,7 @@ const ProductRequests: React.FC = () => {
 
     setSubmitting(true);
     const { error } = await supabase
-      .from('product_requests')
+      .from('product_requests' as any)
       .insert({
         user_id: user.id,
         product_name: productName.trim(),
@@ -122,13 +122,13 @@ const ProductRequests: React.FC = () => {
     if (hasUpvoted) {
       // Remove upvote
       await supabase
-        .from('product_request_upvotes')
+        .from('product_request_upvotes' as any)
         .delete()
         .eq('request_id', requestId)
         .eq('user_id', user.id);
 
       await supabase
-        .from('product_requests')
+        .from('product_requests' as any)
         .update({ upvotes: requests.find(r => r.id === requestId)!.upvotes - 1 })
         .eq('id', requestId);
 
@@ -140,11 +140,11 @@ const ProductRequests: React.FC = () => {
     } else {
       // Add upvote
       await supabase
-        .from('product_request_upvotes')
+        .from('product_request_upvotes' as any)
         .insert({ request_id: requestId, user_id: user.id });
 
       await supabase
-        .from('product_requests')
+        .from('product_requests' as any)
         .update({ upvotes: requests.find(r => r.id === requestId)!.upvotes + 1 })
         .eq('id', requestId);
 

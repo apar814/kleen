@@ -60,7 +60,7 @@ const SubmitScoreDialog: React.FC<SubmitScoreDialogProps> = ({
     setSubmitting(true);
 
     const { error } = await supabase
-      .from('community_scores')
+      .from('community_scores' as any)
       .insert({
         product_id: productId,
         user_id: user.id,
