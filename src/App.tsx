@@ -7,6 +7,7 @@ import Onboarding from './pages/Onboarding';
 import Dashboard from './pages/Dashboard';
 import ExploreProducts from './pages/ExploreProducts';
 import IngredientDatabase from './pages/IngredientDatabase';
+import IngredientDetail from './pages/IngredientDetail';
 import UserCarts from './pages/UserCarts';
 import HowItWorks from './pages/HowItWorks';
 import AboutUs from './pages/AboutUs';
@@ -24,6 +25,9 @@ import RecipeBuilder from './pages/RecipeBuilder';
 import BannedIngredients from './pages/BannedIngredients';
 import CategoryBrowse from './pages/CategoryBrowse';
 import ReceiptScanner from './pages/ReceiptScanner';
+import GroceryList from './pages/GroceryList';
+import Challenges from './pages/Challenges';
+import CommunityFeed from './pages/CommunityFeed';
 
 function App() {
   return (
@@ -36,6 +40,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/explore" element={<ExploreProducts />} />
           <Route path="/ingredients" element={<IngredientDatabase />} />
+          <Route path="/ingredients/:id" element={<IngredientDetail />} />
           <Route path="/user-carts" element={<UserCarts />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/about" element={<AboutUs />} />
@@ -52,6 +57,9 @@ function App() {
           <Route path="/banned-ingredients" element={<BannedIngredients />} />
           <Route path="/categories" element={<CategoryBrowse />} />
           <Route path="/receipt-scanner" element={<ReceiptScanner />} />
+          <Route path="/grocery-list" element={<GroceryList />} />
+          <Route path="/challenges" element={<Challenges />} />
+          <Route path="/community" element={<CommunityFeed />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

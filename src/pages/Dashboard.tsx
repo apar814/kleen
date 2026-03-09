@@ -45,12 +45,12 @@ const Dashboard = () => {
   ];
 
   const quickActions = [
-    { label: 'Scan Cart', icon: ShoppingCart, to: '/dashboard?tab=cart', desc: 'Analyze your shopping cart' },
+    { label: 'Grocery List', icon: ShoppingCart, to: '/grocery-list', desc: 'Build & score your cart' },
     { label: 'Search Products', icon: Search, to: '/search', desc: 'Find & score any product' },
-    { label: 'Compare Products', icon: BarChart3, to: '/compare', desc: 'Side-by-side analysis' },
+    { label: 'Challenges', icon: BarChart3, to: '/challenges', desc: 'Weekly clean swap goals' },
     { label: 'Recipe Builder', icon: ChefHat, to: '/recipes', desc: 'AI-powered clean recipes' },
-    { label: 'Goals', icon: Heart, to: '/goals', desc: '75 wellness goals' },
-    { label: 'Learn', icon: BookOpen, to: '/toxic-ingredients', desc: 'Ingredient database' },
+    { label: 'Community', icon: Heart, to: '/community', desc: 'See trending scans' },
+    { label: 'Ingredients DB', icon: BookOpen, to: '/ingredients', desc: 'Full ingredient deep-dives' },
   ];
 
   return (

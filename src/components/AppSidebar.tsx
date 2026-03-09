@@ -21,7 +21,10 @@ import {
   Grid3X3,
   FileText,
   ChefHat,
-  Scale
+  Scale,
+  ShoppingBag,
+  Trophy,
+  Users
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
@@ -127,6 +130,30 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                   <Link to="/banned-ingredients" className="flex items-center w-full">
                     <Globe className="mr-2" />
                     <span>Banned Worldwide</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Grocery List" isActive={isActive('/grocery-list')}>
+                  <Link to="/grocery-list" className="flex items-center w-full">
+                    <ShoppingBag className="mr-2" />
+                    <span>Grocery List</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Challenges" isActive={isActive('/challenges')}>
+                  <Link to="/challenges" className="flex items-center w-full">
+                    <Trophy className="mr-2" />
+                    <span>Challenges</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Community Feed" isActive={isActive('/community')}>
+                  <Link to="/community" className="flex items-center w-full">
+                    <Users className="mr-2" />
+                    <span>Community</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
