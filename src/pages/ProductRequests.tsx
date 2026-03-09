@@ -276,7 +276,7 @@ const ProductRequests: React.FC = () => {
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <CheckCircle className="h-8 w-8 text-green-500" />
+                <CheckCircle className="h-8 w-8 text-primary" />
                 <div>
                   <p className="text-2xl font-bold">{requests.filter(r => r.status === 'scored').length}</p>
                   <p className="text-sm text-muted-foreground">Scored</p>
@@ -287,7 +287,7 @@ const ProductRequests: React.FC = () => {
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <TrendingUp className="h-8 w-8 text-blue-500" />
+                <TrendingUp className="h-8 w-8 text-primary" />
                 <div>
                   <p className="text-2xl font-bold">{requests.reduce((sum, r) => sum + r.upvotes, 0)}</p>
                   <p className="text-sm text-muted-foreground">Total Votes</p>

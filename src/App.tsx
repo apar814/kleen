@@ -68,6 +68,8 @@ function App() {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/reports/weekly" element={<WeeklyReport />} />
           <Route path="/ask" element={<AIChat />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/product-requests" element={<ProductRequests />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
