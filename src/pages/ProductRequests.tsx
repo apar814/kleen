@@ -164,9 +164,9 @@ const ProductRequests: React.FC = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'scored': return 'bg-green-100 text-green-800';
-      case 'rejected': return 'bg-red-100 text-red-800';
-      default: return 'bg-yellow-100 text-yellow-800';
+      case 'scored': return 'bg-accent/20 text-accent-foreground border border-accent/30';
+      case 'rejected': return 'bg-destructive/10 text-destructive border border-destructive/20';
+      default: return 'bg-secondary text-secondary-foreground';
     }
   };
 
