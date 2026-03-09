@@ -29,7 +29,10 @@ import {
   BarChart3,
   MessageSquare,
   ListOrdered,
-  Shield
+  Shield,
+  Utensils,
+  Droplets,
+  Baby
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
