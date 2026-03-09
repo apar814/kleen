@@ -186,7 +186,7 @@ const ProductRequests: React.FC = () => {
           </div>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="bg-kleen-primary hover:bg-kleen-primary/90">
+              <Button>
                 <Plus className="h-4 w-4 mr-2" />
                 Request a Product
               </Button>
@@ -265,7 +265,7 @@ const ProductRequests: React.FC = () => {
           <Card>
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <Package className="h-8 w-8 text-kleen-primary" />
+                <Package className="h-8 w-8 text-primary" />
                 <div>
                   <p className="text-2xl font-bold">{requests.filter(r => r.status === 'pending').length}</p>
                   <p className="text-sm text-muted-foreground">Pending</p>
@@ -300,7 +300,7 @@ const ProductRequests: React.FC = () => {
         {/* Requests List */}
         {loading ? (
           <div className="flex justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-kleen-primary" />
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
         ) : filteredRequests.length === 0 ? (
           <Card>
@@ -327,7 +327,7 @@ const ProductRequests: React.FC = () => {
                         onClick={() => handleUpvote(request.id)}
                         className={`flex flex-col items-center p-2 rounded-lg transition-colors ${
                           userUpvotes.has(request.id) 
-                            ? 'bg-kleen-primary/10 text-kleen-primary' 
+                            ? 'bg-primary/10 text-primary' 
                             : 'hover:bg-muted'
                         }`}
                       >

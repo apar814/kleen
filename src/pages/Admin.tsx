@@ -168,7 +168,7 @@ const Admin: React.FC = () => {
     return (
       <AppSidebar>
         <div className="flex items-center justify-center min-h-screen">
-          <Loader2 className="h-8 w-8 animate-spin text-kleen-primary" />
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
         </div>
       </AppSidebar>
     );
@@ -418,9 +418,9 @@ const Admin: React.FC = () => {
                           <TableCell className="font-medium">{score.products?.name || 'Unknown'}</TableCell>
                           <TableCell>
                             <Badge className={
-                              score.proposed_score >= 80 ? 'bg-green-500' :
-                              score.proposed_score >= 60 ? 'bg-yellow-500' :
-                              'bg-red-500'
+                              score.proposed_score >= 80 ? 'bg-primary text-primary-foreground' :
+                              score.proposed_score >= 60 ? 'bg-secondary text-secondary-foreground' :
+                              'bg-destructive text-destructive-foreground'
                             }>
                               {score.proposed_score}/100
                             </Badge>

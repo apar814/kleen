@@ -32,9 +32,9 @@ const SubmitScoreDialog: React.FC<SubmitScoreDialogProps> = ({
   const [submitting, setSubmitting] = useState(false);
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return 'text-green-500';
-    if (score >= 60) return 'text-yellow-500';
-    return 'text-red-500';
+    if (score >= 80) return 'text-primary';
+    if (score >= 60) return 'text-secondary-foreground';
+    return 'text-destructive';
   };
 
   const getScoreLabel = (score: number) => {
@@ -93,7 +93,7 @@ const SubmitScoreDialog: React.FC<SubmitScoreDialogProps> = ({
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Star className="h-5 w-5 text-kleen-primary" />
+            <Star className="h-5 w-5 text-primary" />
             Submit a Score
           </DialogTitle>
         </DialogHeader>
