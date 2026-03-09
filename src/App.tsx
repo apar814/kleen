@@ -33,6 +33,9 @@ import WeeklyReport from './pages/WeeklyReport';
 import AIChat from './pages/AIChat';
 import Admin from './pages/Admin';
 import ProductRequests from './pages/ProductRequests';
+import RestaurantDining from './pages/RestaurantDining';
+import WaterBeverage from './pages/WaterBeverage';
+import BabySafety from './pages/BabySafety';
 
 function App() {
   return (
@@ -70,6 +73,9 @@ function App() {
           <Route path="/ask" element={<AIChat />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/product-requests" element={<ProductRequests />} />
+          <Route path="/dine" element={<RestaurantDining />} />
+          <Route path="/water" element={<WaterBeverage />} />
+          <Route path="/baby" element={<BabySafety />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

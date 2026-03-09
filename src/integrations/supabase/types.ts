@@ -41,6 +41,236 @@ export type Database = {
         }
         Relationships: []
       }
+      baby_allergen_tracking: {
+        Row: {
+          allergen_name: string
+          baby_id: string
+          created_at: string
+          id: string
+          introduced_at: string | null
+          reaction_noted: string | null
+          status: string | null
+        }
+        Insert: {
+          allergen_name: string
+          baby_id: string
+          created_at?: string
+          id?: string
+          introduced_at?: string | null
+          reaction_noted?: string | null
+          status?: string | null
+        }
+        Update: {
+          allergen_name?: string
+          baby_id?: string
+          created_at?: string
+          id?: string
+          introduced_at?: string | null
+          reaction_noted?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "baby_allergen_tracking_baby_id_fkey"
+            columns: ["baby_id"]
+            isOneToOne: false
+            referencedRelation: "baby_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      baby_feeding_logs: {
+        Row: {
+          baby_id: string
+          fed_at: string
+          feeding_type: string | null
+          food_name: string
+          id: string
+          notes: string | null
+          product_id: string | null
+          score: number | null
+          user_id: string
+        }
+        Insert: {
+          baby_id: string
+          fed_at?: string
+          feeding_type?: string | null
+          food_name: string
+          id?: string
+          notes?: string | null
+          product_id?: string | null
+          score?: number | null
+          user_id: string
+        }
+        Update: {
+          baby_id?: string
+          fed_at?: string
+          feeding_type?: string | null
+          food_name?: string
+          id?: string
+          notes?: string | null
+          product_id?: string | null
+          score?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "baby_feeding_logs_baby_id_fkey"
+            columns: ["baby_id"]
+            isOneToOne: false
+            referencedRelation: "baby_profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "baby_feeding_logs_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      baby_product_scores: {
+        Row: {
+          added_sugar_grams: number | null
+          age_appropriate_from_months: number | null
+          age_appropriate_to_months: number | null
+          allergen_concerns: Json | null
+          baby_score: number | null
+          created_at: string
+          heavy_metal_risk: string | null
+          id: string
+          missing_nutrients: Json | null
+          organic_certified: boolean | null
+          product_id: string | null
+        }
+        Insert: {
+          added_sugar_grams?: number | null
+          age_appropriate_from_months?: number | null
+          age_appropriate_to_months?: number | null
+          allergen_concerns?: Json | null
+          baby_score?: number | null
+          created_at?: string
+          heavy_metal_risk?: string | null
+          id?: string
+          missing_nutrients?: Json | null
+          organic_certified?: boolean | null
+          product_id?: string | null
+        }
+        Update: {
+          added_sugar_grams?: number | null
+          age_appropriate_from_months?: number | null
+          age_appropriate_to_months?: number | null
+          allergen_concerns?: Json | null
+          baby_score?: number | null
+          created_at?: string
+          heavy_metal_risk?: string | null
+          id?: string
+          missing_nutrients?: Json | null
+          organic_certified?: boolean | null
+          product_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "baby_product_scores_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      baby_profiles: {
+        Row: {
+          allergies_identified: Json | null
+          created_at: string
+          date_of_birth: string | null
+          feeding_stage: string | null
+          household_id: string | null
+          id: string
+          name: string
+          pediatrician_notes: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          allergies_identified?: Json | null
+          created_at?: string
+          date_of_birth?: string | null
+          feeding_stage?: string | null
+          household_id?: string | null
+          id?: string
+          name: string
+          pediatrician_notes?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          allergies_identified?: Json | null
+          created_at?: string
+          date_of_birth?: string | null
+          feeding_stage?: string | null
+          household_id?: string | null
+          id?: string
+          name?: string
+          pediatrician_notes?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "baby_profiles_household_id_fkey"
+            columns: ["household_id"]
+            isOneToOne: false
+            referencedRelation: "households"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      beverage_scores: {
+        Row: {
+          artificial_sweeteners: Json | null
+          beverage_type: string | null
+          caffeine_mg: number | null
+          created_at: string
+          hydration_score: number | null
+          id: string
+          kleen_score: number | null
+          product_id: string | null
+          sugar_grams: number | null
+        }
+        Insert: {
+          artificial_sweeteners?: Json | null
+          beverage_type?: string | null
+          caffeine_mg?: number | null
+          created_at?: string
+          hydration_score?: number | null
+          id?: string
+          kleen_score?: number | null
+          product_id?: string | null
+          sugar_grams?: number | null
+        }
+        Update: {
+          artificial_sweeteners?: Json | null
+          beverage_type?: string | null
+          caffeine_mg?: number | null
+          created_at?: string
+          hydration_score?: number | null
+          id?: string
+          kleen_score?: number | null
+          product_id?: string | null
+          sugar_grams?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "beverage_scores_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       brands: {
         Row: {
           created_at: string
@@ -251,6 +481,51 @@ export type Database = {
           },
         ]
       }
+      dining_logs: {
+        Row: {
+          id: string
+          item_name: string
+          logged_at: string
+          menu_item_id: string | null
+          restaurant_menu_id: string | null
+          score: number | null
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          item_name: string
+          logged_at?: string
+          menu_item_id?: string | null
+          restaurant_menu_id?: string | null
+          score?: number | null
+          user_id: string
+        }
+        Update: {
+          id?: string
+          item_name?: string
+          logged_at?: string
+          menu_item_id?: string | null
+          restaurant_menu_id?: string | null
+          score?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dining_logs_menu_item_id_fkey"
+            columns: ["menu_item_id"]
+            isOneToOne: false
+            referencedRelation: "menu_item_scores"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "dining_logs_restaurant_menu_id_fkey"
+            columns: ["restaurant_menu_id"]
+            isOneToOne: false
+            referencedRelation: "restaurant_menus"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       grocery_lists: {
         Row: {
           cart_score: number | null
@@ -341,6 +616,36 @@ export type Database = {
         }
         Relationships: []
       }
+      hydration_logs: {
+        Row: {
+          amount_ml: number | null
+          beverage_type: string | null
+          date: string
+          id: string
+          logged_at: string
+          score: number | null
+          user_id: string
+        }
+        Insert: {
+          amount_ml?: number | null
+          beverage_type?: string | null
+          date?: string
+          id?: string
+          logged_at?: string
+          score?: number | null
+          user_id: string
+        }
+        Update: {
+          amount_ml?: number | null
+          beverage_type?: string | null
+          date?: string
+          id?: string
+          logged_at?: string
+          score?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       ingredients: {
         Row: {
           ai_summary: string
@@ -391,6 +696,50 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      menu_item_scores: {
+        Row: {
+          allergen_flags: Json | null
+          created_at: string
+          description: string | null
+          dietary_tags: Json | null
+          estimated_ingredients: Json | null
+          id: string
+          item_name: string
+          kleen_score: number | null
+          menu_id: string
+        }
+        Insert: {
+          allergen_flags?: Json | null
+          created_at?: string
+          description?: string | null
+          dietary_tags?: Json | null
+          estimated_ingredients?: Json | null
+          id?: string
+          item_name: string
+          kleen_score?: number | null
+          menu_id: string
+        }
+        Update: {
+          allergen_flags?: Json | null
+          created_at?: string
+          description?: string | null
+          dietary_tags?: Json | null
+          estimated_ingredients?: Json | null
+          id?: string
+          item_name?: string
+          kleen_score?: number | null
+          menu_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "menu_item_scores_menu_id_fkey"
+            columns: ["menu_id"]
+            isOneToOne: false
+            referencedRelation: "restaurant_menus"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       notification_preferences: {
         Row: {
@@ -808,6 +1157,89 @@ export type Database = {
         }
         Relationships: []
       }
+      restaurant_menus: {
+        Row: {
+          address: string | null
+          average_score: number | null
+          created_at: string
+          id: string
+          kleen_grade: string | null
+          last_scanned: string | null
+          location_lat: number | null
+          location_lng: number | null
+          menu_items: Json
+          platform_id: string | null
+          restaurant_name: string
+          scanned_by_user_id: string | null
+        }
+        Insert: {
+          address?: string | null
+          average_score?: number | null
+          created_at?: string
+          id?: string
+          kleen_grade?: string | null
+          last_scanned?: string | null
+          location_lat?: number | null
+          location_lng?: number | null
+          menu_items?: Json
+          platform_id?: string | null
+          restaurant_name: string
+          scanned_by_user_id?: string | null
+        }
+        Update: {
+          address?: string | null
+          average_score?: number | null
+          created_at?: string
+          id?: string
+          kleen_grade?: string | null
+          last_scanned?: string | null
+          location_lat?: number | null
+          location_lng?: number | null
+          menu_items?: Json
+          platform_id?: string | null
+          restaurant_name?: string
+          scanned_by_user_id?: string | null
+        }
+        Relationships: []
+      }
+      restaurant_ratings: {
+        Row: {
+          average_menu_score: number | null
+          clean_options_count: number | null
+          id: string
+          kleen_grade: string
+          rated_at: string
+          restaurant_id: string
+          total_items: number | null
+        }
+        Insert: {
+          average_menu_score?: number | null
+          clean_options_count?: number | null
+          id?: string
+          kleen_grade: string
+          rated_at?: string
+          restaurant_id: string
+          total_items?: number | null
+        }
+        Update: {
+          average_menu_score?: number | null
+          clean_options_count?: number | null
+          id?: string
+          kleen_grade?: string
+          rated_at?: string
+          restaurant_id?: string
+          total_items?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "restaurant_ratings_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: true
+            referencedRelation: "restaurant_menus"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       saved_comparisons: {
         Row: {
           created_at: string
@@ -1100,6 +1532,84 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      water_filters: {
+        Row: {
+          affiliate_url: string | null
+          annual_filter_cost: string | null
+          brand: string
+          contaminants_removed: Json
+          created_at: string
+          filter_type: string | null
+          id: string
+          image_url: string | null
+          kleen_score: number | null
+          model: string
+          price_range: string | null
+        }
+        Insert: {
+          affiliate_url?: string | null
+          annual_filter_cost?: string | null
+          brand: string
+          contaminants_removed?: Json
+          created_at?: string
+          filter_type?: string | null
+          id?: string
+          image_url?: string | null
+          kleen_score?: number | null
+          model: string
+          price_range?: string | null
+        }
+        Update: {
+          affiliate_url?: string | null
+          annual_filter_cost?: string | null
+          brand?: string
+          contaminants_removed?: Json
+          created_at?: string
+          filter_type?: string | null
+          id?: string
+          image_url?: string | null
+          kleen_score?: number | null
+          model?: string
+          price_range?: string | null
+        }
+        Relationships: []
+      }
+      water_quality: {
+        Row: {
+          city: string | null
+          contaminants: Json
+          id: string
+          last_updated: string
+          overall_score: number | null
+          source: string | null
+          state: string | null
+          water_utility_name: string | null
+          zip_code: string
+        }
+        Insert: {
+          city?: string | null
+          contaminants?: Json
+          id?: string
+          last_updated?: string
+          overall_score?: number | null
+          source?: string | null
+          state?: string | null
+          water_utility_name?: string | null
+          zip_code: string
+        }
+        Update: {
+          city?: string | null
+          contaminants?: Json
+          id?: string
+          last_updated?: string
+          overall_score?: number | null
+          source?: string | null
+          state?: string | null
+          water_utility_name?: string | null
+          zip_code?: string
         }
         Relationships: []
       }

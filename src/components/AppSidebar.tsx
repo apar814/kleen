@@ -29,7 +29,10 @@ import {
   BarChart3,
   MessageSquare,
   ListOrdered,
-  Shield
+  Shield,
+  Utensils,
+  Droplets,
+  Baby
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
@@ -199,6 +202,30 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                   <Link to="/admin" className="flex items-center w-full">
                     <Shield className="mr-2" />
                     <span>Admin</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Restaurant Dining" isActive={isActive('/dine')}>
+                  <Link to="/dine" className="flex items-center w-full">
+                    <Utensils className="mr-2" />
+                    <span>Dining</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Water & Beverages" isActive={isActive('/water')}>
+                  <Link to="/water" className="flex items-center w-full">
+                    <Droplets className="mr-2" />
+                    <span>Water & Drinks</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Baby Safety" isActive={isActive('/baby')}>
+                  <Link to="/baby" className="flex items-center w-full">
+                    <Baby className="mr-2" />
+                    <span>Baby Safety</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
