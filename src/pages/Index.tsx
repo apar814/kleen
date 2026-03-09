@@ -1,10 +1,8 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import LoginModal from '@/components/auth/LoginModal';
 import { useAuth } from '@/contexts/AuthContext';
 
-// Import refactored components
 import Header from '@/components/home/Header';
 import HeroSection from '@/components/home/HeroSection';
 import ProductCategories from '@/components/home/ProductCategories';
@@ -19,13 +17,12 @@ const Index = () => {
   
   return (
     <motion.div 
-      className="min-h-screen flex flex-col bg-kleen-light"
+      className="min-h-screen flex flex-col bg-background font-body"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
       <Header />
-      
       <main className="flex-1 flex flex-col">
         <HeroSection onLoginClick={() => setIsLoginModalOpen(true)} />
         <ProductCategories />
@@ -33,13 +30,8 @@ const Index = () => {
         <TestimonialsSection />
         <CtaSection />
       </main>
-      
       <Footer />
-      
-      <LoginModal 
-        isOpen={isLoginModalOpen} 
-        onClose={() => setIsLoginModalOpen(false)} 
-      />
+      <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
     </motion.div>
   );
 };

@@ -1,54 +1,78 @@
-
 import React from 'react';
-import { Star } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const TestimonialsSection: React.FC = () => {
-  const testimonials = [
-    {
-      quote: "Kleen has transformed how I shop. I no longer have to research every ingredient — it does the work for me.",
-      name: "Sarah T.",
-      title: "Mother of two"
-    },
-    {
-      quote: "I discovered so many cleaner alternatives to products I've used for years. My skin has never felt better!",
-      name: "Michael R.",
-      title: "Fitness coach"
-    },
-    {
-      quote: "As someone with allergies, Kleen helps me avoid ingredients that trigger reactions. It's been a game-changer.",
-      name: "Jessica L.",
-      title: "Health blogger"
-    }
-  ];
+const testimonials = [
+  {
+    quote: "Kleen has transformed how I shop. I no longer have to research every ingredient — it does the work for me.",
+    name: "Sarah T.",
+    title: "Mother of two",
+    avatar: "ST",
+  },
+  {
+    quote: "I discovered so many cleaner alternatives to products I've used for years. My skin has never felt better!",
+    name: "Michael R.",
+    title: "Fitness coach",
+    avatar: "MR",
+  },
+  {
+    quote: "As someone with allergies, Kleen helps me avoid ingredients that trigger reactions. It's been a game-changer.",
+    name: "Jessica L.",
+    title: "Health blogger",
+    avatar: "JL",
+  },
+];
 
+const TestimonialsSection: React.FC = () => {
   return (
-    <div className="kleen-section bg-kleen-sage/30">
+    <section className="kleen-section bg-card">
       <div className="kleen-container">
-        <h2 className="kleen-heading-h2 text-center mb-12">Trusted by health-conscious shoppers</h2>
+        <motion.div 
+          className="text-center mb-14"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="text-label uppercase tracking-widest text-primary font-semibold mb-3 block">Testimonials</span>
+          <h2 className="font-heading text-h2 text-foreground">Loved by health-conscious shoppers</h2>
+        </motion.div>
         
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+        <div className="grid md:grid-cols-3 gap-6">
+          {testimonials.map((t, i) => (
             <motion.div 
-              key={testimonial.name}
-              className="bg-white p-6 rounded-xl shadow-kleen-card"
+              key={t.name}
+              className="relative group"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
             >
-              <div className="flex items-center text-yellow-400 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-current" />
-                ))}
+              <div className="h-full rounded-2xl border border-border/60 bg-background p-7 shadow-card group-hover:shadow-elevated transition-all duration-300">
+                <Quote className="h-8 w-8 text-primary/20 mb-4" />
+                
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                
+                <p className="font-body text-body text-foreground/80 mb-6 leading-relaxed">"{t.quote}"</p>
+                
+                <div className="flex items-center gap-3 pt-4 border-t border-border/60">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center text-sm font-semibold text-white">
+                    {t.avatar}
+                  </div>
+                  <div>
+                    <div className="font-heading font-semibold text-sm text-foreground">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.title}</div>
+                  </div>
+                </div>
               </div>
-              <p className="italic mb-4">{testimonial.quote}</p>
-              <div className="font-medium">{testimonial.name}</div>
-              <div className="text-sm text-kleen-gray/60">{testimonial.title}</div>
             </motion.div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
