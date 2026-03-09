@@ -31,6 +31,8 @@ import CommunityFeed from './pages/CommunityFeed';
 import Notifications from './pages/Notifications';
 import WeeklyReport from './pages/WeeklyReport';
 import AIChat from './pages/AIChat';
+import Admin from './pages/Admin';
+import ProductRequests from './pages/ProductRequests';
 
 function App() {
   return (

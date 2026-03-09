@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// Admin panel - requires admin role in user_roles table
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
