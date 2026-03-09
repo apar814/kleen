@@ -32,7 +32,8 @@ import {
   Shield,
   Utensils,
   Droplets,
-  Baby
+  Baby,
+  Bot
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
