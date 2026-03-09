@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
+import SubmitScoreDialog from '@/components/community/SubmitScoreDialog';
 
 interface SearchResult {
   id: string;
@@ -163,6 +164,15 @@ const ProductSearch = () => {
                           <Badge key={cert} variant="outline" className="text-xs bg-primary/5 border-primary/20">{cert}</Badge>
                         ))}
                       </div>
+                      <SubmitScoreDialog
+                        productId={selectedProduct.id}
+                        productName={selectedProduct.name}
+                        currentScore={selectedProduct.kleenScore}
+                      >
+                        <Button variant="outline" size="sm" className="mt-3">
+                          Submit Community Score
+                        </Button>
+                      </SubmitScoreDialog>
                     </div>
                   </div>
                 </CardContent>
