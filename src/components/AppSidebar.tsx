@@ -24,7 +24,10 @@ import {
   Scale,
   ShoppingBag,
   Trophy,
-  Users
+  Users,
+  Bell,
+  BarChart3,
+  MessageSquare
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
@@ -154,6 +157,30 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                   <Link to="/community" className="flex items-center w-full">
                     <Users className="mr-2" />
                     <span>Community</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="AI Nutritionist" isActive={isActive('/ask')}>
+                  <Link to="/ask" className="flex items-center w-full">
+                    <MessageSquare className="mr-2" />
+                    <span>AI Nutritionist</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Notifications" isActive={isActive('/notifications')}>
+                  <Link to="/notifications" className="flex items-center w-full">
+                    <Bell className="mr-2" />
+                    <span>Notifications</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Weekly Report" isActive={isActive('/reports/weekly')}>
+                  <Link to="/reports/weekly" className="flex items-center w-full">
+                    <BarChart3 className="mr-2" />
+                    <span>Weekly Report</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

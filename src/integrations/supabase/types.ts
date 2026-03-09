@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      allergen_ingredients: {
+        Row: {
+          aliases: string[] | null
+          allergen_category: string
+          created_at: string
+          id: string
+          ingredient_name: string
+          severity_note: string | null
+        }
+        Insert: {
+          aliases?: string[] | null
+          allergen_category: string
+          created_at?: string
+          id?: string
+          ingredient_name: string
+          severity_note?: string | null
+        }
+        Update: {
+          aliases?: string[] | null
+          allergen_category?: string
+          created_at?: string
+          id?: string
+          ingredient_name?: string
+          severity_note?: string | null
+        }
+        Relationships: []
+      }
       brands: {
         Row: {
           created_at: string
@@ -115,6 +142,65 @@ export type Database = {
           name?: string
           points?: number | null
           start_date?: string | null
+        }
+        Relationships: []
+      }
+      chat_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          product_context_id: string | null
+          role: string
+          session_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          product_context_id?: string | null
+          role: string
+          session_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          product_context_id?: string | null
+          role?: string
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "chat_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_sessions: {
+        Row: {
+          created_at: string
+          id: string
+          title: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          title?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          title?: string | null
+          updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -256,6 +342,72 @@ export type Database = {
           risk_level?: number
           sources?: string[] | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      notification_preferences: {
+        Row: {
+          challenge_reminders: boolean | null
+          created_at: string
+          id: string
+          product_alerts: boolean | null
+          social_notifications: boolean | null
+          streak_alerts: boolean | null
+          user_id: string
+          weekly_report: boolean | null
+        }
+        Insert: {
+          challenge_reminders?: boolean | null
+          created_at?: string
+          id?: string
+          product_alerts?: boolean | null
+          social_notifications?: boolean | null
+          streak_alerts?: boolean | null
+          user_id: string
+          weekly_report?: boolean | null
+        }
+        Update: {
+          challenge_reminders?: boolean | null
+          created_at?: string
+          id?: string
+          product_alerts?: boolean | null
+          social_notifications?: boolean | null
+          streak_alerts?: boolean | null
+          user_id?: string
+          weekly_report?: boolean | null
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          body: string | null
+          created_at: string
+          data: Json | null
+          id: string
+          read: boolean | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          data?: Json | null
+          id?: string
+          read?: boolean | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          data?: Json | null
+          id?: string
+          read?: boolean | null
+          title?: string
+          type?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -439,11 +591,13 @@ export type Database = {
       }
       profiles: {
         Row: {
+          allergen_severities: Json | null
           allergens: string[] | null
           avatar_url: string | null
           community: string | null
           created_at: string
           dietary_needs: string[] | null
+          dietary_restrictions: string[] | null
           display_name: string | null
           health_goals: string[] | null
           household_id: string | null
@@ -453,11 +607,13 @@ export type Database = {
           values: string[] | null
         }
         Insert: {
+          allergen_severities?: Json | null
           allergens?: string[] | null
           avatar_url?: string | null
           community?: string | null
           created_at?: string
           dietary_needs?: string[] | null
+          dietary_restrictions?: string[] | null
           display_name?: string | null
           health_goals?: string[] | null
           household_id?: string | null
@@ -467,11 +623,13 @@ export type Database = {
           values?: string[] | null
         }
         Update: {
+          allergen_severities?: Json | null
           allergens?: string[] | null
           avatar_url?: string | null
           community?: string | null
           created_at?: string
           dietary_needs?: string[] | null
+          dietary_restrictions?: string[] | null
           display_name?: string | null
           health_goals?: string[] | null
           household_id?: string | null
@@ -657,6 +815,78 @@ export type Database = {
         }
         Relationships: []
       }
+      subscriptions: {
+        Row: {
+          created_at: string
+          current_period_end: string | null
+          current_period_start: string | null
+          id: string
+          plan: string
+          status: string
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          trial_end: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          plan?: string
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          trial_end?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          id?: string
+          plan?: string
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          trial_end?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      usage_tracking: {
+        Row: {
+          chat_messages_used: number | null
+          created_at: string
+          date: string
+          id: string
+          receipt_scans_used: number | null
+          scans_used: number | null
+          user_id: string
+        }
+        Insert: {
+          chat_messages_used?: number | null
+          created_at?: string
+          date?: string
+          id?: string
+          receipt_scans_used?: number | null
+          scans_used?: number | null
+          user_id: string
+        }
+        Update: {
+          chat_messages_used?: number | null
+          created_at?: string
+          date?: string
+          id?: string
+          receipt_scans_used?: number | null
+          scans_used?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_challenges: {
         Row: {
           challenge_id: string
@@ -695,12 +925,84 @@ export type Database = {
           },
         ]
       }
+      user_points: {
+        Row: {
+          current_streak: number | null
+          id: string
+          last_scan_date: string | null
+          level: number | null
+          level_name: string | null
+          longest_streak: number | null
+          streak_freeze_available: boolean | null
+          total_points: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          current_streak?: number | null
+          id?: string
+          last_scan_date?: string | null
+          level?: number | null
+          level_name?: string | null
+          longest_streak?: number | null
+          streak_freeze_available?: boolean | null
+          total_points?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          current_streak?: number | null
+          id?: string
+          last_scan_date?: string | null
+          level?: number | null
+          level_name?: string | null
+          longest_streak?: number | null
+          streak_freeze_available?: boolean | null
+          total_points?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      weekly_reports: {
+        Row: {
+          data: Json
+          generated_at: string
+          id: string
+          overall_score: number | null
+          user_id: string
+          week_end: string
+          week_start: string
+        }
+        Insert: {
+          data?: Json
+          generated_at?: string
+          id?: string
+          overall_score?: number | null
+          user_id: string
+          week_end: string
+          week_start: string
+        }
+        Update: {
+          data?: Json
+          generated_at?: string
+          id?: string
+          overall_score?: number | null
+          user_id?: string
+          week_end?: string
+          week_start?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_chat_usage: {
+        Args: { usage_date?: string; user_id: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

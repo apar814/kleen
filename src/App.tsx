@@ -28,6 +28,9 @@ import ReceiptScanner from './pages/ReceiptScanner';
 import GroceryList from './pages/GroceryList';
 import Challenges from './pages/Challenges';
 import CommunityFeed from './pages/CommunityFeed';
+import Notifications from './pages/Notifications';
+import WeeklyReport from './pages/WeeklyReport';
+import AIChat from './pages/AIChat';
 
 function App() {
   return (
@@ -60,6 +63,9 @@ function App() {
           <Route path="/grocery-list" element={<GroceryList />} />
           <Route path="/challenges" element={<Challenges />} />
           <Route path="/community" element={<CommunityFeed />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/reports/weekly" element={<WeeklyReport />} />
+          <Route path="/ask" element={<AIChat />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
