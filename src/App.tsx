@@ -21,6 +21,9 @@ import ProductSearch from './pages/ProductSearch';
 import CompareProducts from './pages/CompareProducts';
 import GoalDiscovery from './pages/GoalDiscovery';
 import RecipeBuilder from './pages/RecipeBuilder';
+import BannedIngredients from './pages/BannedIngredients';
+import CategoryBrowse from './pages/CategoryBrowse';
+import ReceiptScanner from './pages/ReceiptScanner';
 
 function App() {
   return (
@@ -46,6 +49,9 @@ function App() {
           <Route path="/compare" element={<CompareProducts />} />
           <Route path="/goals" element={<GoalDiscovery />} />
           <Route path="/recipes" element={<RecipeBuilder />} />
+          <Route path="/banned-ingredients" element={<BannedIngredients />} />
+          <Route path="/categories" element={<CategoryBrowse />} />
+          <Route path="/receipt-scanner" element={<ReceiptScanner />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

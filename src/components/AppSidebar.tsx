@@ -16,7 +16,12 @@ import {
   Home,
   ChevronLeft,
   Menu,
-  Database
+  Database,
+  Globe,
+  Grid3X3,
+  FileText,
+  ChefHat,
+  Scale
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
@@ -78,10 +83,58 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Cart Analysis" isActive={isActiveWithQuery('/dashboard', 'tab=cart')}>
-                  <Link to="/dashboard?tab=cart" className="flex items-center w-full">
-                    <ShoppingCart className="mr-2" />
-                    <span>Cart Analysis</span>
+                <SidebarMenuButton tooltip="Product Search" isActive={isActive('/search')}>
+                  <Link to="/search" className="flex items-center w-full">
+                    <Search className="mr-2" />
+                    <span>Product Search</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Compare Products" isActive={isActive('/compare')}>
+                  <Link to="/compare" className="flex items-center w-full">
+                    <Scale className="mr-2" />
+                    <span>Compare Products</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Receipt Scanner" isActive={isActive('/receipt-scanner')}>
+                  <Link to="/receipt-scanner" className="flex items-center w-full">
+                    <FileText className="mr-2" />
+                    <span>Receipt Scanner</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Browse Categories" isActive={isActive('/categories')}>
+                  <Link to="/categories" className="flex items-center w-full">
+                    <Grid3X3 className="mr-2" />
+                    <span>Browse Categories</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Recipe Builder" isActive={isActive('/recipes')}>
+                  <Link to="/recipes" className="flex items-center w-full">
+                    <ChefHat className="mr-2" />
+                    <span>Recipe Builder</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Banned Ingredients" isActive={isActive('/banned-ingredients')}>
+                  <Link to="/banned-ingredients" className="flex items-center w-full">
+                    <Globe className="mr-2" />
+                    <span>Banned Worldwide</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Ingredient Database" isActive={isActive('/ingredients') || isActive('/toxic-ingredients')}>
+                  <Link to="/ingredients" className="flex items-center w-full">
+                    <Database className="mr-2" />
+                    <span>Ingredient Database</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -90,30 +143,6 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                   <Link to="/scan-history" className="flex items-center w-full">
                     <Package className="mr-2" />
                     <span>Scan History</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Clean Stack" isActive={isActive('/clean-stack')}>
-                  <Link to="/clean-stack" className="flex items-center w-full">
-                    <Heart className="mr-2" />
-                    <span>Clean Stack</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Explore Products" isActive={isActive('/explore')}>
-                  <Link to="/explore" className="flex items-center w-full">
-                    <Search className="mr-2" />
-                    <span>Explore Products</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Ingredient Database" isActive={isActive('/ingredient-database')}>
-                  <Link to="/ingredient-database" className="flex items-center w-full">
-                    <Database className="mr-2" />
-                    <span>Ingredient Database</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

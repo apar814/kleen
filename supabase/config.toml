@@ -2,3 +2,9 @@ project_id = "prsbujomimxaalugpolv"
 
 [functions.recipe-builder]
 verify_jwt = false
+
+[functions.barcode-lookup]
+verify_jwt = false
+
+[functions.receipt-scan]
+verify_jwt = false
