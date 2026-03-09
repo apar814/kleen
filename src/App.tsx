@@ -36,6 +36,7 @@ import ProductRequests from './pages/ProductRequests';
 import RestaurantDining from './pages/RestaurantDining';
 import WaterBeverage from './pages/WaterBeverage';
 import BabySafety from './pages/BabySafety';
+import AutoShop from './pages/AutoShop';
 
 function App() {
   return (
@@ -76,6 +77,7 @@ function App() {
           <Route path="/dine" element={<RestaurantDining />} />
           <Route path="/water" element={<WaterBeverage />} />
           <Route path="/baby" element={<BabySafety />} />
+          <Route path="/auto-shop" element={<AutoShop />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

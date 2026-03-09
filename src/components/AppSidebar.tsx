@@ -32,7 +32,8 @@ import {
   Shield,
   Utensils,
   Droplets,
-  Baby
+  Baby,
+  Bot
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
@@ -226,6 +227,14 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                   <Link to="/baby" className="flex items-center w-full">
                     <Baby className="mr-2" />
                     <span>Baby Safety</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Auto-Shop" isActive={isActive('/auto-shop')}>
+                  <Link to="/auto-shop" className="flex items-center w-full">
+                    <Bot className="mr-2" />
+                    <span>Auto-Shop</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

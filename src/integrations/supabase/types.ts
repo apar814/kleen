@@ -41,6 +41,158 @@ export type Database = {
         }
         Relationships: []
       }
+      auto_shop_feedback: {
+        Row: {
+          created_at: string
+          feedback_type: string
+          id: string
+          item_name: string
+          notes: string | null
+          order_id: string
+          product_id: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          feedback_type?: string
+          id?: string
+          item_name: string
+          notes?: string | null
+          order_id: string
+          product_id?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          feedback_type?: string
+          id?: string
+          item_name?: string
+          notes?: string | null
+          order_id?: string
+          product_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "auto_shop_feedback_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "auto_shop_orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "auto_shop_feedback_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      auto_shop_orders: {
+        Row: {
+          average_score: number | null
+          created_at: string
+          generated_items: Json
+          id: string
+          notes: string | null
+          profile_id: string
+          review_deadline: string | null
+          status: string
+          store_name: string | null
+          total_cost: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          average_score?: number | null
+          created_at?: string
+          generated_items?: Json
+          id?: string
+          notes?: string | null
+          profile_id: string
+          review_deadline?: string | null
+          status?: string
+          store_name?: string | null
+          total_cost?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          average_score?: number | null
+          created_at?: string
+          generated_items?: Json
+          id?: string
+          notes?: string | null
+          profile_id?: string
+          review_deadline?: string | null
+          status?: string
+          store_name?: string | null
+          total_cost?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "auto_shop_orders_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "auto_shop_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      auto_shop_profiles: {
+        Row: {
+          active: boolean
+          budget: number
+          created_at: string
+          delivery_day: string | null
+          dietary_preferences: Json
+          household_size: number
+          id: string
+          min_score: number
+          must_haves: Json
+          never_buy: Json
+          preferred_stores: Json
+          schedule: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          budget?: number
+          created_at?: string
+          delivery_day?: string | null
+          dietary_preferences?: Json
+          household_size?: number
+          id?: string
+          min_score?: number
+          must_haves?: Json
+          never_buy?: Json
+          preferred_stores?: Json
+          schedule?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          budget?: number
+          created_at?: string
+          delivery_day?: string | null
+          dietary_preferences?: Json
+          household_size?: number
+          id?: string
+          min_score?: number
+          must_haves?: Json
+          never_buy?: Json
+          preferred_stores?: Json
+          schedule?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       baby_allergen_tracking: {
         Row: {
           allergen_name: string
