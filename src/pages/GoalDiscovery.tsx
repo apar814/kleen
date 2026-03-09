@@ -1,19 +1,103 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, Moon, Droplets, Heart, Brain, Shield, Baby, Dumbbell, ArrowRight, ArrowLeft, Star, ChevronRight } from 'lucide-react';
+import {
+  TrendingDown, Dumbbell, Activity, Utensils, Flame, TrendingUp,
+  CloudRain, Sun, Wind, Scale, Crown, Users,
+  Moon, BedDouble, Clock, Zap, Plane, EyeOff,
+  Battery, Brain, Footprints, Lightbulb, Sparkles, Target,
+  Heart, CircleDot, AlertTriangle, ShieldAlert, Shield, RefreshCw,
+  Infinity, Atom, Hourglass, Dna, Recycle,
+  Snowflake, Timer, Cpu, HeartPulse, LineChart,
+  Crosshair, Frown, PersonStanding,
+  Smile, Scissors, Hand,
+  Thermometer, BarChart, Gauge, ShieldCheck, ArrowUpCircle,
+  Flower, Droplets, AlertOctagon,
+  Baby, Apple,
+  ArrowRight, ArrowLeft, Star, ChevronRight, Search, X
+} from 'lucide-react';
 import DashboardLayout from '@/components/DashboardLayout';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { Input } from '@/components/ui/input';
+import { wellnessGoals, goalCategories, type WellnessGoal } from '@/data/wellnessGoals';
 
-interface Goal {
-  id: string;
-  name: string;
-  description: string;
-  icon: React.ReactNode;
-  color: string;
-}
+const iconMap: Record<string, React.ReactNode> = {
+  TrendingDown: <TrendingDown className="h-5 w-5" />,
+  Dumbbell: <Dumbbell className="h-5 w-5" />,
+  Activity: <Activity className="h-5 w-5" />,
+  Utensils: <Utensils className="h-5 w-5" />,
+  Flame: <Flame className="h-5 w-5" />,
+  TrendingUp: <TrendingUp className="h-5 w-5" />,
+  CloudRain: <CloudRain className="h-5 w-5" />,
+  Sun: <Sun className="h-5 w-5" />,
+  Wind: <Wind className="h-5 w-5" />,
+  Scale: <Scale className="h-5 w-5" />,
+  Crown: <Crown className="h-5 w-5" />,
+  Users: <Users className="h-5 w-5" />,
+  Moon: <Moon className="h-5 w-5" />,
+  BedDouble: <BedDouble className="h-5 w-5" />,
+  Clock: <Clock className="h-5 w-5" />,
+  Zap: <Zap className="h-5 w-5" />,
+  Plane: <Plane className="h-5 w-5" />,
+  EyeOff: <EyeOff className="h-5 w-5" />,
+  Battery: <Battery className="h-5 w-5" />,
+  Brain: <Brain className="h-5 w-5" />,
+  Footprints: <Footprints className="h-5 w-5" />,
+  Lightbulb: <Lightbulb className="h-5 w-5" />,
+  Sparkles: <Sparkles className="h-5 w-5" />,
+  Target: <Target className="h-5 w-5" />,
+  Heart: <Heart className="h-5 w-5" />,
+  CircleDot: <CircleDot className="h-5 w-5" />,
+  AlertTriangle: <AlertTriangle className="h-5 w-5" />,
+  ShieldAlert: <ShieldAlert className="h-5 w-5" />,
+  Shield: <Shield className="h-5 w-5" />,
+  RefreshCw: <RefreshCw className="h-5 w-5" />,
+  Infinity: <Infinity className="h-5 w-5" />,
+  Atom: <Atom className="h-5 w-5" />,
+  Hourglass: <Hourglass className="h-5 w-5" />,
+  Dna: <Dna className="h-5 w-5" />,
+  Recycle: <Recycle className="h-5 w-5" />,
+  Snowflake: <Snowflake className="h-5 w-5" />,
+  Timer: <Timer className="h-5 w-5" />,
+  Cpu: <Cpu className="h-5 w-5" />,
+  HeartPulse: <HeartPulse className="h-5 w-5" />,
+  LineChart: <LineChart className="h-5 w-5" />,
+  Crosshair: <Crosshair className="h-5 w-5" />,
+  Bone: <Dumbbell className="h-5 w-5" />,
+  Frown: <Frown className="h-5 w-5" />,
+  PersonStanding: <PersonStanding className="h-5 w-5" />,
+  Smile: <Smile className="h-5 w-5" />,
+  Scissors: <Scissors className="h-5 w-5" />,
+  Hand: <Hand className="h-5 w-5" />,
+  Thermometer: <Thermometer className="h-5 w-5" />,
+  BarChart: <BarChart className="h-5 w-5" />,
+  Gauge: <Gauge className="h-5 w-5" />,
+  ShieldCheck: <ShieldCheck className="h-5 w-5" />,
+  ArrowUpCircle: <ArrowUpCircle className="h-5 w-5" />,
+  Flower: <Flower className="h-5 w-5" />,
+  Droplets: <Droplets className="h-5 w-5" />,
+  AlertOctagon: <AlertOctagon className="h-5 w-5" />,
+  Baby: <Baby className="h-5 w-5" />,
+  Apple: <Apple className="h-5 w-5" />,
+};
+
+const categoryColors: Record<string, string> = {
+  'Weight & Body Composition': 'bg-orange-50 text-orange-600 border-orange-200',
+  'Mental Health & Mood': 'bg-violet-50 text-violet-600 border-violet-200',
+  'Sleep & Recovery': 'bg-indigo-50 text-indigo-600 border-indigo-200',
+  'Energy & Performance': 'bg-amber-50 text-amber-600 border-amber-200',
+  'Gut & Digestion': 'bg-rose-50 text-rose-600 border-rose-200',
+  'Longevity & Anti-Aging': 'bg-emerald-50 text-emerald-600 border-emerald-200',
+  'Biohacking & Optimization': 'bg-cyan-50 text-cyan-600 border-cyan-200',
+  'Pain & Inflammation': 'bg-red-50 text-red-600 border-red-200',
+  'Skin, Hair & Beauty': 'bg-pink-50 text-pink-600 border-pink-200',
+  'Hormones & Fertility': 'bg-purple-50 text-purple-600 border-purple-200',
+  'Heart & Metabolic Health': 'bg-sky-50 text-sky-600 border-sky-200',
+  'Immune & Detox': 'bg-teal-50 text-teal-600 border-teal-200',
+  'Kids & Family': 'bg-fuchsia-50 text-fuchsia-600 border-fuchsia-200',
+};
 
 interface RecommendedProduct {
   id: string;
@@ -27,37 +111,45 @@ interface RecommendedProduct {
   category: string;
 }
 
-const goals: Goal[] = [
-  { id: 'hydration', name: 'Hydration', description: 'Stay optimally hydrated with clean electrolytes', icon: <Droplets className="h-6 w-6" />, color: 'bg-blue-50 text-blue-600 border-blue-200' },
-  { id: 'sleep', name: 'Sleep', description: 'Improve sleep quality with safe supplements', icon: <Moon className="h-6 w-6" />, color: 'bg-indigo-50 text-indigo-600 border-indigo-200' },
-  { id: 'gut-health', name: 'Gut Health', description: 'Support digestion with clean probiotics', icon: <Heart className="h-6 w-6" />, color: 'bg-rose-50 text-rose-600 border-rose-200' },
-  { id: 'recovery', name: 'Recovery', description: 'Post-workout recovery without harmful additives', icon: <Zap className="h-6 w-6" />, color: 'bg-amber-50 text-amber-600 border-amber-200' },
-  { id: 'focus', name: 'Focus & Cognition', description: 'Clean nootropics and brain-supporting nutrients', icon: <Brain className="h-6 w-6" />, color: 'bg-purple-50 text-purple-600 border-purple-200' },
-  { id: 'immunity', name: 'Immunity', description: 'Strengthen immune function naturally', icon: <Shield className="h-6 w-6" />, color: 'bg-emerald-50 text-emerald-600 border-emerald-200' },
-  { id: 'baby', name: 'Baby Safe', description: 'Products verified safe for infants and children', icon: <Baby className="h-6 w-6" />, color: 'bg-pink-50 text-pink-600 border-pink-200' },
-  { id: 'muscle', name: 'Muscle Building', description: 'Clean protein and performance supplements', icon: <Dumbbell className="h-6 w-6" />, color: 'bg-orange-50 text-orange-600 border-orange-200' },
+// Generic recommendations shown for any goal (will be replaced with real DB data later)
+const getGenericRecommendations = (goal: WellnessGoal): RecommendedProduct[] => [
+  {
+    id: `${goal.id}-1`,
+    name: `Top Pick for ${goal.name}`,
+    brand: 'Coming Soon',
+    imageUrl: `https://placehold.co/200x200/f0fdf4/16a34a?text=${encodeURIComponent(goal.name.slice(0, 8))}`,
+    kleenScore: 92,
+    price: 39.99,
+    rationale: `Our AI is analyzing the cleanest products for ${goal.name.toLowerCase()}. Check back soon for personalized recommendations.`,
+    caveats: 'Recommendations will be based on your specific answers and Kleen Score analysis.',
+    category: goal.category,
+  },
 ];
 
-const mockRecommendations: Record<string, RecommendedProduct[]> = {
-  'hydration': [
-    { id: '1', name: 'LMNT Electrolyte Mix', brand: 'LMNT', imageUrl: 'https://placehold.co/200x200?text=LMNT', kleenScore: 94, price: 45.00, rationale: 'Zero sugar, no artificial ingredients. Uses sodium, potassium, magnesium in evidence-backed ratios.', caveats: 'High sodium — may not suit restricted-sodium diets.', category: 'Electrolytes' },
-    { id: '2', name: 'Nuun Sport', brand: 'Nuun', imageUrl: 'https://placehold.co/200x200?text=Nuun', kleenScore: 82, price: 28.00, rationale: 'Clean ingredient list, vegan, gluten-free. Effervescent tabs for convenience.', caveats: 'Contains stevia — some people report aftertaste.', category: 'Electrolytes' },
-    { id: '3', name: 'Liquid IV Hydration', brand: 'Liquid IV', imageUrl: 'https://placehold.co/200x200?text=LIV', kleenScore: 65, price: 25.00, rationale: 'Uses Cellular Transport Technology for faster absorption.', caveats: 'Contains cane sugar and natural flavors with limited transparency.', category: 'Electrolytes' },
-  ],
-  'sleep': [
-    { id: '4', name: 'Momentous Magnesium L-Threonate', brand: 'Momentous', imageUrl: 'https://placehold.co/200x200?text=Momentous', kleenScore: 96, price: 54.99, rationale: 'Highly bioavailable magnesium form that crosses blood-brain barrier. Clean label, third-party tested.', caveats: 'Premium pricing compared to other magnesium forms.', category: 'Sleep Support' },
-    { id: '5', name: 'Nordic Naturals Melatonin Gummies', brand: 'Nordic Naturals', imageUrl: 'https://placehold.co/200x200?text=Nordic', kleenScore: 85, price: 19.99, rationale: 'Low-dose melatonin, no artificial colors or flavors.', caveats: 'Gummies contain sugar — capsule form may be cleaner.', category: 'Sleep Support' },
-  ],
-};
-
 const questions: Record<string, { question: string; options: string[] }[]> = {
-  'hydration': [
-    { question: 'How active are you?', options: ['Sedentary', 'Moderately active', 'Very active / athlete'] },
-    { question: 'Any dietary restrictions?', options: ['None', 'Low sodium', 'Keto', 'Vegan'] },
+  'weight-loss': [
+    { question: 'What is your primary weight loss approach?', options: ['Calorie deficit', 'Intermittent fasting', 'Keto / low-carb', 'Just starting out'] },
+    { question: 'Any dietary restrictions?', options: ['None', 'Vegan', 'Gluten-free', 'Dairy-free'] },
   ],
-  'sleep': [
-    { question: 'What sleep issue do you face?', options: ['Falling asleep', 'Staying asleep', 'Sleep quality', 'All of the above'] },
-    { question: 'Have you tried supplements before?', options: ['No, first time', 'Yes, melatonin', 'Yes, magnesium', 'Yes, multiple'] },
+  'anxiety-relief': [
+    { question: 'When do you experience the most anxiety?', options: ['Morning', 'Throughout the day', 'Evening / night', 'Social situations'] },
+    { question: 'Have you tried supplements for anxiety before?', options: ['No, first time', 'Yes, magnesium', 'Yes, ashwagandha', 'Yes, multiple'] },
+  ],
+  'fall-asleep': [
+    { question: 'What keeps you awake?', options: ['Racing thoughts', 'Physical restlessness', 'Screen time', "Not sure"] },
+    { question: 'What time do you typically try to sleep?', options: ['Before 10pm', '10pm - midnight', 'After midnight', 'Irregular'] },
+  ],
+  'gut-health': [
+    { question: 'What digestive issues do you experience?', options: ['Bloating', 'Irregular bowel', 'Food sensitivities', 'General discomfort'] },
+    { question: 'Do you currently take probiotics?', options: ['No', 'Yes, daily', 'Occasionally', 'Tried but stopped'] },
+  ],
+  'longevity': [
+    { question: 'What aspect of longevity interests you most?', options: ['Cellular health (NAD+/NMN)', 'Cognitive preservation', 'Physical vitality', 'All of the above'] },
+    { question: 'Current supplement routine?', options: ['None', 'Basic multivitamin', 'Several supplements', 'Extensive stack'] },
+  ],
+  'focus-cognition': [
+    { question: 'When do you need the most focus?', options: ['Morning work', 'Afternoon slump', 'Study sessions', 'All day'] },
+    { question: 'Caffeine sensitivity?', options: ['None - drink coffee daily', 'Moderate', 'Very sensitive', 'Avoid completely'] },
   ],
 };
 
@@ -66,13 +158,35 @@ const GoalDiscovery = () => {
   const [step, setStep] = useState<'goals' | 'questions' | 'results'>('goals');
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+
+  const filteredGoals = useMemo(() => {
+    return wellnessGoals.filter((goal) => {
+      const matchesCategory = activeCategory === 'All' || goal.category === activeCategory;
+      const matchesSearch = !searchQuery ||
+        goal.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        goal.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        goal.category.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [activeCategory, searchQuery]);
+
+  const groupedGoals = useMemo(() => {
+    if (activeCategory !== 'All') return { [activeCategory]: filteredGoals };
+    const groups: Record<string, WellnessGoal[]> = {};
+    filteredGoals.forEach((goal) => {
+      if (!groups[goal.category]) groups[goal.category] = [];
+      groups[goal.category].push(goal);
+    });
+    return groups;
+  }, [filteredGoals, activeCategory]);
 
   const handleGoalSelect = (goalId: string) => {
     setSelectedGoal(goalId);
     setQuestionIndex(0);
     setAnswers([]);
-    const goalQuestions = questions[goalId];
-    if (goalQuestions && goalQuestions.length > 0) {
+    if (questions[goalId]?.length) {
       setStep('questions');
     } else {
       setStep('results');
@@ -97,29 +211,93 @@ const GoalDiscovery = () => {
     setAnswers([]);
   };
 
-  const currentGoal = goals.find(g => g.id === selectedGoal);
-  const recommendations = mockRecommendations[selectedGoal || ''] || [];
+  const currentGoal = wellnessGoals.find(g => g.id === selectedGoal);
+  const recommendations = currentGoal ? getGenericRecommendations(currentGoal) : [];
   const currentQuestions = questions[selectedGoal || ''] || [];
+  const goalColor = currentGoal ? categoryColors[currentGoal.category] || 'bg-muted text-foreground' : '';
 
   return (
-    <DashboardLayout title="Goal-Based Discovery" description="Tell us your health goal and we'll recommend the cleanest products">
+    <DashboardLayout title="Goal-Based Discovery" description="Choose from 75 wellness goals — we'll recommend the cleanest products for your journey">
       <AnimatePresence mode="wait">
         {step === 'goals' && (
           <motion.div key="goals" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {goals.map((goal, index) => (
-                <motion.div key={goal.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.05 }}>
-                  <Card className={`cursor-pointer hover:shadow-md transition-all border-2 hover:border-primary/30 ${goal.color.split(' ')[0]}`} onClick={() => handleGoalSelect(goal.id)}>
-                    <CardContent className="pt-6 text-center">
-                      <div className={`inline-flex p-3 rounded-xl mb-3 ${goal.color}`}>{goal.icon}</div>
-                      <h3 className="font-semibold mb-1">{goal.name}</h3>
-                      <p className="text-xs text-muted-foreground">{goal.description}</p>
-                      <ChevronRight className="h-4 w-4 mx-auto mt-3 text-muted-foreground/50" />
-                    </CardContent>
-                  </Card>
-                </motion.div>
+            {/* Search */}
+            <div className="relative mb-4">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search goals (e.g. sleep, anxiety, longevity...)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 pr-10"
+              />
+              {searchQuery && (
+                <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2">
+                  <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+                </button>
+              )}
+            </div>
+
+            {/* Category pills */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {goalCategories.map((cat) => (
+                <Badge
+                  key={cat}
+                  variant={activeCategory === cat ? 'default' : 'outline'}
+                  className="cursor-pointer text-xs py-1 px-3 transition-colors"
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  {cat}
+                </Badge>
               ))}
             </div>
+
+            <p className="text-sm text-muted-foreground mb-4">
+              Showing {filteredGoals.length} of {wellnessGoals.length} goals
+            </p>
+
+            {/* Grouped goal cards */}
+            {Object.entries(groupedGoals).map(([category, goals]) => (
+              <div key={category} className="mb-8">
+                <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                  <span className={`inline-block w-3 h-3 rounded-full ${(categoryColors[category] || '').split(' ')[0]}`} />
+                  {category}
+                  <span className="text-sm font-normal text-muted-foreground">({goals.length})</span>
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                  {goals.map((goal, index) => (
+                    <motion.div
+                      key={goal.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: Math.min(index * 0.02, 0.3) }}
+                    >
+                      <Card
+                        className={`cursor-pointer hover:shadow-md transition-all border hover:border-primary/30 ${(categoryColors[goal.category] || 'bg-muted').split(' ')[0]}`}
+                        onClick={() => handleGoalSelect(goal.id)}
+                      >
+                        <CardContent className="p-4 flex items-start gap-3">
+                          <div className={`shrink-0 p-2 rounded-lg ${categoryColors[goal.category] || 'bg-muted text-foreground'}`}>
+                            {iconMap[goal.icon] || <Target className="h-5 w-5" />}
+                          </div>
+                          <div className="min-w-0">
+                            <h3 className="font-medium text-sm leading-tight">{goal.name}</h3>
+                            <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{goal.description}</p>
+                          </div>
+                          <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground/40 mt-0.5" />
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            {filteredGoals.length === 0 && (
+              <div className="text-center py-12 text-muted-foreground">
+                <Search className="h-8 w-8 mx-auto mb-3 opacity-40" />
+                <p>No goals match your search. Try a different term.</p>
+              </div>
+            )}
           </motion.div>
         )}
 
@@ -128,6 +306,13 @@ const GoalDiscovery = () => {
             <div className="mb-6">
               <Button variant="ghost" onClick={reset} className="mb-4"><ArrowLeft className="h-4 w-4 mr-2" /> Back to Goals</Button>
               <Progress value={((questionIndex + 1) / currentQuestions.length) * 100} className="h-2 mb-4" />
+              <div className="flex items-center gap-2 mb-2">
+                {currentGoal && (
+                  <Badge variant="outline" className={`${goalColor} text-xs`}>
+                    {iconMap[currentGoal.icon]} <span className="ml-1">{currentGoal.name}</span>
+                  </Badge>
+                )}
+              </div>
               <p className="text-sm text-muted-foreground">Question {questionIndex + 1} of {currentQuestions.length}</p>
             </div>
             <Card>
@@ -150,8 +335,8 @@ const GoalDiscovery = () => {
             <div className="flex items-center gap-3 mb-6">
               <Button variant="ghost" onClick={reset}><ArrowLeft className="h-4 w-4 mr-2" /> Back to Goals</Button>
               {currentGoal && (
-                <Badge variant="outline" className={`${currentGoal.color} text-sm py-1 px-3`}>
-                  {currentGoal.icon}
+                <Badge variant="outline" className={`${goalColor} text-sm py-1 px-3`}>
+                  {iconMap[currentGoal.icon]}
                   <span className="ml-1">{currentGoal.name}</span>
                 </Badge>
               )}
@@ -184,7 +369,7 @@ const GoalDiscovery = () => {
                               <p className="text-sm"><Star className="h-3 w-3 inline mr-1 text-primary" /><strong>Why we recommend it:</strong> {product.rationale}</p>
                             </div>
                             <div className="p-3 rounded-lg bg-muted/50">
-                              <p className="text-sm text-muted-foreground"><strong>Caveat:</strong> {product.caveats}</p>
+                              <p className="text-sm text-muted-foreground"><strong>Note:</strong> {product.caveats}</p>
                             </div>
                           </div>
                           <div className="flex gap-2 mt-4">
