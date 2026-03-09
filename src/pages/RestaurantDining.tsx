@@ -156,6 +156,17 @@ const RestaurantDining: React.FC = () => {
           </CardContent>
         </Card>
 
+        {/* AI Scanned Menu Results */}
+        {scannedResult && (
+          <div className="mb-6">
+            <ScannedMenuResults
+              restaurantName={scannedResult.restaurant_name}
+              items={scannedResult.items}
+              onLogMeal={handleLogMeal}
+            />
+          </div>
+        )}
+
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Restaurant List */}
