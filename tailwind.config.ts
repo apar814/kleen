@@ -1,4 +1,3 @@
-
 import { type Config } from "tailwindcss";
 
 export default {
@@ -8,7 +7,7 @@ export default {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   theme: {
     container: {
       center: true,
@@ -27,6 +26,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -52,15 +52,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Kleen Theme Colors - Updated with darker green
-        "kleen-white": "#FFFFFF",
-        "kleen-mint": "#3B8C56", // Darker green color
-        "kleen-red": "#D9534F",
-        "kleen-sage": "#E6EFE7", // Lighter sage background
-        "kleen-gray": "#333333", // Darker text for better contrast
-        "kleen-peach": "#FCE8E4",
-        "kleen-dark": "#222222", // New very dark color
-        "kleen-light": "#F9F9F9", // New very light background color
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -75,60 +66,64 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontFamily: {
+        heading: ['"Space Grotesk"', 'sans-serif'],
+        body: ['"DM Sans"', 'sans-serif'],
+        // keep old aliases working
+        montserrat: ['"Space Grotesk"', 'sans-serif'],
+        satoshi: ['"DM Sans"', 'sans-serif'],
+        inter: ['"DM Sans"', 'sans-serif'],
+      },
+      fontSize: {
+        'display': ['3.5rem', { lineHeight: '1.08', letterSpacing: '-0.03em', fontWeight: '700' }],
+        'h1': ['2.75rem', { lineHeight: '1.12', letterSpacing: '-0.025em', fontWeight: '700' }],
+        'h2': ['2rem', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '600' }],
+        'h3': ['1.5rem', { lineHeight: '1.3', letterSpacing: '-0.015em', fontWeight: '600' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.65', fontWeight: '400' }],
+        'body': ['1rem', { lineHeight: '1.6', fontWeight: '400' }],
+        'label': ['0.875rem', { lineHeight: '1.5', fontWeight: '500' }],
+      },
+      boxShadow: {
+        'soft': 'var(--shadow-soft)',
+        'card': 'var(--shadow-card)',
+        'elevated': 'var(--shadow-elevated)',
+        'glow': 'var(--shadow-glow)',
+        'kleen-card': 'var(--shadow-card)',
+        'kleen-hover': 'var(--shadow-elevated)',
+      },
       keyframes: {
         "accordion-down": {
-          from: { height: 0 },
+          from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
+          to: { height: "0" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { boxShadow: "0 0 20px -8px hsl(152 55% 38% / 0.2)" },
+          "50%": { boxShadow: "0 0 40px -4px hsl(152 55% 38% / 0.35)" },
         },
         "scan-pulse": {
           "0%, 100%": { opacity: "1", transform: "scale(1)" },
-          "50%": { opacity: "0.8", transform: "scale(1.05)" }
-        },
-        "shake": {
-          "0%, 100%": { transform: "translateX(0)" },
-          "10%, 30%, 50%, 70%, 90%": { transform: "translateX(-4px)" },
-          "20%, 40%, 60%, 80%": { transform: "translateX(4px)" }
+          "50%": { opacity: "0.8", transform: "scale(1.05)" },
         },
         "slide-in-right": {
           from: { transform: "translateX(100%)" },
-          to: { transform: "translateX(0)" }
-        }
+          to: { transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "float": "float 5s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
         "scan-pulse": "scan-pulse 2s infinite ease-in-out",
-        "shake": "shake 0.5s ease-in-out",
-        "slide-in-right": "slide-in-right 0.3s ease-out"
-      },
-      spacing: {
-        '4': '4px',
-        '8': '8px',
-        '12': '12px',
-        '16': '16px',
-        '20': '20px',
-        '24': '24px',
-        '32': '32px',
-      },
-      boxShadow: {
-        'kleen-card': '0 4px 12px rgba(0,0,0,0.03)',
-        'kleen-hover': '0 4px 16px rgba(0,0,0,0.06)',
-      },
-      fontFamily: {
-        'montserrat': ['Montserrat', 'sans-serif'], // Added Montserrat
-        'satoshi': ['Inter', 'sans-serif'],
-        'inter': ['Inter', 'sans-serif'],
-      },
-      fontSize: {
-        'h1': '42px', // Larger heading
-        'h2': '32px', // Larger subheading
-        'h3': '24px', // Medium heading
-        'body': '16px',
-        'label': '14px',
+        "slide-in-right": "slide-in-right 0.3s ease-out",
       },
     },
   },

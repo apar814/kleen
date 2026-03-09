@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,60 +6,70 @@
  
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 150 20% 98%;
+    --foreground: 160 25% 8%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 160 25% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 138 40% 46%; /* Darker Kleen mint color */
+    --popover-foreground: 160 25% 8%;
+    --primary: 152 55% 38%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 140 25% 92%; /* Light sage accent */
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --primary-glow: 148 60% 48%;
+    --secondary: 150 12% 93%;
+    --secondary-foreground: 160 25% 12%;
+    --muted: 150 8% 94%;
+    --muted-foreground: 160 8% 45%;
+    --accent: 148 30% 90%;
+    --accent-foreground: 160 25% 12%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 138 40% 46%; /* Darker Kleen mint color for focus rings */
-    --radius: 0.5rem;
+    --border: 150 12% 90%;
+    --input: 150 12% 90%;
+    --ring: 152 55% 38%;
+    --radius: 0.75rem;
 
-    --sidebar-background: 120 33% 50%; /* Darker sidebar background */
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-border: 140 25% 92%;
-    --sidebar-accent: 140 25% 92%;
-    --sidebar-accent-foreground: 0 0% 0%;
+    --gradient-hero: linear-gradient(135deg, hsl(150 20% 98%) 0%, hsl(148 30% 94%) 50%, hsl(150 20% 98%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(152 55% 38%), hsl(148 60% 48%));
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));
+    --shadow-soft: 0 2px 16px -2px hsl(152 55% 38% / 0.08);
+    --shadow-card: 0 4px 24px -4px hsl(160 25% 8% / 0.06);
+    --shadow-elevated: 0 12px 40px -8px hsl(160 25% 8% / 0.12);
+    --shadow-glow: 0 0 40px -8px hsl(152 55% 38% / 0.25);
+
+    --sidebar-background: 152 45% 18%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-border: 152 30% 25%;
+    --sidebar-accent: 152 30% 25%;
+    --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-ring: 0 0% 100%;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 138 36% 56%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 140 15% 30%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --background: 160 20% 4%;
+    --foreground: 0 0% 96%;
+    --card: 160 15% 7%;
+    --card-foreground: 0 0% 96%;
+    --popover: 160 15% 7%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 152 50% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 148 55% 55%;
+    --secondary: 160 10% 12%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 160 10% 12%;
+    --muted-foreground: 160 5% 55%;
+    --accent: 148 20% 16%;
+    --accent-foreground: 0 0% 96%;
+    --destructive: 0 62% 35%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 138 36% 56%;
+    --border: 160 10% 14%;
+    --input: 160 10% 14%;
+    --ring: 152 50% 45%;
 
-    --sidebar-background: 120 33% 28%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-border: 120 25% 35%;
-    --sidebar-accent: 120 25% 35%;
+    --sidebar-background: 160 20% 6%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-border: 160 15% 12%;
+    --sidebar-accent: 160 15% 12%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-ring: 0 0% 100%;
   }
@@ -71,64 +80,36 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer components {
-  .kleen-heading-h1 {
-    @apply text-h1 font-montserrat font-semibold text-kleen-gray leading-tight;
-  }
-  .kleen-heading-h2 {
-    @apply text-h2 font-montserrat font-semibold text-kleen-gray leading-tight;
-  }
-  .kleen-heading-h3 {
-    @apply text-h3 font-montserrat font-semibold text-kleen-gray leading-tight;
-  }
-  .kleen-body {
-    @apply text-body font-inter text-kleen-gray;
-  }
-  .kleen-card {
-    @apply bg-white rounded-lg shadow-kleen-card border border-gray-100;
-  }
-  .kleen-btn-primary {
-    @apply bg-kleen-mint text-white rounded-md py-3 px-6 flex items-center justify-center font-medium hover:bg-kleen-mint/90 transition-colors;
-  }
-  .kleen-btn-secondary {
-    @apply bg-white text-kleen-gray rounded-md py-3 px-6 flex items-center justify-center font-medium border border-gray-200 hover:bg-gray-50 transition-colors;
-  }
-  .toxicity-pill {
-    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
-  }
-  .toxicity-pill-high {
-    @apply bg-kleen-red/10 text-kleen-red;
-  }
-  .toxicity-pill-medium {
-    @apply bg-yellow-500/10 text-yellow-500;
-  }
-  .toxicity-pill-low {
-    @apply bg-kleen-mint/10 text-kleen-mint;
-  }
-  .kleen-navbar {
-    @apply fixed top-0 left-0 right-0 bg-white z-50 border-b border-gray-100;
-  }
   .kleen-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-  .kleen-product-card {
-    @apply bg-white rounded-xl overflow-hidden shadow-kleen-card transition-shadow hover:shadow-kleen-hover;
+    @apply max-w-7xl mx-auto px-5 sm:px-6 lg:px-8;
   }
   .kleen-section {
-    @apply py-12 md:py-20;
+    @apply py-16 md:py-24;
   }
-  .kleen-notification-badge {
-    @apply absolute -top-1 -right-1 bg-kleen-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center;
+  .glass-card {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: var(--shadow-card);
   }
-  .kleen-feature-item {
-    @apply bg-white p-6 rounded-xl shadow-kleen-card border border-gray-100 hover:shadow-kleen-hover transition-shadow;
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  .kleen-announcement-bar {
-    @apply bg-kleen-mint py-3 px-4 text-white;
+  .glow-ring {
+    box-shadow: var(--shadow-glow);
   }
 }
