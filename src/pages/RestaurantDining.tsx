@@ -149,26 +149,10 @@ const RestaurantDining: React.FC = () => {
                 <Navigation className="h-4 w-4" />
                 Use My Location
               </Button>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline" className="gap-2">
-                    <Camera className="h-4 w-4" />
-                    Scan Menu
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Scan a Menu</DialogTitle>
-                  </DialogHeader>
-                  <div className="py-8 text-center">
-                    <Camera className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-muted-foreground">
-                      Take a photo of a restaurant menu to get instant scores for every item
-                    </p>
-                    <Button className="mt-4">Open Camera</Button>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              <MenuScannerDialog onScanComplete={(result) => {
+                setScannedResult(result);
+                setSelectedRestaurant(null);
+              }} />
             </div>
           </CardContent>
         </Card>
