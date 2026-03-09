@@ -231,6 +231,14 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Auto-Shop" isActive={isActive('/auto-shop')}>
+                  <Link to="/auto-shop" className="flex items-center w-full">
+                    <Bot className="mr-2" />
+                    <span>Auto-Shop</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Ingredient Database" isActive={isActive('/ingredients') || isActive('/toxic-ingredients')}>
                   <Link to="/ingredients" className="flex items-center w-full">
                     <Database className="mr-2" />
