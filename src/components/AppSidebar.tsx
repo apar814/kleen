@@ -24,7 +24,10 @@ import {
   Scale,
   ShoppingBag,
   Trophy,
-  Users
+  Users,
+  Bell,
+  BarChart3,
+  MessageSquare
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";

@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.receipt-scan]
 verify_jwt = false
+
+[functions.ai-chat]
+verify_jwt = false
