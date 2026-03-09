@@ -77,6 +77,7 @@ const RestaurantDining: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [locationEnabled, setLocationEnabled] = useState(false);
+  const [scannedResult, setScannedResult] = useState<{ restaurant_name?: string; items: ScannedMenuItem[] } | null>(null);
 
   useEffect(() => {
     // Check if geolocation is available
