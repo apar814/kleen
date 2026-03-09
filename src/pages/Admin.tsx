@@ -110,8 +110,8 @@ const Admin: React.FC = () => {
         pendingScores: scoresRes.data?.length || 0
       }));
 
-      setProductRequests(requestsRes.data || []);
-      setCommunityScores(scoresRes.data as CommunityScore[] || []);
+      setProductRequests((requestsRes.data as unknown as ProductRequest[]) || []);
+      setCommunityScores((scoresRes.data as unknown as CommunityScore[]) || []);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
       toast.error('Failed to load dashboard data');
