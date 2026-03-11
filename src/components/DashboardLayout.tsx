@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
-  title: string;
+  title?: string;
   description?: string;
   className?: string;
 }
