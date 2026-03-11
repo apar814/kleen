@@ -37,6 +37,19 @@ import RestaurantDining from './pages/RestaurantDining';
 import WaterBeverage from './pages/WaterBeverage';
 import BabySafety from './pages/BabySafety';
 import AutoShop from './pages/AutoShop';
+// Phase 7: Contaminant Intelligence
+import MicroplasticsScoring from './pages/MicroplasticsScoring';
+import PFASScoring from './pages/PFASScoring';
+import PackagingSafety from './pages/PackagingSafety';
+import MycotoxinScoring from './pages/MycotoxinScoring';
+import ProcessingContaminants from './pages/ProcessingContaminants';
+import ResidueScoring from './pages/ResidueScoring';
+import FoodFraud from './pages/FoodFraud';
+import EnvironmentalContaminants from './pages/EnvironmentalContaminants';
+import TotalExposure from './pages/TotalExposure';
+import RecallCenter from './pages/RecallCenter';
+import ContaminantEncyclopedia from './pages/ContaminantEncyclopedia';
+import KleenCertification from './pages/KleenCertification';
 
 function App() {
   return (
@@ -78,6 +91,19 @@ function App() {
           <Route path="/water" element={<WaterBeverage />} />
           <Route path="/baby" element={<BabySafety />} />
           <Route path="/auto-shop" element={<AutoShop />} />
+          {/* Phase 7: Contaminant Intelligence */}
+          <Route path="/contaminants/microplastics" element={<MicroplasticsScoring />} />
+          <Route path="/contaminants/pfas" element={<PFASScoring />} />
+          <Route path="/contaminants/packaging" element={<PackagingSafety />} />
+          <Route path="/contaminants/mycotoxins" element={<MycotoxinScoring />} />
+          <Route path="/contaminants/processing" element={<ProcessingContaminants />} />
+          <Route path="/contaminants/residues" element={<ResidueScoring />} />
+          <Route path="/contaminants/fraud" element={<FoodFraud />} />
+          <Route path="/contaminants/environmental" element={<EnvironmentalContaminants />} />
+          <Route path="/dashboard/exposure" element={<TotalExposure />} />
+          <Route path="/recalls" element={<RecallCenter />} />
+          <Route path="/contaminants/encyclopedia" element={<ContaminantEncyclopedia />} />
+          <Route path="/certified" element={<KleenCertification />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
