@@ -33,7 +33,19 @@ import {
   Utensils,
   Droplets,
   Baby,
-  Bot
+  Bot,
+  Microscope,
+  Biohazard,
+  FlaskConical,
+  Bug,
+  Flame,
+  Syringe,
+  SearchCheck,
+  Radiation,
+  Activity,
+  AlertTriangle,
+  BookOpen,
+  Award
 } from "lucide-react";
 import KleenLogo from '@/components/KleenLogo';
 import { Button } from "./ui/button";
@@ -48,13 +60,8 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
   const [collapsed, setCollapsed] = React.useState(false);
   const { logout, user } = useAuth();
   
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
-
-  const isActiveWithQuery = (path: string, query: string) => {
-    return location.pathname === path && location.search.includes(query);
-  };
+  const isActive = (path: string) => location.pathname === path;
+  const isActivePrefix = (prefix: string) => location.pathname.startsWith(prefix);
 
   return (
     <SidebarProvider defaultOpen={!collapsed}>
@@ -78,212 +85,88 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
               MAIN MENU
             </p>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Home" isActive={isActive('/')}>
-                  <Link to="/" className="flex items-center w-full">
-                    <Home className="mr-2" />
-                    <span>Home</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Dashboard" isActive={isActive('/dashboard')}>
-                  <Link to="/dashboard" className="flex items-center w-full">
-                    <BarChart2 className="mr-2" />
-                    <span>Dashboard</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Product Search" isActive={isActive('/search')}>
-                  <Link to="/search" className="flex items-center w-full">
-                    <Search className="mr-2" />
-                    <span>Product Search</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Compare Products" isActive={isActive('/compare')}>
-                  <Link to="/compare" className="flex items-center w-full">
-                    <Scale className="mr-2" />
-                    <span>Compare Products</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Receipt Scanner" isActive={isActive('/receipt-scanner')}>
-                  <Link to="/receipt-scanner" className="flex items-center w-full">
-                    <FileText className="mr-2" />
-                    <span>Receipt Scanner</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Browse Categories" isActive={isActive('/categories')}>
-                  <Link to="/categories" className="flex items-center w-full">
-                    <Grid3X3 className="mr-2" />
-                    <span>Browse Categories</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Recipe Builder" isActive={isActive('/recipes')}>
-                  <Link to="/recipes" className="flex items-center w-full">
-                    <ChefHat className="mr-2" />
-                    <span>Recipe Builder</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Banned Ingredients" isActive={isActive('/banned-ingredients')}>
-                  <Link to="/banned-ingredients" className="flex items-center w-full">
-                    <Globe className="mr-2" />
-                    <span>Banned Worldwide</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Grocery List" isActive={isActive('/grocery-list')}>
-                  <Link to="/grocery-list" className="flex items-center w-full">
-                    <ShoppingBag className="mr-2" />
-                    <span>Grocery List</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Challenges" isActive={isActive('/challenges')}>
-                  <Link to="/challenges" className="flex items-center w-full">
-                    <Trophy className="mr-2" />
-                    <span>Challenges</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Community Feed" isActive={isActive('/community')}>
-                  <Link to="/community" className="flex items-center w-full">
-                    <Users className="mr-2" />
-                    <span>Community</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="AI Nutritionist" isActive={isActive('/ask')}>
-                  <Link to="/ask" className="flex items-center w-full">
-                    <MessageSquare className="mr-2" />
-                    <span>AI Nutritionist</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Notifications" isActive={isActive('/notifications')}>
-                  <Link to="/notifications" className="flex items-center w-full">
-                    <Bell className="mr-2" />
-                    <span>Notifications</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Weekly Report" isActive={isActive('/reports/weekly')}>
-                  <Link to="/reports/weekly" className="flex items-center w-full">
-                    <BarChart3 className="mr-2" />
-                    <span>Weekly Report</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Product Requests" isActive={isActive('/product-requests')}>
-                  <Link to="/product-requests" className="flex items-center w-full">
-                    <ListOrdered className="mr-2" />
-                    <span>Product Requests</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Admin" isActive={isActive('/admin')}>
-                  <Link to="/admin" className="flex items-center w-full">
-                    <Shield className="mr-2" />
-                    <span>Admin</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Restaurant Dining" isActive={isActive('/dine')}>
-                  <Link to="/dine" className="flex items-center w-full">
-                    <Utensils className="mr-2" />
-                    <span>Dining</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Water & Beverages" isActive={isActive('/water')}>
-                  <Link to="/water" className="flex items-center w-full">
-                    <Droplets className="mr-2" />
-                    <span>Water & Drinks</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Baby Safety" isActive={isActive('/baby')}>
-                  <Link to="/baby" className="flex items-center w-full">
-                    <Baby className="mr-2" />
-                    <span>Baby Safety</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Auto-Shop" isActive={isActive('/auto-shop')}>
-                  <Link to="/auto-shop" className="flex items-center w-full">
-                    <Bot className="mr-2" />
-                    <span>Auto-Shop</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Ingredient Database" isActive={isActive('/ingredients') || isActive('/toxic-ingredients')}>
-                  <Link to="/ingredients" className="flex items-center w-full">
-                    <Database className="mr-2" />
-                    <span>Ingredient Database</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Scan History" isActive={isActive('/scan-history')}>
-                  <Link to="/scan-history" className="flex items-center w-full">
-                    <Package className="mr-2" />
-                    <span>Scan History</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {[
+                { path: '/', icon: Home, label: 'Home' },
+                { path: '/dashboard', icon: BarChart2, label: 'Dashboard' },
+                { path: '/search', icon: Search, label: 'Product Search' },
+                { path: '/compare', icon: Scale, label: 'Compare Products' },
+                { path: '/receipt-scanner', icon: FileText, label: 'Receipt Scanner' },
+                { path: '/categories', icon: Grid3X3, label: 'Browse Categories' },
+                { path: '/recipes', icon: ChefHat, label: 'Recipe Builder' },
+                { path: '/banned-ingredients', icon: Globe, label: 'Banned Worldwide' },
+                { path: '/grocery-list', icon: ShoppingBag, label: 'Grocery List' },
+                { path: '/challenges', icon: Trophy, label: 'Challenges' },
+                { path: '/community', icon: Users, label: 'Community' },
+                { path: '/ask', icon: MessageSquare, label: 'AI Nutritionist' },
+                { path: '/notifications', icon: Bell, label: 'Notifications' },
+                { path: '/reports/weekly', icon: BarChart3, label: 'Weekly Report' },
+                { path: '/product-requests', icon: ListOrdered, label: 'Product Requests' },
+                { path: '/admin', icon: Shield, label: 'Admin' },
+                { path: '/dine', icon: Utensils, label: 'Dining' },
+                { path: '/water', icon: Droplets, label: 'Water & Drinks' },
+                { path: '/baby', icon: Baby, label: 'Baby Safety' },
+                { path: '/auto-shop', icon: Bot, label: 'Auto-Shop' },
+                { path: '/ingredients', icon: Database, label: 'Ingredient Database' },
+                { path: '/scan-history', icon: Package, label: 'Scan History' },
+              ].map(item => (
+                <SidebarMenuItem key={item.path}>
+                  <SidebarMenuButton tooltip={item.label} isActive={isActive(item.path)}>
+                    <Link to={item.path} className="flex items-center w-full">
+                      <item.icon className="mr-2" />
+                      <span>{item.label}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
             </SidebarMenu>
             
+            <p className={cn("px-4 mb-4 mt-8 text-label text-kleen-gray/60 font-medium uppercase tracking-wider text-xs", collapsed && "hidden")}>
+              CONTAMINANT INTELLIGENCE
+            </p>
+            <SidebarMenu>
+              {[
+                { path: '/dashboard/exposure', icon: Activity, label: 'Total Exposure' },
+                { path: '/contaminants/microplastics', icon: Microscope, label: 'Microplastics' },
+                { path: '/contaminants/pfas', icon: FlaskConical, label: 'PFAS Chemicals' },
+                { path: '/contaminants/packaging', icon: Package, label: 'Packaging Safety' },
+                { path: '/contaminants/mycotoxins', icon: Bug, label: 'Mycotoxins' },
+                { path: '/contaminants/processing', icon: Flame, label: 'Processing' },
+                { path: '/contaminants/residues', icon: Syringe, label: 'Drug Residues' },
+                { path: '/contaminants/fraud', icon: SearchCheck, label: 'Food Fraud' },
+                { path: '/contaminants/environmental', icon: Radiation, label: 'Environmental' },
+                { path: '/recalls', icon: AlertTriangle, label: 'Recalls & Safety' },
+                { path: '/contaminants/encyclopedia', icon: BookOpen, label: 'Encyclopedia' },
+                { path: '/certified', icon: Award, label: 'Kleen Certified' },
+              ].map(item => (
+                <SidebarMenuItem key={item.path}>
+                  <SidebarMenuButton tooltip={item.label} isActive={isActive(item.path)}>
+                    <Link to={item.path} className="flex items-center w-full">
+                      <item.icon className="mr-2" />
+                      <span>{item.label}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+
             <p className={cn("px-4 mb-4 mt-8 text-label text-kleen-gray/60 font-medium uppercase tracking-wider text-xs", collapsed && "hidden")}>
               YOUR ACCOUNT
             </p>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Profile" isActive={isActive('/profile')}>
-                  <Link to="/profile" className="flex items-center w-full">
-                    <UserCircle className="mr-2" />
-                    <span>Profile</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Referral" isActive={isActive('/referral')}>
-                  <Link to="/referral" className="flex items-center w-full">
-                    <Share2 className="mr-2" />
-                    <span>Refer Friends</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton tooltip="Settings" isActive={isActive('/settings')}>
-                  <Link to="/settings" className="flex items-center w-full">
-                    <Settings className="mr-2" />
-                    <span>Settings</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {[
+                { path: '/profile', icon: UserCircle, label: 'Profile' },
+                { path: '/referral', icon: Share2, label: 'Refer Friends' },
+                { path: '/settings', icon: Settings, label: 'Settings' },
+              ].map(item => (
+                <SidebarMenuItem key={item.path}>
+                  <SidebarMenuButton tooltip={item.label} isActive={isActive(item.path)}>
+                    <Link to={item.path} className="flex items-center w-full">
+                      <item.icon className="mr-2" />
+                      <span>{item.label}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
               <SidebarMenuItem>
                 <SidebarMenuButton tooltip="Logout">
                   <button className="flex items-center w-full" onClick={logout}>
@@ -308,7 +191,6 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ children }) => {
   );
 };
 
-// This utility function handles conditional className merging
 const cn = (...classes: (string | boolean | undefined)[]): string => {
   return classes.filter(Boolean).join(' ');
 };
