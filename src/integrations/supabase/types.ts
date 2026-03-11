@@ -423,6 +423,75 @@ export type Database = {
           },
         ]
       }
+      brand_pfas_commitments: {
+        Row: {
+          brand_name: string
+          commitment_text: string | null
+          deadline: string | null
+          id: string
+          source_url: string | null
+          status: string | null
+          updated_at: string | null
+          verified: boolean | null
+        }
+        Insert: {
+          brand_name: string
+          commitment_text?: string | null
+          deadline?: string | null
+          id?: string
+          source_url?: string | null
+          status?: string | null
+          updated_at?: string | null
+          verified?: boolean | null
+        }
+        Update: {
+          brand_name?: string
+          commitment_text?: string | null
+          deadline?: string | null
+          id?: string
+          source_url?: string | null
+          status?: string | null
+          updated_at?: string | null
+          verified?: boolean | null
+        }
+        Relationships: []
+      }
+      brand_safety_scores: {
+        Row: {
+          brand_name: string
+          certifications: Json | null
+          community_rating: number | null
+          id: string
+          last_calculated: string | null
+          overall_safety_grade: string | null
+          recall_count_5yr: number | null
+          recall_severity_avg: number | null
+          testing_transparency: string | null
+        }
+        Insert: {
+          brand_name: string
+          certifications?: Json | null
+          community_rating?: number | null
+          id?: string
+          last_calculated?: string | null
+          overall_safety_grade?: string | null
+          recall_count_5yr?: number | null
+          recall_severity_avg?: number | null
+          testing_transparency?: string | null
+        }
+        Update: {
+          brand_name?: string
+          certifications?: Json | null
+          community_rating?: number | null
+          id?: string
+          last_calculated?: string | null
+          overall_safety_grade?: string | null
+          recall_count_5yr?: number | null
+          recall_severity_avg?: number | null
+          testing_transparency?: string | null
+        }
+        Relationships: []
+      }
       brands: {
         Row: {
           created_at: string
@@ -484,6 +553,36 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      category_microplastic_risk: {
+        Row: {
+          category: string
+          id: string
+          major_sources: Json | null
+          microplastics_per_unit_estimate: string | null
+          risk_level: string | null
+          studies: Json | null
+          subcategory: string | null
+        }
+        Insert: {
+          category: string
+          id?: string
+          major_sources?: Json | null
+          microplastics_per_unit_estimate?: string | null
+          risk_level?: string | null
+          studies?: Json | null
+          subcategory?: string | null
+        }
+        Update: {
+          category?: string
+          id?: string
+          major_sources?: Json | null
+          microplastics_per_unit_estimate?: string | null
+          risk_level?: string | null
+          studies?: Json | null
+          subcategory?: string | null
+        }
+        Relationships: []
       }
       challenges: {
         Row: {
@@ -633,6 +732,153 @@ export type Database = {
           },
         ]
       }
+      container_chemicals: {
+        Row: {
+          carcinogen_classification: string | null
+          chemical_name: string
+          container_type: string
+          endocrine_disruptor: boolean | null
+          health_concern: string | null
+          id: string
+          migration_rate_at_heat: string | null
+          migration_rate_at_room_temp: string | null
+          regulatory_status: Json | null
+          studies: Json | null
+        }
+        Insert: {
+          carcinogen_classification?: string | null
+          chemical_name: string
+          container_type: string
+          endocrine_disruptor?: boolean | null
+          health_concern?: string | null
+          id?: string
+          migration_rate_at_heat?: string | null
+          migration_rate_at_room_temp?: string | null
+          regulatory_status?: Json | null
+          studies?: Json | null
+        }
+        Update: {
+          carcinogen_classification?: string | null
+          chemical_name?: string
+          container_type?: string
+          endocrine_disruptor?: boolean | null
+          health_concern?: string | null
+          id?: string
+          migration_rate_at_heat?: string | null
+          migration_rate_at_room_temp?: string | null
+          regulatory_status?: Json | null
+          studies?: Json | null
+        }
+        Relationships: []
+      }
+      contaminant_encyclopedia: {
+        Row: {
+          contaminant_type: string
+          created_at: string
+          description_html: string | null
+          exposure_reduction_tips: string | null
+          health_effects: Json | null
+          id: string
+          key_studies: Json | null
+          name: string
+          regulatory_limits: Json | null
+          related_products: Json | null
+          slug: string
+          sources_in_food: string | null
+        }
+        Insert: {
+          contaminant_type: string
+          created_at?: string
+          description_html?: string | null
+          exposure_reduction_tips?: string | null
+          health_effects?: Json | null
+          id?: string
+          key_studies?: Json | null
+          name: string
+          regulatory_limits?: Json | null
+          related_products?: Json | null
+          slug: string
+          sources_in_food?: string | null
+        }
+        Update: {
+          contaminant_type?: string
+          created_at?: string
+          description_html?: string | null
+          exposure_reduction_tips?: string | null
+          health_effects?: Json | null
+          id?: string
+          key_studies?: Json | null
+          name?: string
+          regulatory_limits?: Json | null
+          related_products?: Json | null
+          slug?: string
+          sources_in_food?: string | null
+        }
+        Relationships: []
+      }
+      cooking_safety_guides: {
+        Row: {
+          contaminant_risks: Json | null
+          cooking_method: string
+          food_type: string
+          id: string
+          risk_reduction_tips: Json | null
+          safer_alternatives: Json | null
+        }
+        Insert: {
+          contaminant_risks?: Json | null
+          cooking_method: string
+          food_type: string
+          id?: string
+          risk_reduction_tips?: Json | null
+          safer_alternatives?: Json | null
+        }
+        Update: {
+          contaminant_risks?: Json | null
+          cooking_method?: string
+          food_type?: string
+          id?: string
+          risk_reduction_tips?: Json | null
+          safer_alternatives?: Json | null
+        }
+        Relationships: []
+      }
+      cookware_safety: {
+        Row: {
+          brand: string | null
+          created_at: string
+          id: string
+          kleen_score: number | null
+          material: string
+          notes: string | null
+          pfas_free_certified: boolean | null
+          product_name: string
+          safe_temperature_max: number | null
+        }
+        Insert: {
+          brand?: string | null
+          created_at?: string
+          id?: string
+          kleen_score?: number | null
+          material: string
+          notes?: string | null
+          pfas_free_certified?: boolean | null
+          product_name: string
+          safe_temperature_max?: number | null
+        }
+        Update: {
+          brand?: string | null
+          created_at?: string
+          id?: string
+          kleen_score?: number | null
+          material?: string
+          notes?: string | null
+          pfas_free_certified?: boolean | null
+          product_name?: string
+          safe_temperature_max?: number | null
+        }
+        Relationships: []
+      }
       dining_logs: {
         Row: {
           id: string
@@ -677,6 +923,200 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      emerging_research: {
+        Row: {
+          affected_products: Json | null
+          contaminant_name: string
+          first_flagged_date: string | null
+          id: string
+          kleen_recommendation: string | null
+          latest_studies: Json | null
+          regulatory_actions_pending: string | null
+          risk_level_current: string | null
+          risk_trajectory: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          affected_products?: Json | null
+          contaminant_name: string
+          first_flagged_date?: string | null
+          id?: string
+          kleen_recommendation?: string | null
+          latest_studies?: Json | null
+          regulatory_actions_pending?: string | null
+          risk_level_current?: string | null
+          risk_trajectory?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          affected_products?: Json | null
+          contaminant_name?: string
+          first_flagged_date?: string | null
+          id?: string
+          kleen_recommendation?: string | null
+          latest_studies?: Json | null
+          regulatory_actions_pending?: string | null
+          risk_level_current?: string | null
+          risk_trajectory?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      exposure_reduction_actions: {
+        Row: {
+          action_type: string
+          completed_at: string | null
+          contaminant_targeted: string | null
+          description: string
+          estimated_reduction_percent: number | null
+          id: string
+          started_at: string | null
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          action_type: string
+          completed_at?: string | null
+          contaminant_targeted?: string | null
+          description: string
+          estimated_reduction_percent?: number | null
+          id?: string
+          started_at?: string | null
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          action_type?: string
+          completed_at?: string | null
+          contaminant_targeted?: string | null
+          description?: string
+          estimated_reduction_percent?: number | null
+          id?: string
+          started_at?: string | null
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      food_fraud_incidents: {
+        Row: {
+          brand: string | null
+          created_at: string
+          date_reported: string | null
+          id: string
+          incident_description: string
+          product_category: string | null
+          regulatory_action: string | null
+          source_url: string | null
+        }
+        Insert: {
+          brand?: string | null
+          created_at?: string
+          date_reported?: string | null
+          id?: string
+          incident_description: string
+          product_category?: string | null
+          regulatory_action?: string | null
+          source_url?: string | null
+        }
+        Update: {
+          brand?: string | null
+          created_at?: string
+          date_reported?: string | null
+          id?: string
+          incident_description?: string
+          product_category?: string | null
+          regulatory_action?: string | null
+          source_url?: string | null
+        }
+        Relationships: []
+      }
+      food_fraud_scores: {
+        Row: {
+          brand_trust_score: number | null
+          certifications_verified: Json | null
+          created_at: string
+          fraud_type_risks: Json | null
+          id: string
+          origin_verification_level: string | null
+          overall_fraud_risk: string | null
+          price_authenticity_check: string | null
+          product_id: string | null
+          third_party_testing: boolean | null
+        }
+        Insert: {
+          brand_trust_score?: number | null
+          certifications_verified?: Json | null
+          created_at?: string
+          fraud_type_risks?: Json | null
+          id?: string
+          origin_verification_level?: string | null
+          overall_fraud_risk?: string | null
+          price_authenticity_check?: string | null
+          product_id?: string | null
+          third_party_testing?: boolean | null
+        }
+        Update: {
+          brand_trust_score?: number | null
+          certifications_verified?: Json | null
+          created_at?: string
+          fraud_type_risks?: Json | null
+          id?: string
+          origin_verification_level?: string | null
+          overall_fraud_risk?: string | null
+          price_authenticity_check?: string | null
+          product_id?: string | null
+          third_party_testing?: boolean | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "food_fraud_scores_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      food_safety_news: {
+        Row: {
+          category: string | null
+          created_at: string
+          id: string
+          kleen_analysis: string | null
+          published_date: string | null
+          relevance_tags: Json | null
+          source: string | null
+          summary: string | null
+          title: string
+          url: string | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          kleen_analysis?: string | null
+          published_date?: string | null
+          relevance_tags?: Json | null
+          source?: string | null
+          summary?: string | null
+          title: string
+          url?: string | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          kleen_analysis?: string | null
+          published_date?: string | null
+          relevance_tags?: Json | null
+          source?: string | null
+          summary?: string | null
+          title?: string
+          url?: string | null
+        }
+        Relationships: []
       }
       grocery_lists: {
         Row: {
@@ -743,6 +1183,50 @@ export type Database = {
           slug?: string
         }
         Relationships: []
+      }
+      heavy_metal_details: {
+        Row: {
+          arsenic_risk: number | null
+          cadmium_risk: number | null
+          cumulative_exposure_note: string | null
+          id: string
+          lead_risk: number | null
+          mercury_risk: number | null
+          product_id: string | null
+          risk_by_serving_size: string | null
+          test_results: Json | null
+        }
+        Insert: {
+          arsenic_risk?: number | null
+          cadmium_risk?: number | null
+          cumulative_exposure_note?: string | null
+          id?: string
+          lead_risk?: number | null
+          mercury_risk?: number | null
+          product_id?: string | null
+          risk_by_serving_size?: string | null
+          test_results?: Json | null
+        }
+        Update: {
+          arsenic_risk?: number | null
+          cadmium_risk?: number | null
+          cumulative_exposure_note?: string | null
+          id?: string
+          lead_risk?: number | null
+          mercury_risk?: number | null
+          product_id?: string | null
+          risk_by_serving_size?: string | null
+          test_results?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "heavy_metal_details_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       households: {
         Row: {
@@ -849,6 +1333,118 @@ export type Database = {
         }
         Relationships: []
       }
+      irradiation_data: {
+        Row: {
+          id: string
+          impact_on_nutrition: Json | null
+          irradiation_disclosed: boolean | null
+          irradiation_likely: boolean | null
+          irradiation_required: boolean | null
+          product_id: string | null
+        }
+        Insert: {
+          id?: string
+          impact_on_nutrition?: Json | null
+          irradiation_disclosed?: boolean | null
+          irradiation_likely?: boolean | null
+          irradiation_required?: boolean | null
+          product_id?: string | null
+        }
+        Update: {
+          id?: string
+          impact_on_nutrition?: Json | null
+          irradiation_disclosed?: boolean | null
+          irradiation_likely?: boolean | null
+          irradiation_required?: boolean | null
+          product_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "irradiation_data_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      kleen_certifications: {
+        Row: {
+          annual_fee_paid: boolean | null
+          application_date: string | null
+          brand_account_id: string | null
+          certification_date: string | null
+          created_at: string
+          expiration_date: string | null
+          id: string
+          product_id: string | null
+          review_status: string | null
+          testing_results: Json | null
+          tier: string | null
+        }
+        Insert: {
+          annual_fee_paid?: boolean | null
+          application_date?: string | null
+          brand_account_id?: string | null
+          certification_date?: string | null
+          created_at?: string
+          expiration_date?: string | null
+          id?: string
+          product_id?: string | null
+          review_status?: string | null
+          testing_results?: Json | null
+          tier?: string | null
+        }
+        Update: {
+          annual_fee_paid?: boolean | null
+          application_date?: string | null
+          brand_account_id?: string | null
+          certification_date?: string | null
+          created_at?: string
+          expiration_date?: string | null
+          id?: string
+          product_id?: string | null
+          review_status?: string | null
+          testing_results?: Json | null
+          tier?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "kleen_certifications_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      label_claims: {
+        Row: {
+          actual_meaning: string | null
+          applies_to_categories: Json | null
+          claim_text: string
+          id: string
+          regulated_by: string | null
+          trust_level: string | null
+        }
+        Insert: {
+          actual_meaning?: string | null
+          applies_to_categories?: Json | null
+          claim_text: string
+          id?: string
+          regulated_by?: string | null
+          trust_level?: string | null
+        }
+        Update: {
+          actual_meaning?: string | null
+          applies_to_categories?: Json | null
+          claim_text?: string
+          id?: string
+          regulated_by?: string | null
+          trust_level?: string | null
+        }
+        Relationships: []
+      }
       menu_item_scores: {
         Row: {
           allergen_flags: Json | null
@@ -889,6 +1485,145 @@ export type Database = {
             columns: ["menu_id"]
             isOneToOne: false
             referencedRelation: "restaurant_menus"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      microplastic_scores: {
+        Row: {
+          category_risk: number | null
+          created_at: string
+          id: string
+          last_calculated: string | null
+          mitigation_suggestions: Json | null
+          nanoplastic_flag: boolean | null
+          overall_risk_score: number | null
+          packaging_risk: number | null
+          primary_risk_sources: Json | null
+          processing_risk: number | null
+          product_id: string | null
+          risk_level: string | null
+          transparency_score: number | null
+        }
+        Insert: {
+          category_risk?: number | null
+          created_at?: string
+          id?: string
+          last_calculated?: string | null
+          mitigation_suggestions?: Json | null
+          nanoplastic_flag?: boolean | null
+          overall_risk_score?: number | null
+          packaging_risk?: number | null
+          primary_risk_sources?: Json | null
+          processing_risk?: number | null
+          product_id?: string | null
+          risk_level?: string | null
+          transparency_score?: number | null
+        }
+        Update: {
+          category_risk?: number | null
+          created_at?: string
+          id?: string
+          last_calculated?: string | null
+          mitigation_suggestions?: Json | null
+          nanoplastic_flag?: boolean | null
+          overall_risk_score?: number | null
+          packaging_risk?: number | null
+          primary_risk_sources?: Json | null
+          processing_risk?: number | null
+          product_id?: string | null
+          risk_level?: string | null
+          transparency_score?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "microplastic_scores_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      microplastic_studies: {
+        Row: {
+          created_at: string
+          doi_url: string | null
+          findings_summary: string | null
+          geographic_region: string | null
+          id: string
+          journal: string | null
+          methodology: string | null
+          particle_size_range: string | null
+          particles_found: string | null
+          product_category: string | null
+          sample_size: number | null
+          title: string
+          year: number | null
+        }
+        Insert: {
+          created_at?: string
+          doi_url?: string | null
+          findings_summary?: string | null
+          geographic_region?: string | null
+          id?: string
+          journal?: string | null
+          methodology?: string | null
+          particle_size_range?: string | null
+          particles_found?: string | null
+          product_category?: string | null
+          sample_size?: number | null
+          title: string
+          year?: number | null
+        }
+        Update: {
+          created_at?: string
+          doi_url?: string | null
+          findings_summary?: string | null
+          geographic_region?: string | null
+          id?: string
+          journal?: string | null
+          methodology?: string | null
+          particle_size_range?: string | null
+          particles_found?: string | null
+          product_category?: string | null
+          sample_size?: number | null
+          title?: string
+          year?: number | null
+        }
+        Relationships: []
+      }
+      mycotoxin_risk_profiles: {
+        Row: {
+          created_at: string
+          id: string
+          mitigation_notes: string | null
+          overall_mycotoxin_risk: string | null
+          product_id: string | null
+          specific_mycotoxin_risks: Json | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          mitigation_notes?: string | null
+          overall_mycotoxin_risk?: string | null
+          product_id?: string | null
+          specific_mycotoxin_risks?: Json | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          mitigation_notes?: string | null
+          overall_mycotoxin_risk?: string | null
+          product_id?: string | null
+          specific_mycotoxin_risks?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mycotoxin_risk_profiles_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
             referencedColumns: ["id"]
           },
         ]
@@ -959,6 +1694,277 @@ export type Database = {
         }
         Relationships: []
       }
+      outbreak_tracking: {
+        Row: {
+          cases_reported: number | null
+          cdc_investigation_id: string | null
+          created_at: string
+          deaths: number | null
+          hospitalizations: number | null
+          id: string
+          pathogen: string
+          product_source: string | null
+          start_date: string | null
+          states_affected: Json | null
+          status: string | null
+          update_history: Json | null
+        }
+        Insert: {
+          cases_reported?: number | null
+          cdc_investigation_id?: string | null
+          created_at?: string
+          deaths?: number | null
+          hospitalizations?: number | null
+          id?: string
+          pathogen: string
+          product_source?: string | null
+          start_date?: string | null
+          states_affected?: Json | null
+          status?: string | null
+          update_history?: Json | null
+        }
+        Update: {
+          cases_reported?: number | null
+          cdc_investigation_id?: string | null
+          created_at?: string
+          deaths?: number | null
+          hospitalizations?: number | null
+          id?: string
+          pathogen?: string
+          product_source?: string | null
+          start_date?: string | null
+          states_affected?: Json | null
+          status?: string | null
+          update_history?: Json | null
+        }
+        Relationships: []
+      }
+      packaging_materials: {
+        Row: {
+          bpa_free: boolean | null
+          id: string
+          known_leaching_compounds: Json | null
+          material_detail: string | null
+          plastic_contact_surface_area_cm2: number | null
+          primary_packaging: string | null
+          product_id: string | null
+          resin_code: string | null
+        }
+        Insert: {
+          bpa_free?: boolean | null
+          id?: string
+          known_leaching_compounds?: Json | null
+          material_detail?: string | null
+          plastic_contact_surface_area_cm2?: number | null
+          primary_packaging?: string | null
+          product_id?: string | null
+          resin_code?: string | null
+        }
+        Update: {
+          bpa_free?: boolean | null
+          id?: string
+          known_leaching_compounds?: Json | null
+          material_detail?: string | null
+          plastic_contact_surface_area_cm2?: number | null
+          primary_packaging?: string | null
+          product_id?: string | null
+          resin_code?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "packaging_materials_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      packaging_risk_factors: {
+        Row: {
+          heat_sensitivity: boolean | null
+          id: string
+          material_code: string | null
+          microplastic_risk_level: string | null
+          nanoplastic_risk_level: string | null
+          packaging_type: string
+          study_references: Json | null
+        }
+        Insert: {
+          heat_sensitivity?: boolean | null
+          id?: string
+          material_code?: string | null
+          microplastic_risk_level?: string | null
+          nanoplastic_risk_level?: string | null
+          packaging_type: string
+          study_references?: Json | null
+        }
+        Update: {
+          heat_sensitivity?: boolean | null
+          id?: string
+          material_code?: string | null
+          microplastic_risk_level?: string | null
+          nanoplastic_risk_level?: string | null
+          packaging_type?: string
+          study_references?: Json | null
+        }
+        Relationships: []
+      }
+      pesticide_residue_data: {
+        Row: {
+          created_at: string
+          exceeds_guideline: boolean | null
+          health_guideline_ppm: number | null
+          id: string
+          legal_limit_ppm: number | null
+          pesticide_name: string
+          product_id: string | null
+          residue_level_ppm: number | null
+          test_date: string | null
+          test_source: string | null
+        }
+        Insert: {
+          created_at?: string
+          exceeds_guideline?: boolean | null
+          health_guideline_ppm?: number | null
+          id?: string
+          legal_limit_ppm?: number | null
+          pesticide_name: string
+          product_id?: string | null
+          residue_level_ppm?: number | null
+          test_date?: string | null
+          test_source?: string | null
+        }
+        Update: {
+          created_at?: string
+          exceeds_guideline?: boolean | null
+          health_guideline_ppm?: number | null
+          id?: string
+          legal_limit_ppm?: number | null
+          pesticide_name?: string
+          product_id?: string | null
+          residue_level_ppm?: number | null
+          test_date?: string | null
+          test_source?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pesticide_residue_data_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pfas_contamination_sites: {
+        Row: {
+          contamination_level: string | null
+          id: string
+          lat: number | null
+          lng: number | null
+          pfas_compounds: Json | null
+          remediation_status: string | null
+          site_name: string
+          site_type: string | null
+          source_url: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          contamination_level?: string | null
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          pfas_compounds?: Json | null
+          remediation_status?: string | null
+          site_name: string
+          site_type?: string | null
+          source_url?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          contamination_level?: string | null
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          pfas_compounds?: Json | null
+          remediation_status?: string | null
+          site_name?: string
+          site_type?: string | null
+          source_url?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      pfas_packaging_data: {
+        Row: {
+          brand_or_chain: string | null
+          created_at: string
+          detection_level_ppt: number | null
+          id: string
+          pfas_compounds: Json | null
+          pfas_detected: boolean | null
+          product_type: string | null
+          test_date: string | null
+          test_source: string | null
+        }
+        Insert: {
+          brand_or_chain?: string | null
+          created_at?: string
+          detection_level_ppt?: number | null
+          id?: string
+          pfas_compounds?: Json | null
+          pfas_detected?: boolean | null
+          product_type?: string | null
+          test_date?: string | null
+          test_source?: string | null
+        }
+        Update: {
+          brand_or_chain?: string | null
+          created_at?: string
+          detection_level_ppt?: number | null
+          id?: string
+          pfas_compounds?: Json | null
+          pfas_detected?: boolean | null
+          product_type?: string | null
+          test_date?: string | null
+          test_source?: string | null
+        }
+        Relationships: []
+      }
+      pfas_water_data: {
+        Row: {
+          exceeds_epa_advisory: boolean | null
+          id: string
+          last_tested: string | null
+          pfas_compounds_detected: Json | null
+          pfas_total_ppt: number | null
+          source: string | null
+          water_utility: string | null
+          zip_code: string
+        }
+        Insert: {
+          exceeds_epa_advisory?: boolean | null
+          id?: string
+          last_tested?: string | null
+          pfas_compounds_detected?: Json | null
+          pfas_total_ppt?: number | null
+          source?: string | null
+          water_utility?: string | null
+          zip_code: string
+        }
+        Update: {
+          exceeds_epa_advisory?: boolean | null
+          id?: string
+          last_tested?: string | null
+          pfas_compounds_detected?: Json | null
+          pfas_total_ppt?: number | null
+          source?: string | null
+          water_utility?: string | null
+          zip_code?: string
+        }
+        Relationships: []
+      }
       post_comments: {
         Row: {
           content: string
@@ -1020,6 +2026,95 @@ export type Database = {
           },
         ]
       }
+      processing_contaminant_scores: {
+        Row: {
+          acrylamide_risk: number | null
+          age_risk: number | null
+          created_at: string
+          furan_risk: number | null
+          hca_risk: number | null
+          id: string
+          mitigation_tips: Json | null
+          nitrosamine_risk: number | null
+          overall_processing_risk: number | null
+          pah_risk: number | null
+          product_id: string | null
+          risk_factors: Json | null
+          three_mcpd_risk: number | null
+          trans_fat_risk: number | null
+        }
+        Insert: {
+          acrylamide_risk?: number | null
+          age_risk?: number | null
+          created_at?: string
+          furan_risk?: number | null
+          hca_risk?: number | null
+          id?: string
+          mitigation_tips?: Json | null
+          nitrosamine_risk?: number | null
+          overall_processing_risk?: number | null
+          pah_risk?: number | null
+          product_id?: string | null
+          risk_factors?: Json | null
+          three_mcpd_risk?: number | null
+          trans_fat_risk?: number | null
+        }
+        Update: {
+          acrylamide_risk?: number | null
+          age_risk?: number | null
+          created_at?: string
+          furan_risk?: number | null
+          hca_risk?: number | null
+          id?: string
+          mitigation_tips?: Json | null
+          nitrosamine_risk?: number | null
+          overall_processing_risk?: number | null
+          pah_risk?: number | null
+          product_id?: string | null
+          risk_factors?: Json | null
+          three_mcpd_risk?: number | null
+          trans_fat_risk?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "processing_contaminant_scores_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      processing_risk_factors: {
+        Row: {
+          id: string
+          notes: string | null
+          particle_release_estimate: string | null
+          plastic_contact_duration: string | null
+          process_type: string
+          risk_multiplier: number | null
+          temperature_range: string | null
+        }
+        Insert: {
+          id?: string
+          notes?: string | null
+          particle_release_estimate?: string | null
+          plastic_contact_duration?: string | null
+          process_type: string
+          risk_multiplier?: number | null
+          temperature_range?: string | null
+        }
+        Update: {
+          id?: string
+          notes?: string | null
+          particle_release_estimate?: string | null
+          plastic_contact_duration?: string | null
+          process_type?: string
+          risk_multiplier?: number | null
+          temperature_range?: string | null
+        }
+        Relationships: []
+      }
       product_ingredients: {
         Row: {
           amount: string | null
@@ -1052,6 +2147,56 @@ export type Database = {
           },
           {
             foreignKeyName: "product_ingredients_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      product_packaging_analysis: {
+        Row: {
+          cap_seal_material: string | null
+          chemicals_of_concern: Json | null
+          container_type: string | null
+          created_at: string
+          heat_sensitivity_warning: boolean | null
+          id: string
+          lining_type: string | null
+          migration_risk_score: number | null
+          primary_material: string | null
+          product_id: string | null
+          secondary_material: string | null
+        }
+        Insert: {
+          cap_seal_material?: string | null
+          chemicals_of_concern?: Json | null
+          container_type?: string | null
+          created_at?: string
+          heat_sensitivity_warning?: boolean | null
+          id?: string
+          lining_type?: string | null
+          migration_risk_score?: number | null
+          primary_material?: string | null
+          product_id?: string | null
+          secondary_material?: string | null
+        }
+        Update: {
+          cap_seal_material?: string | null
+          chemicals_of_concern?: Json | null
+          container_type?: string | null
+          created_at?: string
+          heat_sensitivity_warning?: boolean | null
+          id?: string
+          lining_type?: string | null
+          migration_risk_score?: number | null
+          primary_material?: string | null
+          product_id?: string | null
+          secondary_material?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_packaging_analysis_product_id_fkey"
             columns: ["product_id"]
             isOneToOne: false
             referencedRelation: "products"
@@ -1267,6 +2412,51 @@ export type Database = {
           },
         ]
       }
+      recall_alerts: {
+        Row: {
+          affected_lot_numbers: string | null
+          brand: string | null
+          created_at: string
+          description: string | null
+          distribution_states: Json | null
+          id: string
+          product_name: string
+          reason: string | null
+          recall_date: string | null
+          recall_id: string | null
+          severity: string | null
+          source_agency: string | null
+        }
+        Insert: {
+          affected_lot_numbers?: string | null
+          brand?: string | null
+          created_at?: string
+          description?: string | null
+          distribution_states?: Json | null
+          id?: string
+          product_name: string
+          reason?: string | null
+          recall_date?: string | null
+          recall_id?: string | null
+          severity?: string | null
+          source_agency?: string | null
+        }
+        Update: {
+          affected_lot_numbers?: string | null
+          brand?: string | null
+          created_at?: string
+          description?: string | null
+          distribution_states?: Json | null
+          id?: string
+          product_name?: string
+          reason?: string | null
+          recall_date?: string | null
+          recall_id?: string | null
+          severity?: string | null
+          source_agency?: string | null
+        }
+        Relationships: []
+      }
       recipes: {
         Row: {
           created_at: string
@@ -1308,6 +2498,95 @@ export type Database = {
           user_id?: string | null
         }
         Relationships: []
+      }
+      regional_contamination_data: {
+        Row: {
+          affected_product_categories: Json | null
+          contaminant: string
+          contamination_level: string | null
+          country: string | null
+          data_source: string | null
+          id: string
+          last_updated: string | null
+          region: string
+          source_cause: string | null
+        }
+        Insert: {
+          affected_product_categories?: Json | null
+          contaminant: string
+          contamination_level?: string | null
+          country?: string | null
+          data_source?: string | null
+          id?: string
+          last_updated?: string | null
+          region: string
+          source_cause?: string | null
+        }
+        Update: {
+          affected_product_categories?: Json | null
+          contaminant?: string
+          contamination_level?: string | null
+          country?: string | null
+          data_source?: string | null
+          id?: string
+          last_updated?: string | null
+          region?: string
+          source_cause?: string | null
+        }
+        Relationships: []
+      }
+      residue_scores: {
+        Row: {
+          antibiotic_risk: number | null
+          country_of_origin: string | null
+          created_at: string
+          drug_residue_risk: number | null
+          hormone_risk: number | null
+          id: string
+          label_claims: Json | null
+          organic_certified: boolean | null
+          overall_residue_score: number | null
+          pesticide_risk: number | null
+          product_id: string | null
+          risk_factors: Json | null
+        }
+        Insert: {
+          antibiotic_risk?: number | null
+          country_of_origin?: string | null
+          created_at?: string
+          drug_residue_risk?: number | null
+          hormone_risk?: number | null
+          id?: string
+          label_claims?: Json | null
+          organic_certified?: boolean | null
+          overall_residue_score?: number | null
+          pesticide_risk?: number | null
+          product_id?: string | null
+          risk_factors?: Json | null
+        }
+        Update: {
+          antibiotic_risk?: number | null
+          country_of_origin?: string | null
+          created_at?: string
+          drug_residue_risk?: number | null
+          hormone_risk?: number | null
+          id?: string
+          label_claims?: Json | null
+          organic_certified?: boolean | null
+          overall_residue_score?: number | null
+          pesticide_risk?: number | null
+          product_id?: string | null
+          risk_factors?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "residue_scores_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       restaurant_menus: {
         Row: {
@@ -1481,6 +2760,47 @@ export type Database = {
         }
         Relationships: []
       }
+      seafood_safety_data: {
+        Row: {
+          aquaculture_practices_known: Json | null
+          country_of_origin: string | null
+          farmed_vs_wild: string | null
+          fda_import_alert: boolean | null
+          id: string
+          known_drug_residue_risks: Json | null
+          product_id: string | null
+          safety_score: number | null
+        }
+        Insert: {
+          aquaculture_practices_known?: Json | null
+          country_of_origin?: string | null
+          farmed_vs_wild?: string | null
+          fda_import_alert?: boolean | null
+          id?: string
+          known_drug_residue_risks?: Json | null
+          product_id?: string | null
+          safety_score?: number | null
+        }
+        Update: {
+          aquaculture_practices_known?: Json | null
+          country_of_origin?: string | null
+          farmed_vs_wild?: string | null
+          fda_import_alert?: boolean | null
+          id?: string
+          known_drug_residue_risks?: Json | null
+          product_id?: string | null
+          safety_score?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seafood_safety_data_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       social_posts: {
         Row: {
           comments_count: number | null
@@ -1514,6 +2834,48 @@ export type Database = {
           likes_count?: number | null
           post_type?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      storage_container_database: {
+        Row: {
+          bpa_free: boolean | null
+          brand: string | null
+          created_at: string
+          dishwasher_safe_safely: boolean | null
+          id: string
+          material: string
+          microwave_safe_safely: boolean | null
+          phthalate_free: boolean | null
+          product_name: string
+          resin_code: string | null
+          safety_score: number | null
+        }
+        Insert: {
+          bpa_free?: boolean | null
+          brand?: string | null
+          created_at?: string
+          dishwasher_safe_safely?: boolean | null
+          id?: string
+          material: string
+          microwave_safe_safely?: boolean | null
+          phthalate_free?: boolean | null
+          product_name: string
+          resin_code?: string | null
+          safety_score?: number | null
+        }
+        Update: {
+          bpa_free?: boolean | null
+          brand?: string | null
+          created_at?: string
+          dishwasher_safe_safely?: boolean | null
+          id?: string
+          material?: string
+          microwave_safe_safely?: boolean | null
+          phthalate_free?: boolean | null
+          product_name?: string
+          resin_code?: string | null
+          safety_score?: number | null
         }
         Relationships: []
       }
@@ -1556,6 +2918,63 @@ export type Database = {
           trial_end?: string | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      total_exposure_profiles: {
+        Row: {
+          created_at: string
+          drug_residue_score: number | null
+          endocrine_disruptor_load: number | null
+          heavy_metal_score: number | null
+          id: string
+          microplastic_score: number | null
+          mycotoxin_score: number | null
+          packaging_migration_score: number | null
+          percentile_vs_community: number | null
+          pesticide_score: number | null
+          pfas_score: number | null
+          processing_contaminant_score: number | null
+          total_exposure_score: number | null
+          trend_vs_last_week: string | null
+          user_id: string
+          week_of: string
+        }
+        Insert: {
+          created_at?: string
+          drug_residue_score?: number | null
+          endocrine_disruptor_load?: number | null
+          heavy_metal_score?: number | null
+          id?: string
+          microplastic_score?: number | null
+          mycotoxin_score?: number | null
+          packaging_migration_score?: number | null
+          percentile_vs_community?: number | null
+          pesticide_score?: number | null
+          pfas_score?: number | null
+          processing_contaminant_score?: number | null
+          total_exposure_score?: number | null
+          trend_vs_last_week?: string | null
+          user_id: string
+          week_of: string
+        }
+        Update: {
+          created_at?: string
+          drug_residue_score?: number | null
+          endocrine_disruptor_load?: number | null
+          heavy_metal_score?: number | null
+          id?: string
+          microplastic_score?: number | null
+          mycotoxin_score?: number | null
+          packaging_migration_score?: number | null
+          percentile_vs_community?: number | null
+          pesticide_score?: number | null
+          pfas_score?: number | null
+          processing_contaminant_score?: number | null
+          total_exposure_score?: number | null
+          trend_vs_last_week?: string | null
+          user_id?: string
+          week_of?: string
         }
         Relationships: []
       }
@@ -1683,6 +3102,30 @@ export type Database = {
           created_at?: string
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_vulnerability_flags: {
+        Row: {
+          activated_at: string | null
+          active: boolean | null
+          flag_type: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          activated_at?: string | null
+          active?: boolean | null
+          flag_type: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          activated_at?: string | null
+          active?: boolean | null
+          flag_type?: string
+          id?: string
           user_id?: string
         }
         Relationships: []
